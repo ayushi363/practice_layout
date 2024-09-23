@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Modal</title>
+    <style>
+      /* Gallery Item Styles */
+      .gallery2 {
+        display: grid;
+        max-width: 100%;
+        margin: 0 auto;
+        grid-gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-auto-rows: minmax(150px, auto);
+      }
+
+      .gallery2-item {
+        max-width: 100%;
+        border-radius: 5px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        overflow: hidden;
+        transition: all 0.3s;
+        cursor: pointer;
+      }
+
+      .gallery2-item:hover {
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.8);
+      }
+
+      .gallery2-item img {
+        width: 100%;
+        height: 260px;
+        object-fit: fill;
+        transition: transform 0.3s;
+      }
+
+      .gallery2-item:hover img {
+        transform: scale(1.1);
+      }
+
+      /* Modal Styles */
+      .modal2 {
+        display: none; /* Hidden by default */
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Background opacity */
+        backdrop-filter: blur(5px); /* Blur effect */
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal2-content {
+        width: 80%;
+        max-width: 500px;
+        max-height: 80vh;
+        object-fit: contain;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      .close {
+        display: none; /* Hide the close icon by default */
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #fff;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+        cursor: pointer;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="gallery2">
+      <div class="gallery2-item">
+        <img
+          src="{{ asset('assets/images/1.jpeg') }}"
+          alt="Placeholder Image"
+          class="gallery-image" />
+      </div>
+      <div class="gallery2-item">
+        <img
+          src="{{ asset('assets/images/3.jpeg') }}"
+          alt="Placeholder Image"
+          class="gallery-image" />
+      </div>
+      <div class="gallery2-item">
+        <img
+          src="{{ asset('assets/images/2.jpeg') }}"
+          alt="Placeholder Image"
+          class="gallery-image" />
+      </div>
+      <div class="gallery2-item">
+        <img
+          src="{{ asset('assets/images/1.jpeg') }}"
+          alt="Placeholder Image"
+          class="gallery-image" />
+      </div>
+      <div class="gallery2-item">
+        <img
+          src="{{ asset('assets/images/2.jpeg') }}"
+          alt="Placeholder Image"
+          class="gallery-image" />
+      </div>
+      <div class="gallery2-item">
+        <img
+          src="{{ asset('assets/images/3.jpeg') }}"
+          alt="Placeholder Image"
+          class="gallery-image" />
+      </div>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="imagemodal2" class="modal2">
+      <span class="close">&times;</span>
+      <img class="modal2-content" id="modal2Image" />
+    </div>
+
+    <script>
+      // Get the modal
+      var modal2 = document.getElementById("imagemodal2");
+
+      // Get the close icon
+      var closeIcon = document.querySelector(".close");
+
+      // Get all images in the gallery
+      var images = document.querySelectorAll(".gallery-image");
+      var modal2Img = document.getElementById("modal2Image");
+
+      // Loop through all images and add click event
+      images.forEach(function (img) {
+        img.onclick = function () {
+          modal2.style.display = "flex"; // Show the modal and blur background
+          closeIcon.style.display = "block"; // Show the close icon
+          modal2Img.src = this.src;
+        };
+      });
+
+      // Close the modal when the close icon is clicked
+      closeIcon.onclick = function () {
+        modal2.style.display = "none"; // Hide the modal and blur background
+        closeIcon.style.display = "none"; // Hide the close icon
+      };
+
+      // Close the modal when clicking outside the image
+      modal2.onclick = function (event) {
+        if (event.target === modal2) {
+          modal2.style.display = "none";
+          closeIcon.style.display = "none"; // Hide the close icon
+        }
+      };
+    </script>
+  </body>
+</html>

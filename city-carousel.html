@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .sc-eMigcr {
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .city-wrapper {
+            display: flex;
+            overflow-x: hidden;
+            flex: 1;
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+            white-space: nowrap; /* Ensure items don't wrap */
+        }
+
+        .city-wrapper::-webkit-scrollbar {
+            display: none;  /* Chrome, Safari, Opera */
+        }
+
+        .city-wrapper a {
+            display: inline-block; /* Ensure horizontal layout */
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        .c-flex.center.open-city-circle-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .open-city-image.circle {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+        }
+
+        .open-city-name {
+            margin-top: 10px;
+            text-align: center;
+            color: #000;
+        }
+
+        .previous-icon,
+        .next-icon {
+            cursor: pointer;
+            font-size: 24px;
+            padding: 10px;
+            z-index: 1;
+        }
+
+        .previous-icon {
+            position: absolute;
+            left: 0;
+        }
+
+        .next-icon {
+            position: absolute;
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container center">
+    <div class="sc-eMigcr biuYYK">
+        <div class="previous-icon" onclick="scrollCities(-1)">&laquo;</div>
+        <div class="city-wrapper" id="cityWrapper">
+            <!-- Repeat the following block for all cities -->
+            <!-- Example city blocks for 15 cities -->
+            <a href="">
+                <div class="c-flex center open-city-circle-content">
+                    <img class="open-city-image circle" src="https://image.wedmegood.com/resized/100X/uploads/city_image/1/delhi.png" alt="delhi-ncr">
+                    <p class="margin-t-10 open-city-name">Delhi NCR 1</p>
+                </div>
+            </a>
+            <!-- Add more city elements up to 15 -->
+        </div>
+        <div class="next-icon" onclick="scrollCities(1)">&raquo;</div>
+    </div>
+</div>
+
+
+<script>
+    const scrollAmount = 150; // Adjust this value as needed
+    const autoScrollIntervalTime = 5500; // Auto-scroll every 3 seconds
+
+    function setupCarousel() {
+        const container = document.querySelector('#cityWrapper');
+        const items = Array.from(container.children);
+        const totalItems = items.length;
+
+        // Clone items and append to the end
+        items.forEach(item => {
+            const clone = item.cloneNode(true);
+            container.appendChild(clone);
+        });
+
+        // Adjust the scroll position to the start of the original items
+        container.scrollLeft = 0;
+
+        return totalItems;
+    }
+
+    function scrollCities(direction) {
+        const container = document.querySelector('#cityWrapper');
+        const totalItems = setupCarousel(); // Ensure items are set up
+        const itemWidth = container.children[0].offsetWidth + 20; // 20px for margin
+
+        // Calculate new scroll position
+        let newScrollLeft = container.scrollLeft + direction * itemWidth;
+
+        // Handle circular scrolling
+        if (newScrollLeft < 0) {
+            newScrollLeft = (container.scrollWidth / 2) - (container.clientWidth / 2);
+        } else if (newScrollLeft > (container.scrollWidth / 2)) {
+            newScrollLeft = 0;
+        }
+
+        container.scrollTo({
+            left: newScrollLeft,
+            behavior: 'smooth'
+        });
+    }
+
+    function autoScroll() {
+        const container = document.querySelector('#cityWrapper');
+        const itemWidth = container.children[0].offsetWidth + 20; // 20px for margin
+        const maxScrollLeft = container.scrollWidth / 2 - container.clientWidth;
+        let newScrollLeft = container.scrollLeft + scrollAmount;
+
+        if (newScrollLeft > maxScrollLeft) {
+            newScrollLeft = 0; // Loop back to the start
+        }
+
+        container.scrollTo({
+            left: newScrollLeft,
+            behavior: 'smooth'
+        });
+    }
+
+    // Initialize carousel setup
+    setupCarousel();
+
+    // Start auto-scrolling interval
+    let autoScrollInterval = setInterval(autoScroll, autoScrollIntervalTime);
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelector('.previous-icon').addEventListener('click', () => {
+            scrollCities(-1);
+        });
+
+        document.querySelector('.next-icon').addEventListener('click', () => {
+            scrollCities(1);
+        });
+    });
+</script>
+
+
+</body>
+</html>

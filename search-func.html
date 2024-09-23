@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search with Suggestions and Redirect</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        .search-bar-wrapper {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            z-index: 1050;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .search-bar-wrapper.active {
+            display: block;
+        }
+
+        .search-input-group {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .search-bar-wrapper input {
+            width: 100%;
+            padding: 10px 15px;
+            font-size: 18px;
+            position: relative;
+            /* Disable browser autocomplete */
+            autocomplete: off;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: #aaa;
+            cursor: pointer;
+            display: none; /* Initially hidden */
+        }
+
+        .previous-icon {
+            font-size: 20px;
+            color: #aaa;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .search-suggestions-wrapper {
+            display: none; /* Hide by default */
+            position: absolute;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+            z-index: 1049;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .search-suggestions-wrapper.active {
+            display: block; /* Show when active */
+        }
+
+        .search-suggestions {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+
+        .search-suggestions li {
+            padding: 10px;
+            font-size: 18px;
+            border-bottom: 1px solid white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .search-suggestions li a {
+            color: white;
+            text-decoration: none;
+            flex-grow: 1;
+        }
+
+        .search-suggestions li .select-arrow {
+            font-size: 20px;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <div class="search-wrapper">
+                <button id="search-btn" class="btn btn-outline-secondary" type="button">
+                    <i class="fa fa-search" aria-hidden="true"></i> Search
+                </button>
+                <div id="search-bar" class="search-bar-wrapper">
+                    <div class="search-input-group">
+                        <i class="fa fa-arrow-left previous-icon" aria-hidden="true"></i>
+                        <input id="search-input" class="form-control" type="text" placeholder="Search..." aria-label="Search" autocomplete="off">
+                        <i class="fa fa-times search-icon" aria-hidden="true" id="clear-search"></i>
+                    </div>
+                </div>
+                <div id="search-suggestions-wrapper" class="search-suggestions-wrapper">
+                    <ul id="search-suggestions" class="search-suggestions">
+                        <!-- Suggestions will be populated dynamically -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Array of predefined suggestions
+            var products = [
+                'Hibiscus Powder',
+                'Indigo Powder',
+                'Mint Powder',
+                'Mulethi Powder',
+                'Giloy Powder'
+            ];
+
+            // Toggle search bar on button click and open suggestions
+            $('#search-btn').on('click', function () {
+                $('#search-bar').toggleClass('active');
+                $('#search-suggestions-wrapper').addClass('active');
+                $('#search-input').focus(); // Focus on the input when search bar is shown
+                generateSuggestions(); // Display popular suggestions when search opens
+            });
+
+            // Close the search bar when the back arrow is clicked
+            $('.previous-icon').on('click', function () {
+                $('#search-bar').removeClass('active');
+                $('#search-suggestions-wrapper').removeClass('active');
+            });
+
+            // Show and hide clear icon and suggestions when typing
+            $('#search-input').on('input', function () {
+                var query = $(this).val().trim().toLowerCase();
+
+                if (query.length > 0) {
+                    $('#clear-search').show(); // Show clear icon
+                    $('#search-suggestions-wrapper').addClass('active');
+                    generateSuggestions(query); // Show suggestions based on input
+                } else {
+                    $('#clear-search').hide(); // Hide clear icon
+                    generateSuggestions(); // Show popular suggestions
+                }
+            });
+
+            // Clear input and show popular suggestions when clear icon is clicked
+            $('#clear-search').on('click', function () {
+                $('#search-input').val(''); // Clear input
+                $(this).hide(); // Hide clear icon
+                $('#search-input').focus(); // Keep input field focused for immediate typing
+                generateSuggestions(); // Show popular suggestions
+            });
+
+            // Capture enter key press to go to the All Products page
+            $('#search-input').on('keypress', function (e) {
+                if (e.which == 13) {
+                    searchProducts();
+                }
+            });
+
+            // Generate suggestions dynamically
+            function generateSuggestions(query = '') {
+                var filteredSuggestions = query
+                    ? products.filter(function (product) {
+                        return product.toLowerCase().includes(query); // Filter suggestions based on query
+                    })
+                    : products; // If no query, show all products
+
+                var suggestionsList = $('#search-suggestions');
+                suggestionsList.empty(); // Clear previous suggestions
+
+                filteredSuggestions.forEach(function (suggestion) {
+                    suggestionsList.append(`
+                        <li data-suggestion="${suggestion}">
+                            <a href="#" class="suggestion-item">${suggestion}</a>
+                            <i class="fa fa-arrow-left select-arrow" aria-hidden="true"></i>
+                        </li>
+                    `);
+                });
+
+                // Add click event to list items to update the input field and navigate
+                $('#search-suggestions li').on('click', function () {
+                    var suggestionText = $(this).data('suggestion');
+                    $('#search-input').val(suggestionText); // Set input field value
+                    $('#search-suggestions-wrapper').removeClass('active'); // Hide suggestions
+                    searchProducts(); // Go to All Products page with the selected suggestion
+                });
+            }
+
+            // Navigate to All Products page with the search query
+            function searchProducts() {
+                var searchQuery = $('#search-input').val().trim();
+                if (searchQuery) {
+                    window.location.href = '/all-products?search=' + encodeURIComponent(searchQuery);
+                }
+            }
+
+            // Close search bar and suggestions if clicked outside
+            $(document).on('click', function (event) {
+                if (!$(event.target).closest('#search-bar, #search-btn, #search-suggestions-wrapper').length) {
+                    $('#search-bar').removeClass('active');
+                    $('#search-suggestions-wrapper').removeClass('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

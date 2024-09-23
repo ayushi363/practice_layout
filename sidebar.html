@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Sidebar</title>
+    <style>
+        body {
+            background-color: #1667F3;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px; /* Adjust as needed */
+            height: 100vh;
+            background: #fff; /* Adjust as needed */
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            padding-top: 20px; /* Adjust for logo spacing */
+            transform: translateX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar.hide {
+            transform: translateX(-100%);
+        }
+
+        .sidebar .logo {
+            display: block;
+            margin: 0 auto;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar ul li.active {
+            background-color: #1667F3; /* Blue background for active item */
+            color: #fff; /* Text color for active item */
+        }
+
+        .sidebar ul li:hover {
+            background-color: #f0f0f0;
+        }
+
+        .sidebar .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            display: none; /* Hidden by default */
+        }
+
+        .main-content {
+            margin-left: 250px; /* Same as sidebar width */
+            width: calc(100% - 250px); /* Adjust based on sidebar width */
+            transition: margin-left 0.3s ease;
+        }
+
+        #menu2 > li {
+            display: block;
+            color: var(--indigo-dye);
+            text-decoration: none;
+            position: relative;
+            cursor: pointer;
+            margin: auto;
+        }
+
+        #menu2 > li:hover {
+            background-color: #1667F3;
+            color: var(--indigo-dye);
+        }
+
+        #drop-down {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 100%; /* Position dropdown to be beside the sidebar */
+            background: #fff;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            border: 1px solid #ccc;
+            z-index: 5000;
+            width: 300px; /* Adjust width to fit your needs */
+        }
+
+        #drop-down > li {
+            display: block;
+            padding: 10px;
+            white-space: nowrap;
+        }
+
+        #drop-down > li:hover {
+            background-color: #f0f0f0;
+        }
+
+        #node2:hover #drop-down {
+            display: block;
+        }
+
+        #toggle-btn {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.show {
+                transform: translateX(0);
+            }
+
+            .sidebar .close-btn {
+                display: block; /* Show on mobile screens */
+            }
+
+            #toggle-btn {
+                display: block;
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                font-size: 24px;
+                cursor: pointer;
+                z-index: 1000;
+                color: #fff;
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Toggle Button -->
+    <div id="toggle-btn">&#9776;</div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="close-btn">&times;</div>
+        <img src="assets/images/Agile-logo.png" class="logo" alt="Logo" style="height: 50px;">
+        <ul id="menu2">
+            <li class="navbar-item2">
+                <a href="{{ url('/') }}" class="navbar-link" data-nav-link>
+                    <span>Home</span>
+                    <ion-icon name="chevron-forward"></ion-icon>
+                </a>
+            </li>
+            <li class="navbar-item2">
+                <a href="{{ url('/about') }}" class="navbar-link" data-nav-link>
+                    <span>About</span>
+                    <ion-icon name="chevron-forward"></ion-icon>
+                </a>
+            </li>
+            <li class="navbar-item2" id="node2">
+                <a href="{{ url('/about') }}" class="navbar-link" data-nav-link>
+                    <span>Node</span>
+                    <ion-icon name="chevron-forward"></ion-icon>
+                </a>
+                <ul id="drop-down">
+                    <li><a href="#">Node 1</a></li>
+                    <li><a href="#">Node 2</a></li>
+                    <li><a href="#">Node 3</a></li>
+                    <li><a href="#">Node 4</a></li>
+                    <li><a href="#">Node 5</a></li>
+                </ul>
+            </li>
+            <li class="navbar-item2">
+                <a href="{{ url('/ced-coating') }}" class="navbar-link" data-nav-link>
+                    <span>CED Coating</span>
+                    <ion-icon name="chevron-forward"></ion-icon>
+                </a>
+            </li>
+            <li class="navbar-item2">
+                <a href="{{ url('/why-choose-us') }}" class="navbar-link" data-nav-link>
+                    <span>Why Choose Us</span>
+                    <ion-icon name="chevron-forward"></ion-icon>
+                </a>
+            </li>
+            <li class="navbar-item2">
+                <a href="{{ url('/services') }}" class="navbar-link" data-nav-link>
+                    <span>Service</span>
+                    <ion-icon name="chevron-forward"></ion-icon>
+                </a>
+            </li>
+            <li class="navbar-item2">
+                <a href="{{ url('/features') }}" class="navbar-link" data-nav-link>
+                    <span>Features</span>
+                    <ion-icon name="chevron-forward"></ion-icon>
+                </a>
+            </li>
+            <li class="navbar-item2">
+                <a href="{{ url('/products') }}" class="navbar-link" data-nav-link>
+                    <span>Products</span>
+                    <ion-icon name="chevron-forward"></ion-icon>
+                </a>
+            </li>
+            <li class="navbar-item2">
+                <a href="{{ url('/introduction') }}" class="navbar-link" data-nav-link>
+                    <span>Introduction</span>
+                    <ion-icon name="chevron-forward"></ion-icon>
+                </a>
+            </li>
+            <li class="navbar-item2">
+                <a href="{{ url('/certifications') }}" class="navbar-link" data-nav-link>
+                    <span>Certifications</span>
+                    <ion-icon name="chevron-forward"></ion-icon>
+                </a>
+            </li>
+            <li class="navbar-item2">
+                <a href="{{ url('/gallery') }}" class="navbar-link" data-nav-link>
+                    <span>Gallery</span>
+                    <ion-icon name="chevron-forward"></ion-icon>
+                </a>
+            </li>
+            <li class="navbar-item2">
+                <a href="{{ url('/blog') }}" class="navbar-link" data-nav-link>
+                    <span>Blog</span>
+                    <ion-icon name="chevron-forward"></ion-icon>
+                </a>
+            </li>
+            <li class="navbar-item2">
+                <a href="{{ url('/contact') }}" class="navbar-link" data-nav-link>
+                    <span>Contact</span>
+                    <ion-icon name="chevron-forward"></ion-icon>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Your main content here -->
+    </div>
+
+    <script>
+        document.getElementById('toggle-btn').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.add('show');
+        });
+
+        document.querySelector('.sidebar .close-btn').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.remove('show');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header Animation</title>
+    <style>
+        .animation-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Ensure hidden overflow during animation */
+            position: relative;
+            background-color: rgba(255, 255, 255, 0.5);
+            width: 100%;
+            height: 100px; /* Set a fixed height for better visibility */
+            color: black;
+        }
+
+        .animated-item {
+            position: absolute;
+            white-space: nowrap; /* Prevent text wrapping */
+            opacity: 0;
+            animation: slide-animation 9s linear infinite;
+        }
+
+        .animated-item:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .animated-item:nth-child(2) {
+            animation-delay: 3s;
+        }
+
+        .animated-item:nth-child(3) {
+            animation-delay: 6s;
+        }
+
+        @keyframes slide-animation {
+            0% {
+                transform: translateX(100vw); /* Start from right edge of viewport */
+                opacity: 0;
+            }
+            10% {
+                transform: translateX(0); /* Centered */
+                opacity: 1;
+            }
+            30% {
+                transform: translateX(0); /* Centered */
+                opacity: 1;
+            }
+            40% {
+                transform: translateX(-100vw); /* Move to the left edge of viewport */
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(-100vw); /* Continue moving out of view */
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="animation-container">
+        <div class="animated-item">
+            24 x 7 Support
+        </div>
+        <div class="animated-item">
+            Fast Delivery
+        </div>
+        <div class="animated-item">
+            Free Shipping
+        </div>
+    </div>
+</body>
+</html>

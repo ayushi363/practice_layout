@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Animation</title>
+    <style>
+
+        .marquee-wrap {
+            position: relative;
+            display: block;
+            overflow: hidden;
+            width: 100%;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .marquee-wrap > li {
+            display: flex;
+            align-items: center;
+            width: var(--scroller-size);
+            will-change: transform;
+            animation: text-scroller 15000ms linear infinite;
+            white-space: nowrap;
+            justify-content: space-around;
+        }
+
+
+        .marquee-wrap ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin-left: 0;
+        }
+
+        .marquee-wrap ul li {
+            display: inline-block;
+            padding: 0 5vw;
+            font-size: 3vw;
+            text-transform: uppercase;
+        }
+
+        @keyframes text-scroller {
+            100% {
+                transform: translateX(calc(var(--scroller-size) * -0.5));
+            }
+        }
+
+        :root {
+            --scroller-size: 150vw;
+        }
+
+        @media only screen and (max-width: 600px) {
+            :root {
+                --scroller-size: 200vw;
+            }
+        }
+    </style>
+</head>
+<body>
+    <ul class="marquee-wrap">
+        <li>
+            <ul>
+                <li>Running text line</li>
+                <li>Running text line</li>
+                <li>Running text line</li>
+                <li>Running text line</li>
+            </ul>
+        </li>
+    </ul>
+</body>
+</html>

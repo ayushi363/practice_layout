@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <!-- Add your CSS here if needed -->
+</head>
+<body>
+    <table class="table table-responsive">
+        <thead class="table-header-color">
+            <tr>
+                <th>Image</th>
+                <th>Product Description</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Remove</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- ======================================================== -->
+            <tr> 
+                <td data-label="Image"><img src="{{ asset('assets/images/2.jpeg') }}" alt="" style="height:50px;border-radius:5px"></td>
+                <td data-label="Product Description">Formal Co-ord Set</td>
+                <td data-label="Price" class="price" data-price="874.00">₹874.00</td>
+                <td data-label="Quantity">
+                    <div class="quantity-control">
+                        <i class="fa fa-minus" aria-hidden="true" onclick="updateQuantity(this, -1)"></i>
+                        <input type="text" class="quantity-input" value="1" readonly>
+                        <i class="fa fa-plus" aria-hidden="true" onclick="updateQuantity(this, 1)"></i>
+                    </div>
+                </td>
+                <td data-label="Remove"><i class="fa fa-trash" aria-hidden="true" onclick="removeRow(this)"></i></td>
+                <td data-label="Total" class="total">₹874.00</td>
+            </tr>
+            <!-- Repeat similar <tr> blocks for other products -->
+        </tbody>
+    </table>
+
+    <div class="row checkout-box">
+        <div class="col-md-6 col-sm-12 mt-3">
+            <p>Free Home Delivery: <em id="free-delivery-info">Spend ₹54.00 more</em></p>
+        </div>
+        <div class="col-md-6 col-sm-12 mt-3 text-end">
+            <p><strong id="checkout-total" style="font-size:medium;">₹4370.00</strong><a href="{{ url('/checkout') }}"><button class="button-29 ms-3" role="button">Checkout</button></a></p>
+        </div>
+    </div>
+
+    <script>
+        function updateQuantity(button, change) {
+            const row = button.closest('tr');
+            const priceElement = row.querySelector('.price');
+            const quantityInput = row.querySelector('.quantity-input');
+            const totalElement = row.querySelector('.total');
+        
+            let quantity = parseInt(quantityInput.value, 10);
+            const price = parseFloat(priceElement.dataset.price);
+        
+            quantity += change;
+        
+            if (quantity < 1) {
+                quantity = 1;
+            }
+        
+            quantityInput.value = quantity;
+            const newTotal = (quantity * price).toFixed(2);
+            totalElement.textContent = `₹${newTotal}`;
+        
+            updateCheckoutTotal();
+        }
+        
+        function updateCheckoutTotal() {
+            let total = 0;
+            document.querySelectorAll('.total').forEach(totalElement => {
+                total += parseFloat(totalElement.textContent.replace('₹', ''));
+            });
+        
+            const checkoutTotalElement = document.getElementById('checkout-total');
+            checkoutTotalElement.textContent = `₹${total.toFixed(2)}`;
+        
+            const freeDeliveryInfo = document.getElementById('free-delivery-info');
+            const remainingAmount = Math.max(0, 54 - total);
+            if (remainingAmount > 0) {
+                freeDeliveryInfo.textContent = `Spend ₹${remainingAmount.toFixed(2)} more`;
+            } else {
+                freeDeliveryInfo.textContent = `Free Home Delivery Available`;
+            }
+        }
+        
+        function removeRow(button) {
+            const row = button.closest('tr');
+            row.remove();
+            updateCheckoutTotal();
+        }
+    </script>
+</body>
+</html>

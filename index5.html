@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vendor UI</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet" />
+    <style>
+      body {
+        background-color: #f4f4f4;
+        font-family: "Arial", sans-serif;
+      }
+
+      header {
+        margin-bottom: 20px;
+      }
+
+      header .form-control {
+        flex: 1;
+        margin-right: 10px;
+      }
+
+      header .btn-warning {
+        white-space: nowrap;
+      }
+
+      .card-img-top {
+        height: 150px;
+        object-fit: cover;
+      }
+
+      .card-body {
+        text-align: center;
+      }
+
+      main {
+        margin-bottom: 20px;
+      }
+
+      h2 {
+        margin-bottom: 10px;
+      }
+
+      ul {
+        padding-left: 20px;
+      }
+
+      section {
+        margin-bottom: 20px;
+      }
+
+      .horizontal-scroll {
+        display: flex;
+        overflow-x: auto;
+        padding: 10px 0;
+      }
+
+      .horizontal-scroll .card {
+        min-width: 200px;
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container my-5">
+      <header class="bg-primary text-white p-3 rounded">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-center flex-wrap">
+            <input
+              type="text"
+              class="form-control mr-2 mb-2"
+              placeholder="Search..." />
+            <input
+              type="text"
+              class="form-control mr-2 mb-2"
+              placeholder="Event Date" />
+            <input
+              type="text"
+              class="form-control mr-2 mb-2"
+              placeholder="Location" />
+            <input
+              type="text"
+              class="form-control mr-2 mb-2"
+              placeholder="Vendor Type" />
+            <input
+              type="text"
+              class="form-control mr-2 mb-2"
+              placeholder="Budget" />
+          </div>
+          <button class="btn btn-warning ml-2">Are you a vendor?</button>
+        </div>
+      </header>
+      <main class="my-4">
+        <section class="row mb-4">
+          <div class="col-md-3">
+            <div class="card">
+              <img
+                src="https://via.placeholder.com/150"
+                class="card-img-top"
+                alt="Vendor Picture" />
+              <div class="card-body">
+                <h5 class="card-title">Elegant Events</h5>
+                <p class="card-text">Wedding Planner</p>
+                <p class="card-text">Since 2010</p>
+                <p class="card-text">New York, NY</p>
+                <p class="card-text">
+                  <a href="#" class="text-info">Visit Website</a>
+                </p>
+                <p class="card-text">
+                  <a href="#" class="text-info">More Info</a>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <h2>Summary</h2>
+            <div class="bg-light p-3 rounded mb-4">
+              Elegant Events has been planning beautiful weddings for over a
+              decade, specializing in unique and personalized events. Our team
+              works closely with you to ensure your wedding day is
+              unforgettable.
+            </div>
+            <h2>About Vendor</h2>
+            <div class="bg-light p-3 rounded">
+              We pride ourselves on our attention to detail and our commitment
+              to making your special day as perfect as possible. With over 200
+              successful weddings, we have the experience and expertise to
+              handle all aspects of your event.
+            </div>
+          </div>
+        </section>
+        <section class="row mb-4">
+          <div class="col-md-6">
+            <div class="card bg-light shadow-sm h-100">
+              <div class="card-body">
+                <h5 class="card-title">About Samaroh Group</h5>
+                <p class="card-text">
+                  Samaroh Group is one of the biggest emerging groups in the
+                  Event Industry to provide the support our community needs - a
+                  place to reach out to people like us.
+                </p>
+                <p class="font-italic">- Samaroh Group</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card bg-light shadow-sm h-100">
+              <div class="card-body">
+                <h5 class="card-title">What a Vendor Can Expect</h5>
+                <ul class="list-unstyled">
+                  <li>
+                    1. Chance to join a community of people like your own.
+                  </li>
+                  <li>2. More leads to close more deals.</li>
+                  <li>3. Place to organize all clients.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="mb-4">
+          <h2>Supporting Samples Work</h2>
+          <div class="bg-light p-3 rounded mb-4">
+            <p><a href="#" class="text-info">Sample link 1</a></p>
+            <p><a href="#" class="text-info">Sample link 2</a></p>
+            <p><a href="#" class="text-info">Sample link 3</a></p>
+          </div>
+          <h2>Event</h2>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card mb-3">
+                <img
+                  src="https://via.placeholder.com/300"
+                  class="card-img-top"
+                  alt="Event Sample 1" />
+                <div class="card-body">
+                  <h5 class="card-title">Event Sample 1</h5>
+                  <p class="card-text">Description of Event Sample 1.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card mb-3">
+                <img
+                  src="https://via.placeholder.com/300"
+                  class="card-img-top"
+                  alt="Event Sample 2" />
+                <div class="card-body">
+                  <h5 class="card-title">Event Sample 2</h5>
+                  <p class="card-text">Description of Event Sample 2.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card mb-3">
+                <img
+                  src="https://via.placeholder.com/300"
+                  class="card-img-top"
+                  alt="Event Sample 3" />
+                <div class="card-body">
+                  <h5 class="card-title">Event Sample 3</h5>
+                  <p class="card-text">Description of Event Sample 3.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="mb-4">
+          <div class="d-flex justify-content-between mb-4">
+            <button class="btn btn-secondary">Account</button>
+            <button class="btn btn-secondary">Setting</button>
+            <button class="btn btn-secondary">Billing</button>
+            <button class="btn btn-secondary">Notification</button>
+            <button class="btn btn-secondary">Manage your lead</button>
+          </div>
+          <h2>Hire the freelancer for your all event needs</h2>
+          <div class="horizontal-scroll">
+            <div class="card mr-2" style="width: 200px">
+              <img
+                src="https://via.placeholder.com/100"
+                class="card-img-top"
+                alt="Freelancer Picture" />
+              <div class="card-body">
+                <h5 class="card-title">John Doe</h5>
+                <p class="card-text">Photographer</p>
+                <p class="card-text">
+                  John is a professional wedding photographer with over 10 years
+                  of experience capturing beautiful moments.
+                </p>
+                <button class="btn btn-primary btn-block">Hire</button>
+              </div>
+            </div>
+            <div class="card mr-2" style="width: 200px">
+              <img
+                src="https://via.placeholder.com/100"
+                class="card-img-top"
+                alt="Freelancer Picture" />
+              <div class="card-body">
+                <h5 class="card-title">Jane Smith</h5>
+                <p class="card-text">Caterer</p>
+                <p class="card-text">
+                  Jane offers gourmet catering services for weddings,
+                  specializing in diverse and delicious menus.
+                </p>
+                <button class="btn btn-primary btn-block">Hire</button>
+              </div>
+            </div>
+            <div class="card mr-2" style="width: 200px">
+              <img
+                src="https://via.placeholder.com/100"
+                class="card-img-top"
+                alt="Freelancer Picture" />
+              <div class="card-body">
+                <h5 class="card-title">Emily Johnson</h5>
+                <p class="card-text">Florist</p>
+                <p class="card-text">
+                  Emily creates stunning floral arrangements that add beauty and
+                  elegance to any wedding.
+                </p>
+                <button class="btn btn-primary btn-block">Hire</button>
+              </div>
+            </div>
+            <div class="card mr-2" style="width: 200px">
+              <img
+                src="https://via.placeholder.com/100"
+                class="card-img-top"
+                alt="Freelancer Picture" />
+              <div class="card-body">
+                <h5 class="card-title">Michael Brown</h5>
+                <p class="card-text">DJ</p>
+                <p class="card-text">
+                  Michael is a professional DJ who knows how to get the party
+                  started and keep it going all night long.
+                </p>
+                <button class="btn btn-primary btn-block">Hire</button>
+              </div>
+            </div>
+            <div class="card mr-2" style="width: 200px">
+              <img
+                src="https://via.placeholder.com/100"
+                class="card-img-top"
+                alt="Freelancer Picture" />
+              <div class="card-body">
+                <h5 class="card-title">Sarah Adams</h5>
+                <p class="card-text">Makeup Artist</p>
+                <p class="card-text">
+                  Sarah specializes in bridal makeup, ensuring you look stunning
+                  on your special day.
+                </p>
+                <button class="btn btn-primary btn-block">Hire</button>
+              </div>
+            </div>
+            <div class="card mr-2" style="width: 200px">
+              <img
+                src="https://via.placeholder.com/100"
+                class="card-img-top"
+                alt="Freelancer Picture" />
+              <div class="card-body">
+                <h5 class="card-title">David Lee</h5>
+                <p class="card-text">Live Band</p>
+                <p class="card-text">
+                  David leads a versatile live band, providing entertainment
+                  that suits every taste.
+                </p>
+                <button class="btn btn-primary btn-block">Hire</button>
+              </div>
+            </div>
+            <div class="card mr-2" style="width: 200px">
+              <img
+                src="https://via.placeholder.com/100"
+                class="card-img-top"
+                alt="Freelancer Picture" />
+              <div class="card-body">
+                <h5 class="card-title">Sophie Clark</h5>
+                <p class="card-text">Event Planner</p>
+                <p class="card-text">
+                  Sophie organizes seamless events, handling every detail to
+                  perfection.
+                </p>
+                <button class="btn btn-primary btn-block">Hire</button>
+              </div>
+            </div>
+          </div>
+          <p>Explore various talented freelancers from all over the world</p>
+          <p>
+            View professional portfolio and read reviews from other freelancers
+          </p>
+        </section>
+      </main>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

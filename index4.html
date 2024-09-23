@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seven Columns in One Row with d-flex</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <!-- Custom CSS -->
+    <style>
+      .rstyle {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr); /* Creates seven equal columns */
+        gap: 10px; /* Adjust the gap between columns */
+      }
+
+      .cstyle {
+        padding: 10px; /* Example padding */
+      }
+      .dropdown-toggle.active {
+        color: pink; /* Change to your desired color */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row rstyle">
+        <div class="column cstyle">
+          <p class="dropdown-toggle" onclick="toggleDropdown(this)">
+            No. of Guest
+          </p>
+          <form class="guest-form" style="display: none">
+            <input
+              type="checkbox"
+              id="guest_vehicle1"
+              name="guest_vehicle1"
+              value="Bike" />
+            <label for="guest_vehicle1">Less Than 100</label><br />
+            <input
+              type="checkbox"
+              id="guest_vehicle2"
+              name="guest_vehicle2"
+              value="Car" />
+            <label for="guest_vehicle2">100-250</label><br />
+            <input
+              type="checkbox"
+              id="guest_vehicle3"
+              name="guest_vehicle3"
+              value="Boat" />
+            <label for="guest_vehicle3">250-500</label><br /><br />
+            <input
+              type="checkbox"
+              id="guest_vehicle4"
+              name="guest_vehicle4"
+              value="some" />
+            <label for="guest_vehicle4">500-1000</label><br /><br />
+            <input
+              type="checkbox"
+              id="guest_vehicle5"
+              name="guest_vehicle5"
+              value="new" />
+            <label for="guest_vehicle5">Greater Than 1000</label><br /><br />
+          </form>
+        </div>
+        <div class="column cstyle">
+          <p class="dropdown-toggle" onclick="toggleDropdown(this)">
+            No. of Guest
+          </p>
+          <form class="guest-form" style="display: none">
+            <input
+              type="checkbox"
+              id="guest_vehicle1"
+              name="guest_vehicle1"
+              value="Bike" />
+            <label for="guest_vehicle1">Less Than 100</label><br />
+            <input
+              type="checkbox"
+              id="guest_vehicle2"
+              name="guest_vehicle2"
+              value="Car" />
+            <label for="guest_vehicle2">100-250</label><br />
+            <input
+              type="checkbox"
+              id="guest_vehicle3"
+              name="guest_vehicle3"
+              value="Boat" />
+            <label for="guest_vehicle3">250-500</label><br /><br />
+            <input
+              type="checkbox"
+              id="guest_vehicle4"
+              name="guest_vehicle4"
+              value="some" />
+            <label for="guest_vehicle4">500-1000</label><br /><br />
+            <input
+              type="checkbox"
+              id="guest_vehicle5"
+              name="guest_vehicle5"
+              value="new" />
+            <label for="guest_vehicle5">Greater Than 1000</label><br /><br />
+          </form>
+        </div>
+        <div class="column cstyle">
+          <p class="dropdown-toggle" onclick="toggleDropdown(this)">
+            No. of Guest
+          </p>
+          <form class="guest-form" style="display: none">
+            <input
+              type="checkbox"
+              id="guest_vehicle1"
+              name="guest_vehicle1"
+              value="Bike" />
+            <label for="guest_vehicle1">Less Than 100</label><br />
+            <input
+              type="checkbox"
+              id="guest_vehicle2"
+              name="guest_vehicle2"
+              value="Car" />
+            <label for="guest_vehicle2">100-250</label><br />
+            <input
+              type="checkbox"
+              id="guest_vehicle3"
+              name="guest_vehicle3"
+              value="Boat" />
+            <label for="guest_vehicle3">250-500</label><br /><br />
+            <input
+              type="checkbox"
+              id="guest_vehicle4"
+              name="guest_vehicle4"
+              value="some" />
+            <label for="guest_vehicle4">500-1000</label><br /><br />
+            <input
+              type="checkbox"
+              id="guest_vehicle5"
+              name="guest_vehicle5"
+              value="new" />
+            <label for="guest_vehicle5">Greater Than 1000</label><br /><br />
+          </form>
+        </div>
+        <div class="column cstyle">
+          <p class="dropdown-toggle" onclick="toggleDropdown(this)">
+            No. of Guest
+          </p>
+          <form class="guest-form" style="display: none">
+            <input
+              type="checkbox"
+              id="guest_vehicle1"
+              name="guest_vehicle1"
+              value="Bike" />
+            <label for="guest_vehicle1">Less Than 100</label><br />
+            <input
+              type="checkbox"
+              id="guest_vehicle2"
+              name="guest_vehicle2"
+              value="Car" />
+            <label for="guest_vehicle2">100-250</label><br />
+            <input
+              type="checkbox"
+              id="guest_vehicle3"
+              name="guest_vehicle3"
+              value="Boat" />
+            <label for="guest_vehicle3">250-500</label><br /><br />
+            <input
+              type="checkbox"
+              id="guest_vehicle4"
+              name="guest_vehicle4"
+              value="some" />
+            <label for="guest_vehicle4">500-1000</label><br /><br />
+            <input
+              type="checkbox"
+              id="guest_vehicle5"
+              name="guest_vehicle5"
+              value="new" />
+            <label for="guest_vehicle5">Greater Than 1000</label><br /><br />
+          </form>
+        </div>
+        <div class="column cstyle">
+          <p class="dropdown-toggle" onclick="toggleDropdown(this)">
+            No. of Guest
+          </p>
+          <form class="guest-form" style="display: none">
+            <input
+              type="checkbox"
+              id="guest_vehicle1"
+              name="guest_vehicle1"
+              value="Bike" />
+            <label for="guest_vehicle1">Less Than 100</label><br />
+            <input
+              type="checkbox"
+              id="guest_vehicle2"
+              name="guest_vehicle2"
+              value="Car" />
+            <label for="guest_vehicle2">100-250</label><br />
+            <input
+              type="checkbox"
+              id="guest_vehicle3"
+              name="guest_vehicle3"
+              value="Boat" />
+            <label for="guest_vehicle3">250-500</label><br /><br />
+            <input
+              type="checkbox"
+              id="guest_vehicle4"
+              name="guest_vehicle4"
+              value="some" />
+            <label for="guest_vehicle4">500-1000</label><br /><br />
+            <input
+              type="checkbox"
+              id="guest_vehicle5"
+              name="guest_vehicle5"
+              value="new" />
+            <label for="guest_vehicle5">Greater Than 1000</label><br /><br />
+          </form>
+        </div>
+        <div class="column cstyle">
+          <p class="dropdown-toggle" onclick="toggleDropdown(this)">
+            No. of Guest
+          </p>
+          <form class="guest-form" style="display: none">
+            <input
+              type="checkbox"
+              id="guest_vehicle1"
+              name="guest_vehicle1"
+              value="Bike" />
+            <label for="guest_vehicle1">Less Than 100</label><br />
+            <input
+              type="checkbox"
+              id="guest_vehicle2"
+              name="guest_vehicle2"
+              value="Car" />
+            <label for="guest_vehicle2">100-250</label><br />
+            <input
+              type="checkbox"
+              id="guest_vehicle3"
+              name="guest_vehicle3"
+              value="Boat" />
+            <label for="guest_vehicle3">250-500</label><br /><br />
+            <input
+              type="checkbox"
+              id="guest_vehicle4"
+              name="guest_vehicle4"
+              value="some" />
+            <label for="guest_vehicle4">500-1000</label><br /><br />
+            <input
+              type="checkbox"
+              id="guest_vehicle5"
+              name="guest_vehicle5"
+              value="new" />
+            <label for="guest_vehicle5">Greater Than 1000</label><br /><br />
+          </form>
+        </div>
+        <div class="column cstyle">
+          <p class="dropdown-toggle" onclick="toggleDropdown(this)">
+            No. of Guest
+          </p>
+          <form class="guest-form" style="display: none">
+            <input
+              type="checkbox"
+              id="guest_vehicle1"
+              name="guest_vehicle1"
+              value="Bike" />
+            <label for="guest_vehicle1">Less Than 100</label><br />
+            <input
+              type="checkbox"
+              id="guest_vehicle2"
+              name="guest_vehicle2"
+              value="Car" />
+            <label for="guest_vehicle2">100-250</label><br />
+            <input
+              type="checkbox"
+              id="guest_vehicle3"
+              name="guest_vehicle3"
+              value="Boat" />
+            <label for="guest_vehicle3">250-500</label><br /><br />
+            <input
+              type="checkbox"
+              id="guest_vehicle4"
+              name="guest_vehicle4"
+              value="some" />
+            <label for="guest_vehicle4">500-1000</label><br /><br />
+            <input
+              type="checkbox"
+              id="guest_vehicle5"
+              name="guest_vehicle5"
+              value="new" />
+            <label for="guest_vehicle5">Greater Than 1000</label><br /><br />
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS and jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+    <!-- Custom JavaScript for dropdown toggle -->
+    <!-- <script>
+      function toggleDropdown(element) {
+        // Find the closest form container to toggle
+        var form = element.nextElementSibling;
+        if (form.style.display === "none") {
+          form.style.display = "block";
+        } else {
+          form.style.display = "none";
+        }
+      }
+    </script> -->
+
+    <script>
+      function toggleDropdown(element) {
+        // Find all form containers and toggle their display
+        var forms = document.querySelectorAll(".guest-form");
+        forms.forEach(function (form) {
+          if (form.style.display === "none") {
+            form.style.display = "block";
+          } else {
+            form.style.display = "none";
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <style>
+    .image-slider-container { 
+        height: 73.5vw;
+        margin: 1vw auto;
+        max-height: 750px;
+        max-width: 1000px;
+        overflow: hidden;
+        width: 98vw;
+    }
+    .image-slider-container figure { 
+        background-image: url(https://webdevtrick.com/wp-content/uploads/1st.jpg);
+        background-size: cover;
+        font-size: 0;
+        height: 100%;
+        margin: 0; 
+        position: relative;
+        width: 100%; 
+    }
+    .slider-overlay {
+        background-image: url(https://webdevtrick.com/wp-content/uploads/2nd.jpg);
+        background-size: cover;
+        bottom: 0;
+        border-right: 5px solid rgba(255,255,255,0.7);
+        box-shadow: 10px 0 15px -13px #000;
+        height: 100%;
+        max-width: 98.6%;
+        min-width: 0.6%;
+        overflow: visible;
+        position: absolute;
+        width: 50%; 
+        animation: slideEffect 2s 1 normal ease-in-out 0.1s; 
+        -webkit-animation: slideEffect 2s 1 normal ease-in-out 0.1s; 
+    }
+    input.slider-control {
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        border: none; 
+        background: transparent;
+        cursor: col-resize;
+        height: 100vw;
+        left: 0;
+        margin: 0;
+        outline: none; 
+        padding: 0;
+        position: relative;
+        top: -100vw;
+        width: 100%;
+    }
+    input.slider-control::-moz-range-track { 
+        background: transparent; 
+    }
+    input.slider-control::-ms-track {
+        border: none; 
+        background-color: transparent;
+        height: 100vw; 
+        left: 0; 
+        outline: none; 
+        position: relative;
+        top: -100vw; 
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        cursor: col-resize;
+        color: transparent;
+    }
+    input.slider-control::-ms-fill-lower {
+        background-color: transparent;
+    }
+    input.slider-control::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        height: 100vw;
+        width: 0.5%;
+        opacity: 0;
+    }
+    input.slider-control::-moz-range-thumb {
+        -moz-appearance: none;
+        height: 100vw;
+        width: 0.5%;
+        opacity: 0;
+    }   
+    input.slider-control::-ms-thumb {
+        height: 100vw;
+        width: 0.5%; 
+        opacity: 0;
+    }
+    input.slider-control::-ms-tooltip {
+        display: none;
+    }
+    .slider-overlay::before {
+        background: url(https://webdevtrick.com/wp-content/uploads/comparision.png) no-repeat scroll 0 center transparent;
+        background-size: contain;
+        content: " ";
+        float: right;
+        height: 100%;
+        margin-right: -34px;
+        position: relative;
+        top: 0;
+        width: 64px;
+    }
+    @keyframes slideEffect {
+        0% { width: 0%; }
+        50% { width: 80%; }
+        100% { width: 50%; }
+    }
+    @-webkit-keyframes slideEffect {
+        0% { width: 0%; }
+        50% { width: 80%; }
+        100% { width: 50%; }
+    }
+    </style>
+</head>
+<body>
+    <div class="image-slider-container">
+        <figure>
+          <div class="slider-overlay"></div>
+        </figure>
+        <input oninput="updateOverlay()" onchange="updateOverlay()" type="range" min="0" max="100" value="50" class="slider-control"/>
+    </div>
+</body>
+<script>
+    function updateOverlay() {
+        document.querySelector('.slider-overlay').style.width = document.querySelector('.slider-control').value + "%";
+    }
+</script>
+</html>

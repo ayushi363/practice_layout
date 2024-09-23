@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Client Logo Slider</title>
+    <style>
+      h2 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .slider {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+      }
+      .slides {
+        display: flex;
+        transition: transform 0.5s ease;
+      }
+      .slide {
+        min-width: 250px;
+        margin: 0 10px;
+      }
+      .slide img {
+        width: 100%;
+        max-width: 200px;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container8">
+      <h2 class="h2 section-title">Our Clients</h2>
+      <div class="row">
+        <div class="card">
+          <div class="card-img-top">
+            <img src="" alt="">
+          </div>
+          <div class="card-body">
+            <div class="cart-title">
+              hiii
+            </div>
+            <p>hwloej</p>
+            <button>buy</button>
+          </div>
+        </div>
+      </div>
+      <div class="slider">
+        <div class="slides">
+          <!-- Slide items -->
+          <div class="slide">
+            <img
+              src="https://image.freepik.com/free-vector/luxury-letter-e-logo-design_1017-8903.jpg"
+              alt="Partner Logo 1"
+            />
+          </div>
+          <div class="slide">
+            <img
+              src="https://image.freepik.com/free-vector/3d-box-logo_1103-876.jpg"
+              alt="Partner Logo 2"
+            />
+          </div>
+          <div class="slide">
+            <img
+              src="https://image.freepik.com/free-vector/blue-tech-logo_1103-822.jpg"
+              alt="Partner Logo 3"
+            />
+          </div>
+          <div class="slide">
+            <img
+              src="https://image.freepik.com/free-vector/colors-curl-logo-template_23-2147536125.jpg"
+              alt="Partner Logo 4"
+            />
+          </div>
+          <div class="slide">
+            <img
+              src="https://image.freepik.com/free-vector/abstract-cross-logo_23-2147536124.jpg"
+              alt="Partner Logo 5"
+            />
+          </div>
+          <div class="slide">
+            <img
+              src="https://image.freepik.com/free-vector/football-logo-background_1195-244.jpg"
+              alt="Partner Logo 6"
+            />
+          </div>
+          <div class="slide">
+            <img
+              src="https://image.freepik.com/free-vector/background-of-spots-halftone_1035-3847.jpg"
+              alt="Partner Logo 7"
+            />
+          </div>
+          <!-- Duplicate slides for seamless looping -->
+          <div class="slide">
+            <img
+              src="https://image.freepik.com/free-vector/luxury-letter-e-logo-design_1017-8903.jpg"
+              alt="Partner Logo 1"
+            />
+          </div>
+          <div class="slide">
+            <img
+              src="https://image.freepik.com/free-vector/3d-box-logo_1103-876.jpg"
+              alt="Partner Logo 2"
+            />
+          </div>
+        
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const slides = document.querySelector(".slides");
+        const slideCount = slides.children.length;
+        const slideWidth = slides.children[0].offsetWidth + 20; // Width + margin
+        let index = 0;
+
+        function moveToNextSlide() {
+          index++;
+          const offset = -index * slideWidth;
+          slides.style.transform = `translateX(${offset}px)`;
+
+          if (index >= slideCount - 3) { // -3 because we added 3 cloned slides
+            setTimeout(() => {
+              slides.style.transition = "none"; // Disable transition
+              index = 0; // Reset index
+              slides.style.transform = `translateX(0)`; // Jump back to the start
+              setTimeout(() => {
+                slides.style.transition = "transform 0.5s ease"; // Re-enable transition
+              }, 50); // Re-enable after small delay
+            }, 500); // Wait for transition to end before jumping
+          }
+        }
+
+        setInterval(moveToNextSlide, 1500); // Change slide every 1.5 seconds
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Tiles with Hover Effect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background: #f8fcff;
+        }
+
+        .custom-tiles {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .custom-tile {
+            display: inline-block;
+            overflow: hidden;
+            width: 150px;
+            height: 150px;
+            background: #fff;
+            border: 1px solid #efefef;
+            border-radius: 1px;
+            margin: 5px;
+            vertical-align: top;
+            transition: 0.25s all ease-in-out;
+        }
+
+        .custom-tile span {
+            margin-top: 20px;
+            display: block;
+            font-size: 54px;
+            padding-top: 20px;
+            transition: 0.25s all ease-in-out;
+        }
+
+        .custom-tile h5 {
+            margin-top: 0;
+            font-weight: 600;
+            color: grey;
+            transition: 0.25s all ease-in-out;
+        }
+
+        .custom-tile p {
+            font-size: 14px;
+            opacity: 0;
+            padding: 15px;
+            color: grey;
+            transition: 0.25s all ease-in-out;
+            transition-delay: 0.25s;
+        }
+
+        .custom-tile p a {
+            color: #1489ff;
+            text-decoration: none;
+        }
+
+        .custom-tile.active {
+            width: 300px;
+            height: 300px;
+        }
+
+        .custom-tile.active span {
+            font-size: 81px;
+        }
+
+        .custom-tile.active p {
+            opacity: 1;
+        }
+
+        .custom-tile:nth-child(1) span i {
+            color: #00838e;
+        }
+
+        .custom-tile:nth-child(2) span i {
+            color: #ff6c00;
+        }
+
+        .custom-tile:nth-child(3) span i {
+            color: #00a7ff;
+        }
+
+        .custom-tile:nth-child(4) span i {
+            color: #00652b;
+        }
+
+        .custom-tile:nth-child(5) span i {
+            color: #d80000;
+        }
+    </style>
+</head>
+<body>
+
+<div class="custom-tiles">
+    <div class="custom-tile">
+        <span><i class="fa fa-shopping-cart"></i></span>
+        <h5>Shopping</h5>
+        <p>We have a wide variety of products ranging from a pin to a Jumbo Jet.</p>
+    </div>
+    <div class="custom-tile">
+        <span><i class="fa fa-gift"></i></span>
+        <h5>Gifts</h5>
+        <p><a href="#">Buy stuff</a> and receive awesome gifts and cashbacks.</p>
+    </div>
+    <div class="custom-tile active">
+        <span><i class="fa fa-group"></i></span>
+        <h5>Our Team</h5>
+        <p>Our team has millions of members. Every member of this website is a team member helping to make this website a success. <a href="thecodeblock.com">Join us</a>.</p>
+    </div>
+    <div class="custom-tile">
+        <span><i class="fa fa-inr"></i></span>
+        <h5>Revenue</h5>
+        <p>You can get a share of our revenue by helping us out with various tasks.</p>
+    </div>
+    <div class="custom-tile">
+        <span><i class="fa fa-heart"></i></span>
+        <h5>Sharing</h5>
+        <p>We would love to share our service with you. You can contact us on <a href="thecodeblock.com">Facebook</a> or <a href="thecodeblock.com">Twitter</a>.</p>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function hoverTiles() {
+        var tiles = $('.custom-tile');
+        tiles.hover(function () {
+            tiles.removeClass('active');
+            $(this).addClass('active');
+        });
+    }
+
+    $(document).ready(function () {
+        hoverTiles();
+    });
+</script>
+
+</body>
+</html>

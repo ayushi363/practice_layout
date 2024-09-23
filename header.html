@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Bar</title>
+<style>
+    .menu {
+    background-color: white;
+    padding: 10px;
+    align-items: center;
+}
+
+.container-fluid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+}
+
+.navbar-toggler {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.navbar-toggler-icon {
+    width: 30px;
+    height: 3px;
+    background-color: black;
+    display: block;
+    margin: 6px 0;
+}
+
+.navbar-collapse {
+    display: none;
+    flex-direction: column;
+}
+
+.navbar-collapse.show {
+    display: flex;
+}
+
+.nav-item {
+    margin: 10px 0;
+}
+
+.nav-link {
+    color: black;
+    text-decoration: none;
+}
+
+.dropdown-menu {
+    display: none;
+    flex-direction: column;
+    position: static;
+    box-shadow: none;
+    background-color: white;
+}
+
+.dropdown-toggle::after {
+    content: none;
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+    display: flex;
+}
+
+@media (max-width: 768px) {
+    .navbar-collapse {
+        display: none;
+    }
+
+    .navbar-toggler {
+        display: block;
+    }
+
+    .navbar-collapse.show {
+        display: flex;
+    }
+
+    .nav-item {
+        margin: 10px 0;
+    }
+
+    .dropdown-menu {
+        display: none;
+        flex-direction: column;
+    }
+
+    .dropdown-toggle::after {
+        content: none;
+    }
+
+    .nav-item.dropdown:hover .dropdown-menu {
+        display: flex;
+    }
+}
+
+</style>
+</head>
+<body>
+  
+    <div class="menu">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url('/') }}">Brand</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ url('/') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/all-products') }}">All Products</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Co-ord Set
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                            <li class="dropdown-item"><a href="{{ url('/all-products') }}">Casual Co-ord Sets</a></li>
+                            <li class="dropdown-item"><a href="{{ url('/all-products') }}">Formal Co-ord Sets</a></li>
+                            <li class="dropdown-item"><a href="{{ url('/all-products') }}">Party Co-ord Sets</a></li>
+                            <li class="dropdown-item"><a href="{{ url('/all-products') }}">Ethnic Co-ord Sets</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Night Suits
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                            <li class="dropdown-item"><a href="{{ url('/all-products') }}">Nightgowns</a></li>
+                            <li class="dropdown-item"><a href="{{ url('/all-products') }}">Pajama Sets</a></li>
+                            <li class="dropdown-item"><a href="{{ url('/all-products') }}">Sleep Shirts</a></li>
+                            <li class="dropdown-item"><a href="{{ url('/all-products') }}">Loungewear Sets</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">Tops</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Jeans</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Dresses</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    
+</body>
+<script>
+    document.querySelector('.navbar-toggler').addEventListener('click', function () {
+        document.querySelector('#navbarContent').classList.toggle('show');
+    });
+</script>
+
+</html>

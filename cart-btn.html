@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cart btn</title>
+</head>
+<body>
+    <!-- Add to Cart Button -->
+<a href="javascript:void(0)" onclick="addToCart(this)" id="addToCartBtn">
+    <button class="btn btn-white border ms-3 me-2 py-2 mb-3">
+        Add To Cart
+    </button>
+</a>
+
+<!-- Quantity Control Template -->
+<div id="quantityTemplate" style="display: none;">
+    <div class="quantity-control mb-3 px-1">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-dash-circle pe-1" viewBox="0 0 16 16" onclick="updateQuantityProduct(this, -1)">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+            <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8"/>
+        </svg>
+
+        <input type="text" class="quantity-input" value="1" readonly>
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-circle pe-1" viewBox="0 0 16 16" onclick="updateQuantityProduct(this, 1)">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+        </svg>
+    </div>
+</div>
+
+<!-- JavaScript -->
+<script>
+function addToCart(button) {
+    // Hide the "Add To Cart" button
+    button.style.display = 'none';
+
+    // Get the quantity control template and insert it after the button
+    var quantityTemplate = document.getElementById('quantityTemplate').innerHTML;
+    button.insertAdjacentHTML('afterend', quantityTemplate);
+}
+
+function updateQuantityProduct(element, change) {
+    // Get the input field that shows the quantity
+    var input = element.parentNode.querySelector('.quantity-input');
+    var currentValue = parseInt(input.value);
+
+    // Update the quantity
+    var newValue = currentValue + change;
+
+    // Ensure quantity doesn't go below 1
+    if (newValue > 0) {
+        input.value = newValue;
+    }
+}
+</script>
+
+</body>
+</html>

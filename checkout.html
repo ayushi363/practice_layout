@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <style>
+        /* Global settings */
+        :root {
+            --color-border: #eee;
+            --color-label: #aaa;
+            --font-default: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            --font-bold: 'Helvetica Neue Medium', Helvetica, Arial, sans-serif;
+        }
+
+        /* Table settings */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+
+        td {
+            vertical-align: top;
+        }
+
+        .product-image img {
+            width: 100px;
+            height: auto;
+        }
+
+        .product-quantity input {
+            width: 60px;
+        }
+
+        .remove-product {
+            border: 0;
+            padding: 8px 15px;
+            background-color: #D6281A;
+            color: #fff;
+            font-family: var(--font-bold);
+            font-size: 12px;
+            border-radius: 3px;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .remove-product:hover {
+            background-color: #a44;
+        }
+
+        /* Body/Header stuff */
+        body {
+            padding: 20px;
+            font-family: var(--font-default);
+            font-weight: 100;
+        }
+
+        h1 {
+            font-weight: 100;
+        }
+
+        label {
+            color: var(--color-label);
+        }
+
+        /* Totals section */
+        .totals {
+            float: right;
+            clear: both;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .totals-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .totals-item label {
+            flex: 1;
+            text-align: right;
+        }
+
+        .totals-item .totals-value {
+            flex: 1;
+            text-align: right;
+        }
+
+        .totals-item-total {
+            font-family: var(--font-bold);
+        }
+
+        .checkout {
+            float: right;
+            border: 0;
+            margin-top: 20px;
+            padding: 6px 25px;
+            background-color: #6b6;
+            color: #fff;
+            font-size: 25px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .checkout:hover {
+            background-color: #494;
+        }
+
+        /* Make adjustments for tablet */
+        @media screen and (max-width: 650px) {
+            table, th, td {
+                display: block;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            th, td {
+                text-align: right;
+                position: relative;
+                padding-left: 50%;
+                padding-right: 0;
+            }
+
+            th::before, td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 0;
+                width: 50%;
+                padding-left: 10px;
+                font-weight: bold;
+                white-space: nowrap;
+            }
+
+            td::before {
+                text-align: left;
+            }
+
+            .product-image img {
+                width: 80px;
+            }
+        }
+
+        /* Make more adjustments for phone */
+        @media screen and (max-width: 350px) {
+            .totals-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .totals-item label {
+                width: 100%;
+                text-align: left;
+            }
+
+            .totals-item .totals-value {
+                width: 100%;
+                text-align: right;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Shopping Cart</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th class="product-image">Image</th>
+                <th class="product-details">Product</th>
+                <th class="product-price">Price</th>
+                <th class="product-quantity">Quantity</th>
+                <th class="product-removal">Remove</th>
+                <th class="product-line-price">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Example Product Entry -->
+            <tr class="product">
+                <td class="product-image">
+                    <img src="path/to/image.jpg" alt="Product Image">
+                </td>
+                <td class="product-details">
+                    <div class="product-title">Product Title</div>
+                    <div class="product-description">Product description goes here. It's a bit longer to show how it looks.</div>
+                </td>
+                <td class="product-price">$10.00</td>
+                <td class="product-quantity">
+                    <input type="number" value="1" min="1">
+                </td>
+                <td class="product-removal">
+                    <button class="remove-product">Remove</button>
+                </td>
+                <td class="product-line-price">$10.00</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="totals">
+        <div class="totals-item">
+            <label>Subtotal</label>
+            <div class="totals-value" id="cart-subtotal">$10.00</div>
+        </div>
+        <div class="totals-item">
+            <label>Tax (5%)</label>
+            <div class="totals-value" id="cart-tax">$0.50</div>
+        </div>
+        <div class="totals-item">
+            <label>Shipping</label>
+            <div class="totals-value" id="cart-shipping">$5.00</div>
+        </div>
+        <div class="totals-item totals-item-total">
+            <label>Grand Total</label>
+            <div class="totals-value" id="cart-total">$15.50</div>
+        </div>
+    </div>
+    
+    <button class="checkout">Checkout</button>
+
+    <script>
+        /* Set rates + misc */
+        var taxRate = 0.05;
+        var shippingRate = 15.00; 
+        var fadeTime = 300;
+
+        /* Assign actions */
+        document.querySelectorAll('.product-quantity input').forEach(function(input) {
+            input.addEventListener('change', function() {
+                updateQuantity(this);
+            });
+        });
+
+        document.querySelectorAll('.product-removal').forEach(function(button) {
+            button.addEventListener('click', function() {
+                removeItem(this);
+            });
+        });
+
+        /* Recalculate cart */
+        function recalculateCart() {
+            var subtotal = 0;
+
+            /* Sum up row totals */
+            document.querySelectorAll('.product').forEach(function(product) {
+                subtotal += parseFloat(product.querySelector('.product-line-price').textContent);
+            });
+
+            /* Calculate totals */
+            var tax = subtotal * taxRate;
+            var shipping = (subtotal > 0 ? shippingRate : 0);
+            var total = subtotal + tax + shipping;
+
+            /* Update totals display */
+            document.getElementById('cart-subtotal').textContent = subtotal.toFixed(2);
+            document.getElementById('cart-tax').textContent = tax.toFixed(2);
+            document.getElementById('cart-shipping').textContent = shipping.toFixed(2);
+            document.getElementById('cart-total').textContent = total.toFixed(2);
+        }
+
+        /* Update quantity */
+        function updateQuantity(quantityInput) {
+            var productRow = quantityInput.closest('tr.product');
+            var price = parseFloat(productRow.querySelector('.product-price').textContent.replace('$', ''));
+            var quantity = quantityInput.value;
+            var linePrice = productRow.querySelector('.product-line-price');
+            
+            linePrice.textContent = '$' + (price * quantity).toFixed(2);
+            recalculateCart();
+        }
+
+        /* Remove item */
+        function removeItem(removeButton) {
+            var productRow = removeButton.closest('tr.product');
+            productRow.style.opacity = '0';
+            setTimeout(function() {
+                productRow.remove();
+                recalculateCart();
+            }, fadeTime);
+        }
+    </script>
+</body>
+</html>

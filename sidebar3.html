@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar</title>
+    <style>
+        html, body {
+            padding: 0;
+            margin: 0;
+            background: #191A1D;
+            font-family: 'Karla', sans-serif;
+            width: 100vw;
+        }
+        body * {
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            margin-top: 40px;
+            margin-left: 40px;
+        }
+
+        nav a {
+            background: #75F;
+            color: #FFF;
+            min-width: 90px;
+            transition: background 0.5s, color 0.5s, transform 0.5s;
+            margin: 0 6px 6px 0;
+            padding: 20px 40px;
+            box-sizing: border-box;
+            border-radius: 3px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            position: relative;
+            display: block;
+        }
+
+        nav a:hover:before {
+            content: '';
+            position: absolute;
+            background: rgba(0, 0, 0, 0.2);
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        nav menu {
+            display: flex;
+        }
+
+        nav menu > menuitem {
+            position: relative;
+        }
+
+        nav menu > menuitem > menu {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 100%;
+            background: #191A1D;
+            border: 1px solid #75F;
+            margin-left: 1px;
+            min-width: 190px;
+            z-index: 1000;
+        }
+
+        nav menuitem:hover > menu {
+            display: block;
+        }
+
+        nav menu > menu > menuitem {
+            display: block;
+        }
+
+        nav menu > menu > menuitem > a {
+            background: #75F;
+            color: #FFF;
+            padding: 10px 20px;
+            border-bottom: 1px solid #333;
+        }
+
+        nav menu > menu > menuitem > a:hover {
+            background: #5CB;
+        }
+
+        nav menu > menu > menuitem:last-child > a {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <menu>
+            <menuitem>
+                <a>Settings</a>
+                <menu>
+                    <menuitem><a>Test 1</a></menuitem>
+                    <menuitem><a>Test 2</a></menuitem>
+                    <menuitem><a>Test 3</a></menuitem>
+                    <menuitem><a>Test 4</a></menuitem>
+                </menu>
+            </menuitem>
+        </menu>
+    </nav>
+</body>
+</html>

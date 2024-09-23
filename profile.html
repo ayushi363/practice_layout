@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Profile Photo</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+    <!-- Add the FontAwesome library for the pencil icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h4 class="mt-2" id="customer-name">
+         <span id="name">John Doe</span> <i class="fa-solid fa-pencil" onclick="editName()"></i>
+        </h4>
+        <input type="text" id="name-input" class="hidden" onblur="saveName()" />
+    </div>
+    <script>
+        function editName() {
+            var nameSpan = document.getElementById('name');
+            var input = document.getElementById('name-input');
+            input.value = nameSpan.textContent.trim();
+            nameSpan.classList.add('hidden');
+            input.classList.remove('hidden');
+            input.focus();
+        }
+
+        function saveName() {
+            var nameSpan = document.getElementById('name');
+            var input = document.getElementById('name-input');
+            nameSpan.textContent = input.value.trim();
+            nameSpan.classList.remove('hidden');
+            input.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Reset Example</title>
+    <link rel="stylesheet" href="path/to/your/css/styles.css">
+    <script>
+        function resetForms() {
+            const checkboxes = document.querySelectorAll('.guest-form input[type="checkbox"]');
+            checkboxes.forEach(checkbox => checkbox.checked = false);
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="row rstyle">
+            <div class="column cstyle">
+                <p class="dropdown-toggle" onclick="toggleDropdown(this)">
+                    No. of Guest
+                </p>
+                <form class="guest-form" style="display: none">
+                    <input type="checkbox" id="guest_vehicle1" name="guest_vehicle1" value="Bike" />
+                    <label for="guest_vehicle1"> <100 </label><br />
+                    <input type="checkbox" id="guest_vehicle2" name="guest_vehicle2" value="Car" />
+                    <label for="guest_vehicle2">100-250</label><br />
+                    <input type="checkbox" id="guest_vehicle3" name="guest_vehicle3" value="Boat" />
+                    <label for="guest_vehicle3">250-500</label><br />
+                    <input type="checkbox" id="guest_vehicle4" name="guest_vehicle4" value="some" />
+                    <label for="guest_vehicle4">500-1000</label><br />
+                    <input type="checkbox" id="guest_vehicle5" name="guest_vehicle5" value="new" />
+                    <label for="guest_vehicle5">>1000 </label><br />
+                </form>
+            </div>
+            <!-- Repeat the same structure for other columns -->
+
+            <div class="column cstyle">
+                <p class="dropdown-toggle" onclick="toggleDropdown(this)">
+                    Category
+                </p>
+                <form class="guest-form" style="display: none">
+                    <input type="checkbox" id="guest_vehicle1" name="guest_vehicle1" value="Bike" />
+                    <label for="guest_vehicle1">Caters</label><br />
+                    <input type="checkbox" id="guest_vehicle2" name="guest_vehicle2" value="Car" />
+                    <label for="guest_vehicle2">Photographers</label><br />
+                    <input type="checkbox" id="guest_vehicle3" name="guest_vehicle3" value="Boat" />
+                    <label for="guest_vehicle3">Decoraters</label><br />
+                    <input type="checkbox" id="guest_vehicle4" name="guest_vehicle4" value="some" />
+                    <label for="guest_vehicle4">Choreographer</label><br />
+                    <input type="checkbox" id="guest_vehicle5" name="guest_vehicle5" value="new" />
+                    <label for="guest_vehicle5">Outfit Designer</label><br />
+                </form>
+            </div>
+            <!-- Repeat the same structure for other columns -->
+        </div>
+    </div>
+
+    <div class="container text-center my-3 results-container">
+        <button class="btn btn-primary" style="width:130px;" onclick="resetForms()">Reset</button>
+        <button class="btn btn-primary" style="width:130px;">View Results</button>
+    </div>
+</body>
+</html>

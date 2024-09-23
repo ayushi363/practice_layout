@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile Modal</title>
+
+    <style>
+        .modal2 {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal2-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 4px;
+            width: 800px;
+            height: 600px;
+            max-width: 100%;
+            max-height: 100%;
+            overflow-y: auto;
+        }
+
+        .close-btn2 {
+            color: #eb6e76;
+            float: right;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .tab {
+            cursor: pointer;
+            padding: 10px;
+            border: 1px solid #ccc;
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        .tab-content {
+            display: none;
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .col-xl-4 {
+            flex: 1 1 30%;
+            margin-bottom: 10px;
+        }
+
+        .achievement-container,
+        .certification-container {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .add-btn,
+        .remove-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .remove-btn {
+            background-color: #eb6e76;
+        }
+
+        .add-btn span,
+        .remove-btn span {
+            margin-left: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Edit Profile Button -->
+    <button id="openmodal2Btn2" class="btn btn-primary">Edit Profile</button>
+
+    <!-- Popup modal2 -->
+    <div id="modal2" class="modal2">
+        <div class="modal2-content">
+            <span class="close-btn2">&times;</span>
+            <div>
+                <div class="tab" data-tab="business-details">Business Details</div>
+                <div class="tab" data-tab="spoc-details">SPOC Details</div>
+                <div class="tab" data-tab="address">Address</div>
+                <div class="tab" data-tab="achievements">Achievements</div>
+                <div class="tab" data-tab="certifications">Certifications</div>
+            </div>
+            <form id="profileForm" class="row g-3">
+                <!-- Business Details -->
+                <div id="business-details" class="tab-content active">
+                    <h2 class="text-center">Business Details</h2>
+                    <div class="row">
+                        <div class="col-xl-12 mb-2">
+                            <input type="text" id="business_name" name="business_name" class="form-control" placeholder="Business Name" required />
+                        </div>
+                        <div class="col-xl-12 mb-2">
+                            <input type="email" id="business_email" name="business_email" class="form-control" placeholder="Business Email" required />
+                        </div>
+                        <div class="col-xl-12 mb-2">
+                            <input type="tel" id="business_phone" name="business_phone" class="form-control" placeholder="Business Phone" required />
+                        </div>
+                        <div class="col-xl-12 mb-2">
+                            <input type="date" id="date" name="establishment" class="w-100 h-100 px-3" required style="border:1px solid #c5c6c7;color:grey;" />
+                        </div>
+                        <div class="col-xl-12 mb-2">
+                            <select id="vendorType" name="vendor_type" class="form-control" required style="color:grey; background-color:white">
+                                <option value="">Vendor Type</option>
+                                <option value="photographers">Photographers</option>
+                                <option value="catering">Catering</option>
+                                <option value="decorators">Decorators</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-12 mb-2">
+                            <select id="specialization" name="specialization" class="form-control" required style="color:grey; background-color:white">
+                                <option value="" disabled selected>Specialization</option>
+                                <option value="business_event">Business Event</option>
+                                <option value="wedding_plan">Wedding Plan</option>
+                                <option value="ceremony_plan">Ceremony Plan</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-12 mb-2">
+                            <input type="text" id="gatheringSize" name="gathering_size" class="form-control" placeholder="Gathering Size" required />
+                        </div> 
+                        <div class="col-xl-12 mb-2">
+                            <input type="text" id="perPersonCost" name="per_person_cost" class="form-control" placeholder="Per Person Cost" required />
+                        </div>
+                        <div class="col-xl-12 mb-2">
+                            <input type="text" id="perPlateCost" name="per_plate_cost" class="form-control" placeholder="Per Plate Cost" required />
+                        </div>
+                    </div>
+                </div>
+                <!-- SPOC Details -->
+                <div id="spoc-details" class="tab-content">
+                    <h2 class="text-center">SPOC Details</h2>
+                    <div class="row">
+                        <div class="col-xl-12 mb-2">
+                            <input type="text" id="name1" name="name" class="form-control" placeholder="Name" required />
+                        </div>
+                        <div class="col-xl-12 mb-2">
+                            <input type="tel" id="phone1" name="phone" class="form-control" placeholder="Phone" required />
+                        </div>
+                        <div class="col-xl-12 mb-2">
+                            <input type="text" id="designation1" name="designation" class="form-control" placeholder="Designation" required />
+                        </div>
+                    </div>
+                </div>
+                <!-- Address -->
+                <div id="address" class="tab-content">
+                    <h2 class="text-center">Address</h2>
+                    <div class="row">
+                        <div class="col-xl-12 mb-2">
+                            <input type="text" id="location" name="location" class="form-control" placeholder="Location" required />
+                        </div>
+                        <div class="col-xl-12 mb-2">
+                            <select id="country" name="country" class="form-control" required style="color:grey; background-color:white">
+                                <option value="" disabled selected>Country</option>
+                                <option value="india">India</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-12 mb-2">
+                            <select id="state" name="state" class="form-control" required style="color:grey; background-color:white">
+                                <option value="" disabled selected>State</option>
+                                <option value="delhi">Delhi</option>
+                                <option value="punjab">Punjab</option>
+                                <option value="haryana">Haryana</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-12 mb-2">
+                            <select id="city" name="city" class="form-control" required style="color:grey; background-color:white">
+                                <option value="" disabled selected>City</option>
+                                <option value="new_delhi">New Delhi</option>
+                                <option value="ludhiana">Ludhiana</option>
+                                <option value="gurugram">Gurugram</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-12 mb-2">
+                            <input type="text" id="gst" name="gst" class="form-control" placeholder="GST" required />
+                        </div>
+                        <div class="col-xl-12 mb-2">
+                            <input type="text" id="pan" name="pan" class="form-control" placeholder="PAN" required />
+                        </div>
+                        <div class="col-xl-12 mb-2">
+                            <input type="text" id="latitude" name="latitude" class="form-control" placeholder="Latitude" required />
+                        </div>
+                        <div class="col-xl-12 mb-2">
+                            <input type="text" id="pincode" name="pincode" class="form-control" placeholder="Pincode" required />
+                        </div>
+                    </div>
+                </div>
+                <!-- Achievements -->
+                <div id="achievements" class="tab-content">
+                    <h2 class="text-center">Achievements</h2>
+                    <div id="achievements-container" class="row">
+                        <div class="achievement-container row">
+                            <div class="col-xl-4">
+                                <input type="text" name="achievement_name[]" class="form-control" placeholder="Achievement Name" required />
+                            </div>
+                            <div class="col-xl-4">
+                                <input type="date" name="achievement_date[]" class="form-control" placeholder="Achievement Date" required />
+                            </div>
+                            <div class="col-xl-4">
+                                <input type="file" name="achievement_image[]" class="form-control" required />
+                            </div>
+                            <button type="button" class="remove-btn" onclick="removeAchievement(this)">Remove<span>&#8722;</span></button>
+                        </div>
+                    </div>
+                    <button type="button" class="add-btn" onclick="addAchievement()">Add Achievement<span>&#43;</span></button>
+                </div>
+                <!-- Certifications -->
+                <div id="certifications" class="tab-content">
+                    <h2 class="text-center">Certifications</h2>
+                    <div id="certifications-container" class="row">
+                        <div class="certification-container row">
+                            <div class="col-xl-4">
+                                <input type="text" name="certification_name[]" class="form-control" placeholder="Certification Name" required />
+                            </div>
+                            <div class="col-xl-4">
+                                <input type="date" name="certification_date[]" class="form-control" placeholder="Certification Date" required />
+                            </div>
+                            <div class="col-xl-4">
+                                <input type="file" name="certification_image[]" class="form-control" required />
+                            </div>
+                            <button type="button" class="remove-btn" onclick="removeCertification(this)">Remove<span>&#8722;</span></button>
+                        </div>
+                    </div>
+                    <button type="button" class="add-btn" onclick="addCertification()">Add Certification<span>&#43;</span></button>
+                </div>
+                <div class="col-12 text-center">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('openmodal2Btn2').addEventListener('click', function () {
+            document.getElementById('modal2').style.display = 'flex';
+        });
+
+        document.querySelector('.close-btn2').addEventListener('click', function () {
+            document.getElementById('modal2').style.display = 'none';
+        });
+
+        document.querySelectorAll('.tab').forEach(function (tab) {
+            tab.addEventListener('click', function () {
+                document.querySelectorAll('.tab-content').forEach(function (content) {
+                    content.classList.remove('active');
+                });
+                document.getElementById(tab.getAttribute('data-tab')).classList.add('active');
+            });
+        });
+
+        function addAchievement() {
+            var container = document.getElementById('achievements-container');
+            var achievementDiv = document.createElement('div');
+            achievementDiv.classList.add('achievement-container', 'row');
+            achievementDiv.innerHTML = `
+                <div class="col-xl-4">
+                    <input type="text" name="achievement_name[]" class="form-control" placeholder="Achievement Name" required />
+                </div>
+                <div class="col-xl-4">
+                    <input type="date" name="achievement_date[]" class="form-control" placeholder="Achievement Date" required />
+                </div>
+                <div class="col-xl-4">
+                    <input type="file" name="achievement_image[]" class="form-control" required />
+                </div>
+                <button type="button" class="remove-btn" onclick="removeAchievement(this)">Remove<span>&#8722;</span></button>
+            `;
+            container.appendChild(achievementDiv);
+        }
+
+        function removeAchievement(button) {
+            button.parentNode.remove();
+        }
+
+        function addCertification() {
+            var container = document.getElementById('certifications-container');
+            var certificationDiv = document.createElement('div');
+            certificationDiv.classList.add('certification-container', 'row');
+            certificationDiv.innerHTML = `
+                <div class="col-xl-4">
+                    <input type="text" name="certification_name[]" class="form-control" placeholder="Certification Name" required />
+                </div>
+                <div class="col-xl-4">
+                    <input type="date" name="certification_date[]" class="form-control" placeholder="Certification Date" required />
+                </div>
+                <div class="col-xl-4">
+                    <input type="file" name="certification_image[]" class="form-control" required />
+                </div>
+                <button type="button" class="remove-btn" onclick="removeCertification(this)">Remove<span>&#8722;</span></button>
+            `;
+            container.appendChild(certificationDiv);
+        }
+
+        function removeCertification(button) {
+            button.parentNode.remove();
+        }
+    </script>
+</body>
+
+</html>

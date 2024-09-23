@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cards</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300&family=Ubuntu&display=swap');
+body{
+margin:0;
+font-family: 'Oswald', sans-serif;
+}
+header{
+  width:100%;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+.menu{
+  width:100%;
+  padding-top:10px;
+  padding-bottom:10px;
+  height:60px;
+  background:transparent;
+}
+.menu .logo{
+  position:absolute;
+  left:10px;
+  width:150px;
+  height:60px;
+  pointer-events:none;
+}
+.menu span{
+  float:right;
+  padding-right:10px;
+  font-size:13px;
+}
+.menu span a{
+  text-decoration:none;
+  color:#1e1e1e;
+  transition:0.5s;
+}
+.menu span a:hover{
+  color:#EB5757;
+}
+.menu span a{
+  cursor:pointer;
+}
+.nav {
+  overflow: hidden;
+  background:linear-gradient(#EB5757,#000000);
+}
+.nav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  transition:0.5s;
+  font-family: 'Oswald', sans-serif;
+}
+.nav a:nth-child(5){
+  float:right;
+}
+.nav a:hover {
+  
+  color: black;
+}
+.nav a.active {
+  color: #BDFFF3;
+}
+.nav .icon {
+  display: none;
+}
+@media screen and (max-width: 600px) {
+  .nav a:not(:first-child) {display: none;}
+  .nav a.icon {
+    float: right;
+    display: block;
+  }
+}
+@media screen and (max-width: 600px) {
+  .nav.responsive {position: relative;}
+  .nav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .nav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+.section3 button{background-image: linear-gradient(to right, #4b6cb7 0%, #182848  51%, #4b6cb7  100%)}
+.section3 button{
+            margin: 10px;
+            padding: 13px 45px;
+            text-align: center;
+            text-transform: uppercase;
+            transition: 0.5s;
+            background-size: 200% auto;
+            color: white;            
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            border-radius: 20px;
+            display: block;
+            outline:0;
+            border:0;
+          }
+.section3 button:hover{
+            background-position: right center; /* change the direction of the change here */
+            color: #fff;
+            text-decoration: none;
+          }
+.section3{
+width:100%;
+overflow-x:hidden;
+white-space: nowrap;
+overflow-y:hidden;
+scrollbar-width:none;
+scroll-behavior: smooth;
+transition:0.5s;
+}
+.section3 #img-card{
+width:300px;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+display:inline-block;
+margin:16px;
+}
+.section3 #img-card img{
+width:100%;
+height:200px;
+}
+.section3 #img-card table{
+width:100%;
+padding:5px;
+}
+.section3 #img-card table td{
+padding:5px;
+width:50%;
+font-size:0.9em;
+}
+.section3 #img-card h3{
+text-align:left;
+padding-left:10px;
+}
+.section3 #img-card p{
+color:gray;
+padding-left:10px;
+text-align:left;
+font-size:0.7em;
+line-height:0px;
+}
+.section3 button{
+margin-top:5%;
+border-radius:20px;
+}
+.section3 .fa-angle-double-right{
+position:absolute;
+margin-top:15%;
+right:30px;
+background:#000;
+padding:20px;
+border-radius:50%;
+color:#fff;
+}
+.section3 .fa-angle-double-left{
+position:absolute;
+margin-top:15%;
+left:30px;
+background:#000;
+padding:20px;
+border-radius:50%;
+color:#fff;
+}
+.section3 .angles{
+opacity:0.7;
+transition:0.5s;
+}
+.section3 .angles:hover{
+opacity:1;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+.section3 section{
+background:#e52d27;
+width:150px;
+color:#fff;
+float:right;
+font-size:0.8em;
+position:relative;
+top:-24px;
+}
+@media (max-width:600px){
+ .section0 .custom-select{
+  width:200px;
+  margin-bottom:10px;
+  }
+.section3 #img-card{
+width:90%;
+
+}
+.section3 #img-card img{
+width:100%;
+}
+.section3 .fa-angle-double-right{
+position:absolute;
+margin-top:50%;
+right:30px;
+background:#000;
+padding:20px;
+border-radius:50%;
+color:#fff;
+}
+.section3 .fa-angle-double-left{
+position:absolute;
+margin-top:50%;
+left:30px;
+background:#000;
+padding:20px;
+border-radius:50%;
+color:#fff;
+}
+}
+    </style>
+</head>
+<body>
+  
+
+<center>
+
+<div class='section3 fade' id='section3'>
+
+
+<!--CARD1-->
+<div id='img-card'>
+<img src='https://i.ibb.co/Ld00FF4/bg4.jpg' alt='properties'>
+<section>USER VERIFIED</section>
+<h3>Aravil 3HBK</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+<table>
+<tr>
+<td><i class='fa fa-car'></i> 1-Parking Space</td><td><i class='fa fa-home'></i> Laundary Service</td>
+</tr>
+<tr>
+<td><i class='fa fa-home'></i> 1-Swimming Pool</td><td><i class='fa fa-home'></i> 3-Bed Rooms</td>
+</tr>
+</table>
+<center><button onclick='window.location.href="properties.html";'>View Details</button></center>
+</div>
+<!--CARD1ENDS-->
+<!--CARD2-->
+<div id='img-card'>
+<img src='https://i.ibb.co/Ld00FF4/bg4.jpg' alt='properties'>
+<h3>Aravil 3HBK</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+<table>
+<tr>
+<td><i class='fa fa-car'></i> 1-Parking Space</td><td><i class='fa fa-home'></i> Laundary Service</td>
+</tr>
+<tr>
+<td><i class='fa fa-home'></i> 1-Swimming Pool</td><td><i class='fa fa-home'></i> 3-Bed Rooms</td>
+</tr>
+</table>
+<center><button onclick='window.location.href="properties.html";'>View Details</button></center>
+</div>
+<!--CARD2ENDS-->
+<!--CARD3-->
+<div id='img-card'>
+<img src='https://i.ibb.co/Ld00FF4/bg4.jpg' alt='properties'>
+<section>USER VERIFIED</section>
+<h3>Aravil 3HBK</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+<table>
+<tr>
+<td><i class='fa fa-car'></i> 1-Parking Space</td><td><i class='fa fa-home'></i> Laundary Service</td>
+</tr>
+<tr>
+<td><i class='fa fa-home'></i> 1-Swimming Pool</td><td><i class='fa fa-home'></i> 3-Bed Rooms</td>
+</tr>
+</table>
+<center><button onclick='window.location.href="properties.html";'>View Details</button></center>
+</div>
+<!--CARD3ENDS-->
+<!--CARD4-->
+<div id='img-card'>
+<img src='https://i.ibb.co/Ld00FF4/bg4.jpg' alt='properties'>
+<section>USER VERIFIED</section>
+<h3>Aravil 3HBK</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+<table>
+<tr>
+<td><i class='fa fa-car'></i> 1-Parking Space</td><td><i class='fa fa-home'></i> Laundary Service</td>
+</tr>
+<tr>
+<td><i class='fa fa-home'></i> 1-Swimming Pool</td><td><i class='fa fa-home'></i> 3-Bed Rooms</td>
+</tr>
+</table>
+<center><button onclick='window.location.href="properties.html";'>View Details</button></center>
+</div>
+<!--CARD4ENDS-->
+<!--CARD5-->
+<div id='img-card'>
+<img src='https://i.ibb.co/Ld00FF4/bg4.jpg' alt='properties'>
+<section>USER VERIFIED</section>
+<h3>Aravil 3HBK</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+<table>
+<tr>
+<td><i class='fa fa-car'></i> 1-Parking Space</td><td><i class='fa fa-home'></i> Laundary Service</td>
+</tr>
+<tr>
+<td><i class='fa fa-home'></i> 1-Swimming Pool</td><td><i class='fa fa-home'></i> 3-Bed Rooms</td>
+</tr>
+</table>
+<center><button onclick='window.location.href="properties.html";'>View Details</button></center>
+</div>
+<!--CARD5ENDS-->
+<!--CARD6-->
+<div id='img-card'>
+<img src='https://i.ibb.co/Ld00FF4/bg4.jpg' alt='properties'>
+<section>USER VERIFIED</section>
+<h3>Aravil 3HBK</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+<table>
+<tr>
+<td><i class='fa fa-car'></i> 1-Parking Space</td><td><i class='fa fa-home'></i> Laundary Service</td>
+</tr>
+<tr>
+<td><i class='fa fa-home'></i> 1-Swimming Pool</td><td><i class='fa fa-home'></i> 3-Bed Rooms</td>
+</tr>
+</table>
+<center><button onclick='window.location.href="properties.html";'>View Details</button></center>
+</div>
+<!--CARD6ENDS-->
+<!--CARD7-->
+<div id='img-card'>
+<img src='https://i.ibb.co/Ld00FF4/bg4.jpg' alt='properties'>
+<section>USER VERIFIED</section>
+<h3>Aravil 3HBK</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+<table>
+<tr>
+<td><i class='fa fa-car'></i> 1-Parking Space</td><td><i class='fa fa-home'></i> Laundary Service</td>
+</tr>
+<tr>
+<td><i class='fa fa-home'></i> 1-Swimming Pool</td><td><i class='fa fa-home'></i> 3-Bed Rooms</td>
+</tr>
+</table>
+<center><button onclick='window.location.href="properties.html";'>View Details</button></center>
+</div>
+<!--CARD7ENDS-->
+<!--CARDBUTTONS-->
+<i class='fa fa-angle-double-left angles' onclick='scrollleft()'></i>
+<i class='fa fa-angle-double-right angles' onclick='scrollright()'></i>
+<!--CARDBUTTONENDS-->
+</div>
+  </center>
+<!--SECTION3ENDS-->
+</body>
+<script>
+    
+/*NAVIGATION_BAR*/
+function mynavigation() {
+  var x = document.getElementById("topnav");
+  if (x.className === "nav") {
+    x.className += " responsive";
+  } else {
+    x.className = "nav";
+  }
+}
+/*NAVIGATIONBAR ENDS*/
+/*CARD_SCROLLER*/
+document.addEventListener("click", closeAllSelect);
+function scrollright(){
+  document.getElementById("section3").scrollLeft += 400;
+}
+function scrollleft(){
+  document.getElementById("section3").scrollLeft -= 400;
+}
+/*CARD_SCROLLERENDS*/
+</script>
+</html>

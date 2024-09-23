@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<!-- Website - www.codingnepalweb.com -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Infinite Card Slider JavaScript | CodingNepal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Fontawesome Link for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <style>
+
+.body-style {
+  display: flex;
+  padding: 0 35px;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(to left top, #031A9A, #8B53FF);
+}
+.wrapper_testi {
+  /* max-width: 1100px; */
+  width: 100%;
+  position: relative;
+}
+.wrapper_testi i {
+  top: 50%;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  font-size: 1.25rem;
+  position: absolute;
+  text-align: center;
+  line-height: 50px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.23);
+  transform: translateY(-50%);
+  transition: transform 0.1s linear;
+}
+.wrapper_testi i:active{
+  transform: translateY(-50%) scale(0.85);
+}
+.wrapper_testi i:first-child{
+  left: -22px;
+}
+.wrapper_testi i:last-child{
+  right: -22px;
+}
+.wrapper_testi .testi_carousel{
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% / 2) - 12px);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 16px;
+  border-radius: 8px;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+.testi_carousel::-webkit-scrollbar {
+  display: none;
+}
+.testi_carousel.no-transition {
+  scroll-behavior: auto;
+}
+.testi_carousel.dragging {
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+}
+.testi_carousel.dragging .card {
+  cursor: grab;
+  user-select: none;
+}
+.testi_carousel :where(.card, .img) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.testi_carousel .card {
+  scroll-snap-align: start;
+  height: 342px;
+  list-style: none;
+  background: #fff;
+  cursor: pointer;
+  padding-bottom: 15px;
+  flex-direction: column;
+  border-radius: 8px;
+}
+.testi_carousel .card img {
+  background: #8B53FF;
+  height: 100%;
+  width: 100%;
+}
+.card .img img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #fff;
+}
+.testi_carousel .card h2 {
+  font-weight: 500;
+  font-size: 1.56rem;
+  margin: 30px 0 5px;
+}
+.testi_carousel .card span {
+  color: #6A6D78;
+  font-size: 1.31rem;
+}
+
+@media screen and (max-width: 900px) {
+  .wrapper_testi .testi_carousel {
+    grid-auto-columns: calc((100% / 2) - 9px);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .wrapper_testi .testi_carousel {
+    grid-auto-columns: 100%;
+  }
+}
+    </style>
+  </head>
+  <body>
+    <div class="body-style">
+        <div class="wrapper_testi">
+        <i id="left_testi" class="fa-solid fa-angle-left"></i>
+        <ul class="testi_carousel">
+            <!-- ====================== -->
+                <li class="card shadow p-2 mb-5 bg-body rounded">
+                    <div class="border-start border-5 border-base-color ps-4 mb-5">
+                        <h6 class="text-body text-uppercase mb-2">Classroom Learning</h6>
+                        <!-- <h6 class="display-6 mb-0">
+                            Classroom Learning
+                        </h6> -->
+                    </div>
+                    <img class="mb-2" src="<?php echo base_url('assets/') ?>img/school_img/reading.png
+                        " alt="" />
+                        <!-- ===================== -->
+                         <ul>
+                            <li>Strong Foundation in Classroom Learning</li>
+                            <li>Comprehensive Knowledge</li>
+                            <li>State-of-the-Art Laboratories</li>
+                            <li>Hands-On Learning</li>
+                            <li>Reinforcement of Concepts</li>
+                            <li>Deeper Grasp of Subjects</li>
+                         </ul>
+                        <!-- ===================== -->
+                </li>
+            <!-- ====================== -->
+                <li class="card shadow p-2 mb-5 bg-body rounded">
+                    <div class="border-start border-5 border-base-color ps-4 mb-5">
+                        <h6 class="text-body text-uppercase mb-2">Classroom Learning</h6>
+                        <!-- <h6 class="display-6 mb-0">
+                            Classroom Learning
+                        </h6> -->
+                    </div>
+                    <img class="mb-2" src="<?php echo base_url('assets/') ?>img/school_img/reading.png
+                        " alt="" />
+                        <!-- ===================== -->
+                         <ul>
+                            <li>Strong Foundation in Classroom Learning</li>
+                            <li>Comprehensive Knowledge</li>
+                            <li>State-of-the-Art Laboratories</li>
+                            <li>Hands-On Learning</li>
+                            <li>Reinforcement of Concepts</li>
+                            <li>Deeper Grasp of Subjects</li>
+                         </ul>
+                        <!-- ===================== -->
+                </li>
+            <!-- ====================== -->
+                <li class="card shadow p-2 mb-5 bg-body rounded">
+                    <div class="border-start border-5 border-base-color ps-4 mb-5">
+                        <h6 class="text-body text-uppercase mb-2">Classroom Learning</h6>
+                        <!-- <h6 class="display-6 mb-0">
+                            Classroom Learning
+                        </h6> -->
+                    </div>
+                    <img class="mb-2" src="<?php echo base_url('assets/') ?>img/school_img/reading.png
+                        " alt="" />
+                        <!-- ===================== -->
+                         <ul>
+                            <li>Strong Foundation in Classroom Learning</li>
+                            <li>Comprehensive Knowledge</li>
+                            <li>State-of-the-Art Laboratories</li>
+                            <li>Hands-On Learning</li>
+                            <li>Reinforcement of Concepts</li>
+                            <li>Deeper Grasp of Subjects</li>
+                         </ul>
+                        <!-- ===================== -->
+                </li>
+            <!-- ====================== -->
+             
+            <!-- ====================== -->        
+        </ul>
+        <i id="right_testi" class="fa-solid fa-angle-right"></i>
+        </div>
+    </div>
+
+  </body>
+  <script>
+    document.querySelectorAll('.wrapper_testi').forEach(wrapper_testi => {
+      const testi_carousel = wrapper_testi.querySelector('.testi_carousel');
+      const firstCardWidth_testi = testi_carousel.querySelector('.card').offsetWidth;
+      const arrowBtns_testi = wrapper_testi.querySelectorAll('i');
+      const testi_carouselChildrens = [...testi_carousel.children];
+      
+      let testi_isDragging = false, isAutoPlay = true, startX, startScrollLeft, timeoutId;
+      
+      let testi_cardPerView = Math.round(testi_carousel.offsetWidth / firstCardWidth_testi);
+      
+      testi_carouselChildrens.slice(-testi_cardPerView).reverse().forEach(card => {
+        testi_carousel.insertAdjacentHTML('afterbegin', card.outerHTML);
+      });
+      
+      testi_carouselChildrens.slice(0, testi_cardPerView).forEach(card => {
+        testi_carousel.insertAdjacentHTML('beforeend', card.outerHTML);
+      });
+      
+      testi_carousel.classList.add('no-transition');
+      testi_carousel.scrollLeft = testi_carousel.offsetWidth;
+      testi_carousel.classList.remove('no-transition');
+      
+      arrowBtns_testi.forEach(btn => {
+        btn.addEventListener('click', () => {
+          testi_carousel.scrollLeft += btn.id === 'left_testi' ? -firstCardWidth_testi : firstCardWidth_testi;
+        });
+      });
+      
+      const dragStart = (e) => {
+        testi_isDragging = true;
+        testi_carousel.classList.add('dragging');
+        startX = e.pageX;
+        startScrollLeft = testi_carousel.scrollLeft;
+      };
+      
+      const dragging = (e) => {
+        if (!testi_isDragging) return;
+        testi_carousel.scrollLeft = startScrollLeft - (e.pageX - startX);
+      };
+      
+      const dragStop = () => {
+        testi_isDragging = false;
+        testi_carousel.classList.remove('dragging');
+      };
+      
+      const infiniteScroll = () => {
+        if (testi_carousel.scrollLeft === 0) {
+          testi_carousel.classList.add('no-transition');
+          testi_carousel.scrollLeft = testi_carousel.scrollWidth - (2 * testi_carousel.offsetWidth);
+          testi_carousel.classList.remove('no-transition');
+        } else if (Math.ceil(testi_carousel.scrollLeft) === testi_carousel.scrollWidth - testi_carousel.offsetWidth) {
+          testi_carousel.classList.add('no-transition');
+          testi_carousel.scrollLeft = testi_carousel.offsetWidth;
+          testi_carousel.classList.remove('no-transition');
+        }
+        clearTimeout(timeoutId);
+        if (!wrapper_testi.matches(':hover')) autoPlay();
+      };
+      
+      const autoPlay = () => {
+        if (window.innerWidth < 800 || !isAutoPlay) return;
+        timeoutId = setTimeout(() => testi_carousel.scrollLeft += firstCardWidth_testi, 2500);
+      };
+      
+      autoPlay();
+      
+      testi_carousel.addEventListener('mousedown', dragStart);
+      testi_carousel.addEventListener('mousemove', dragging);
+      document.addEventListener('mouseup', dragStop);
+      testi_carousel.addEventListener('scroll', infiniteScroll);
+      wrapper_testi.addEventListener('mouseenter', () => clearTimeout(timeoutId));
+      wrapper_testi.addEventListener('mouseleave', autoPlay);
+    });
+     </script>
+</html>

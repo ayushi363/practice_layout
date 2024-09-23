@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Table</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .table-header-color {
+            background-color: #f8f9fa; /* Adjust the header background color as needed */
+        }
+        .quantity-control {
+            display: flex;
+            align-items: center;
+        }
+        .quantity-control i {
+            cursor: pointer;
+            padding: 5px;
+        }
+        .quantity-input {
+            width: 50px;
+            text-align: center;
+            border: none;
+            background: transparent;
+        }
+        @media (max-width: 767px) {
+            .table thead {
+                display: none;
+            }
+            .table, .table tbody, .table tr, .table td {
+                display: block;
+                width: 100%;
+            }
+            .table tr {
+                margin-bottom: 15px;
+                border: 1px solid #dee2e6;
+                padding: 10px;
+                border-radius: 5px;
+            }
+            .table td {
+                text-align: right;
+                padding-left: 50%;
+                position: relative;
+            }
+            .table td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 10px;
+                width: calc(50% - 20px);
+                padding-right: 10px;
+                text-align: left;
+                font-weight: bold;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <table class="table table-responsive">
+        <thead class="table-header-color">
+            <tr>
+                <th>Image</th>
+                <th>Product Description</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Remove</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php for($x = 0; $x <= 4; $x++) { ?>
+            <tr>
+                <td data-label="Image"><img src="{{ asset('assets/images/2.jpeg') }}" alt="" style="height:50px;border-radius:5px"></td>
+                <td data-label="Product Description">Co-ord Set - Lorem ipsum dolor sit amet, consectetur elit.</td>
+                <td data-label="Price" class="price" data-price="874.00">₹874.00</td>
+                <td data-label="Quantity">
+                    <div class="quantity-control">
+                        <i class="fa fa-minus" aria-hidden="true" onclick="updateQuantity(this, -1)"></i>
+                        <input type="text" class="quantity-input" value="1" readonly>
+                        <i class="fa fa-plus" aria-hidden="true" onclick="updateQuantity(this, 1)"></i>
+                    </div>
+                </td>
+                <td data-label="Remove">Remove</td>
+                <td data-label="Total" class="total">₹874.00</td>
+            </tr>
+        <?php } ?>
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    function updateQuantity(element, change) {
+        var input = element.parentNode.querySelector('.quantity-input');
+        var currentValue = parseInt(input.value);
+        var newValue = currentValue + change;
+        if (newValue >= 1) {
+            input.value = newValue;
+        }
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Modal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        #addSampleBtn {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .modal3 {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal3-content {
+            background-color: #fefefe;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            max-height: 80%;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+
+        #imagePreview {
+            display: flex;
+            flex-wrap: wrap;
+            max-height: 150px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+
+        #imagePreview img {
+            max-width: 100px;
+            margin: 5px;
+            border: 1px solid #ddd;
+            padding: 5px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <button id="addSampleBtn">Add Sample</button>
+
+    <div id="samplemodal3" class="modal3">
+        <div class="modal3-content">
+            <span class="close-btn">&times;</span>
+            <h2>Add Sample</h2>
+            <form id="sampleForm">
+                <div class="col-xl-12 mb-2">
+                    <input type="text" id="coupleName" name="coupleName" class="form-control" placeholder="Couple Name" required />
+                </div>
+
+                <div class="col-xl-12 mb-2">
+                    <input type="text" id="eventType" name="eventType" class="form-control" placeholder="Event Type" required />
+                </div>
+
+                <div class="col-xl-12 mb-2">
+                    <textarea id="shortDescription" name="shortDescription" class="form-control" placeholder="Short Description" required></textarea>
+                </div>
+
+                <div class="col-xl-12 mb-2">
+                    <textarea id="detailedDescription" name="detailedDescription" class="form-control" placeholder="Detailed Description" required></textarea>
+                </div>
+
+                <div class="col-xl-12 mb-2">
+                    <input type="file" id="images" name="images" class="form-control" accept="image/*" multiple required />
+                </div>
+                <div id="imagePreview"></div>
+
+                <div class="col-xl-12 mb-2">
+                    <input type="url" id="videoLink" name="videoLink" class="form-control" placeholder="Sample Video Link" required />
+                </div>
+
+                <button type="submit" class="form-control">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var addSampleBtn = document.getElementById('addSampleBtn');
+            var samplemodal3 = document.getElementById('samplemodal3');
+            var closeBtn = document.querySelector('.close-btn');
+            var imagesInput = document.getElementById('images');
+            var imagePreview = document.getElementById('imagePreview');
+
+            addSampleBtn.addEventListener('click', function() {
+                samplemodal3.style.display = 'flex';
+            });
+
+            closeBtn.addEventListener('click', function() {
+                samplemodal3.style.display = 'none';
+            });
+
+            window.addEventListener('click', function(event) {
+                if (event.target == samplemodal3) {
+                    samplemodal3.style.display = 'none';
+                }
+            });
+
+            imagesInput.addEventListener('change', function() {
+                imagePreview.innerHTML = '';
+                var files = imagesInput.files;
+                for (var i = 0; i < files.length; i++) {
+                    var file = files[i];
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        var img = document.createElement('img');
+                        img.src = e.target.result;
+                        imagePreview.appendChild(img);
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

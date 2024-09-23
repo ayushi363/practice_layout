@@ -1,0 +1,809 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shimmer</title>
+
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<style>
+        /* Show the dropdown menu on hover */
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; /* optional, adjust as needed */
+}
+
+/* Ensure the dropdown is positioned correctly */
+.dropdown-menu {
+    margin-top: 0;
+    position: absolute;
+    z-index: 1000;
+}
+
+        .main-navbar{
+    border-bottom: 1px solid #ccc;
+}
+.main-navbar .top-navbar{
+    background-image: linear-gradient(to right,
+    #096e8a,
+    #d7e4f1);
+    /* background-color: #20b5df; */
+    padding-top: 10px;
+    padding-bottom: 10px;
+    box-shadow: 8px 8px 20px rgba(173, 216, 230, 0.8);
+}
+.main-navbar .top-navbar .brand-name{
+    color: #fff;
+}
+.main-navbar .top-navbar .nav-link{
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+}
+.main-navbar .top-navbar .dropdown-menu{
+    padding: 0px 0px;
+    border-radius: 0px;
+}
+.main-navbar .top-navbar .dropdown-menu .dropdown-item{
+    padding: 8px 16px;
+    border-bottom: 1px solid #ccc;
+    font-size: 14px;
+}
+.main-navbar .top-navbar .dropdown-menu .dropdown-item i{
+    width: 20px;
+    text-align: center;
+    color: #c966f0;
+    font-size: 14px;
+}
+.main-navbar .navbar{
+    padding: 0px;
+    background-color: #ddd;
+}
+.main-navbar .navbar .nav-item .nav-link{
+    padding: 8px 20px;
+    color: #000;
+    font-size: 15px;
+}
+.inline-container {
+        display: flex;
+        align-items: center;
+    }
+    .inline-input {
+        width: 145px;
+        
+    }
+.fa-star{
+    color: rgb(246, 193, 0);
+}
+p{
+    margin: 0;
+}
+
+/* ====================Button===================== */
+.button-29 {
+  align-items: center;
+  appearance: none;
+  border-radius: 4px;
+  border-style: none;
+  box-shadow: rgba(0, 0, 0, .2) 0 3px 1px -2px,rgba(0, 0, 0, .14) 0 2px 2px 0,rgba(0, 0, 0, .12) 0 1px 5px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: Roboto,sans-serif;
+  font-size: .875rem;
+  font-weight: 500;
+  height: 36px;
+  justify-content: center;
+  letter-spacing: .0892857em;
+  line-height: normal;
+  min-width: 64px;
+  outline: none;
+  overflow: visible;
+  padding: 0 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  will-change: transform,opacity;
+}
+
+.button-29:hover {
+  box-shadow: rgba(0, 0, 0, .2) 0 2px 4px -1px, rgba(0, 0, 0, .14) 0 4px 5px 0, rgba(0, 0, 0, .12) 0 1px 10px 0;
+}
+
+.button-29:disabled {
+  background-color: rgba(0, 0, 0, .12);
+  box-shadow: rgba(0, 0, 0, .2) 0 0 0 0, rgba(0, 0, 0, .14) 0 0 0 0, rgba(0, 0, 0, .12) 0 0 0 0;
+  color: rgba(0, 0, 0, .37);
+  cursor: default;
+  pointer-events: none;
+}
+
+.button-29:not(:disabled) {
+  background-color: #6200ee;
+}
+
+.button-29:focus {
+  box-shadow: rgba(0, 0, 0, .2) 0 2px 4px -1px, rgba(0, 0, 0, .14) 0 4px 5px 0, rgba(0, 0, 0, .12) 0 1px 10px 0;
+}
+
+.button-29:active {
+  box-shadow: rgba(0, 0, 0, .2) 0 5px 5px -3px, rgba(0, 0, 0, .14) 0 8px 10px 1px, rgba(0, 0, 0, .12) 0 3px 14px 2px;
+  background: #A46BF5;
+}
+/* ====================Button===================== */
+/* ====================Cart CSS===================== */
+
+.badge {
+      background-color: #6394F8;
+      border-radius: 10px;
+      color: white;
+      display: inline-block;
+      font-size: 12px;
+      line-height: 1;
+      padding: 3px 7px;
+      text-align: center;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    .shopping-cart {
+    display: none; /* Hide by default */
+    margin: 20px 0;
+    float: left; /* Changed to float left */
+    background: white;
+    width: 320px;
+    position: absolute;
+    border-radius: 3px;
+    padding: 20px;
+    z-index: 1000;
+    right: 0; /* Ensure it’s aligned to the left */
+}
+
+    .shopping-cart.show {
+      display: block; /* Shows the shopping cart when .show class is added */
+    }
+
+    .shopping-cart-header {
+      border-bottom: 1px solid #E8E8E8;
+      padding-bottom: 15px;
+    }
+
+    .shopping-cart-total {
+      float: right;
+    }
+
+    .shopping-cart-items {
+      padding-top: 20px;
+    }
+
+    .shopping-cart-items li {
+      margin-bottom: 18px;
+    }
+
+    .shopping-cart-items img {
+      float: left;
+      margin-right: 12px;
+    }
+
+    .item-name {
+      display: block;
+      padding-top: 10px;
+      font-size: 16px;
+    }
+
+    .item-price {
+      color: #6394F8;
+      margin-right: 8px;
+    }
+
+    .item-quantity {
+      color: #ABB0BE;
+    }
+
+    .shopping-cart:after {
+      bottom: 100%;
+      left: 89%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+      border-bottom-color: white;
+      border-width: 8px;
+      margin-left: -8px;
+    }
+
+    .cart-icon {
+      color: #515783;
+      font-size: 24px;
+      margin-right: 7px;
+      float: left;
+    }
+
+    .button {
+      background: #6394F8;
+      color: white;
+      text-align: center;
+      padding: 12px;
+      text-decoration: none;
+      display: block;
+      border-radius: 3px;
+      font-size: 16px;
+      margin: 25px 0 15px 0;
+    }
+
+    .button:hover {
+      background: #4b7dce; /* Adjusted for CSS, since lighten() isn't valid */
+    }
+
+    .clearfix:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+/* ====================Cart CSS===================== */
+
+@media only screen and (max-width: 600px) {
+    .main-navbar .top-navbar .nav-link{
+      font-size: 12px;
+        padding: 8px 10px;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <div class="main-navbar shadow-sm">
+        <div class="top-navbar">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-2 my-auto d-none d-sm-none d-md-block d-lg-block">
+                       <!-- <a href="https://imgbb.com/"><img src="data:image/png;base64,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" alt="Whats-App-Image-2024-01-04-at-15-57-52-d5dbd72c-fotor-bg-remover-20240104213430" border="0"   height="70px"             max-height: 100%;
+            width: auto;
+            vertical-align: middle;
+            border-radius: 10px;
+            left: 0;
+            margin-left= 11px; 
+                      margin-right=15px;  padding-top=20px;
+                                                         padding-bottom=30px; margin-bottom:50px ></a>  -->
+                                                         <h1>SHIMMER</h1>
+                    </div>
+                    <div class="col-md-5 my-auto">
+                        <p>Welcome, Guest</p>
+                        <form role="search">
+                            <div class="input-group mt-3">
+                                <input type="search" placeholder="Search your product" class="form-control" />
+                                <button class="btn" style="background-color: #096e8a;"  type="submit">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-5 my-auto">
+                        <div class="row ms-5">
+                            <p>
+                                <a href="" class="me-2">Sign In</a>
+                                <a href="" class="me-2">Register</a>
+                                <a href="" class="me-2">My Account</a>
+                                <a href="" class="me-2">Track Order</a>
+                            </p>
+                        </div>
+                        <div class="row ms-5">
+                            <div class="col-md-8">
+                                <p>Cash on Delivery | 30 Day Return</p>
+                                <p>24/7 Customer Service</p>
+                                
+                            </div>
+                            <div class="col-md-4">
+                                <!-- <i class="fa-sharp fa-solid fa-cart-shopping" style="font-size:xx-large"></i> -->
+                                <a href="#" id="cart"><i class="fa fa-shopping-cart cart-icon"></i> Cart <span class="badge">3</span></a>
+                                <!-- ==========================Cart================================================ -->
+                                <div class="container">
+                                    <div class="shopping-cart">
+                                      <div class="shopping-cart-header">
+                                        <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">3</span>
+                                        <div class="shopping-cart-total">
+                                          <span class="lighter-text">Total:</span>
+                                          <span class="main-color-text"> ₹2,229.97</span>
+                                        </div>
+                                      </div> <!--end shopping-cart-header -->
+                                
+                                      <ul class="shopping-cart-items">
+                                        <li class="clearfix">
+                                          <img src="images/1.jpeg" alt="item1" style="height: 70px;;width: 70px;" />
+                                          <span class="item-name">Co-ord Set</span>
+                                          <span class="item-price"> ₹849.99</span>
+                                          <span class="item-quantity">Quantity: 01</span>
+                                        </li>
+                                
+                                        <li class="clearfix">
+                                          <img src="images/11.jpeg" alt="item2" style="height: 70px; width: 70px;" />
+                                          <span class="item-name">Women Top Wear</span>
+                                          <span class="item-price"> ₹1,249.99</span>
+                                          <span class="item-quantity">Quantity: 01</span>
+                                        </li>
+                                
+                                        <li class="clearfix">
+                                          <img src="images/17.jpeg" alt="item3" style="height: 70px; width: 70px;" />
+                                          <span class="item-name">Top & Bottom</span>
+                                          <span class="item-price"> ₹129.99</span>
+                                          <span class="item-quantity">Quantity: 01</span>
+                                        </li>
+                                      </ul>
+                                
+                                      <button class="button-29 w-100" role="button">Checkout</button> 
+                                    </div> <!--end shopping-cart -->
+                                  </div> <!--end container -->
+                                <!-- ==========================Cart================================================ -->
+                            </div>
+                        </div>   
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand d-block d-sm-block d-md-none d-lg-none" href="#">Shimmer</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" >
+                        <li class="nav-item">
+                            <a class="nav-link" href="ecommerce-homepage.html">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" aria-expanded="false">
+                                Categories
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="ecommerce-product-listing.html">Tops</a></li>
+                                <li><a class="dropdown-item" href="ecommerce-product-listing.html">Bottoms</a></li>
+                                <li><a class="dropdown-item" href="ecommerce-product-listing.html">Outwear</a></li>
+                                <li><a class="dropdown-item" href="ecommerce-product-listing.html">Dresses</a></li>
+                                
+                            </ul>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="ecommerce-product-listing.html">Co-ord Set</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="ecommerce-product-listing.html">Formal wear </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="ecommerce-product-listing.html">Sarees</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="ecommerce-product-listing.html">Kurtis</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="ecommerce-product-listing.html">Kurta Set</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="ecommerce-product-listing.html">Ethnic wear</a>
+                        </li>
+                       
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+    </div>
+<!-- ==============================Main Carousel========================================== -->
+    <div class="px-3">
+        <div class="row mt-3">
+            <div class="col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h4>Quick Find - Choose Product</h4>
+                        <p>Find the right product at the right price</p>
+                        <div class="input-group mt-4">
+                            <select class="form-select" id="selectType" aria-label="Select Type">
+                                <option selected>Type</option>
+                                <option value="1">Dresses</option>
+                                <option value="2">Tops</option>
+                                <option value="3">Bottoms</option>
+                                <option value="3">Outwear</option>
+                            </select>
+                        </div> 
+                        <div class="input-group mt-4">
+                            <select class="form-select" id="selectBrand" aria-label="Select Brand">
+                                <option selected>Brand</option>
+                                <option value="1">Gucci</option>
+                                <option value="2">Prada</option>
+                                <option value="3">Burberry</option>
+                                <option value="3">Zara</option>
+                                <option value="3">H&M</option>
+                                <option value="3">Forever 21</option>
+                            </select>
+                        </div>
+                        <div class="input-group mt-4">
+                            <select class="form-select" id="selectCategory" aria-label="Select Category">
+                                <option selected>Category</option>
+                                <option value="1">New Arrivals</option>
+                                <option value="2">Best Sellers</option>
+                                <option value="3">Trending</option>
+                                <option value="3">Sale</option>
+                                <option value="3">Seasonal Collections</option>
+                                <option value="3">Special Offers</option>
+                            </select>
+                        </div>
+                        <div class="text-center mt-4">
+                            <div class="inline-container">
+                                <span class="dollar-sign">₹</span>
+                                <input type="text" class="inline-input px-2 mx-1">
+                                <span class="dollar-sign">₹</span>
+                                <input type="text" class="inline-input px-2 mx-1">
+                            </div>
+                            <!-- <button class="btn btn-secondary mt-4 w-100">
+                                <i class="fa-sharp fa-solid fa-magnifying-glass me-1 "></i>Search
+                            </button> -->
+                            <button class="button-29 mt-4 w-100" role="button"><i class="fa-sharp fa-solid fa-magnifying-glass me-1 "></i>Search</button> 
+
+                        </div>
+                    </div>
+                </div> 
+            </div>
+            
+            <div class="col-lg-9">
+                <div class="card" >
+                    <!-- <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" style="height: 316px;" class="card-img-top" alt="banner-image"> -->
+                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                          <div class="carousel-item active">
+                            <img class="d-block w-100 img-fluid" style="height: 290px;" src="https://img.freepik.com/free-photo/portrait-girl-red-beret-whistling-holding-package-pink-background-with-hangers-with-dresses_197531-17611.jpg?t=st=1722585543~exp=1722589143~hmac=3fa7d990f00fbcd2fbbdf6990d166c40e03a42124d0ad0c9a0412ae277070481&w=996" alt="First slide">
+                          </div>
+                          <div class="carousel-item">
+                            <img class="d-block w-100" style="height: 290px;" src="https://img.freepik.com/free-photo/woman-studio-with-many-clothes_1157-34833.jpg?t=st=1722585863~exp=1722589463~hmac=e2b3feea7249f13ea2ea4450708838d826d47eac12f425ac7d0a664cb246953a&w=996" alt="Second slide">
+                          </div>
+                          <div class="carousel-item">
+                            <img class="d-block w-100" style="height: 290px;" src="https://img.freepik.com/free-photo/modern-woman-wardrobe_23-2148184949.jpg?t=st=1722585431~exp=1722589031~hmac=50beaed986aa37e847b55a09babe4daa08959a1f0d22d155f2e9e003d95f8dbd&w=996" alt="Third slide">
+                          </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Next</span>
+                        </button>
+                      </div>
+                      
+                      
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-lg-4">
+                            <h3>UP TO 70% OFF</h3>
+                            <P>On Women Dresses</P>
+                        </div>
+                        <div class="col-lg-4">
+                            <h3>UP TO 50% OFF</h3>
+                            <P>On Women Co-ord Sets</P>
+                        </div>
+                        <div class="col-lg-4">
+                            <h3>UP TO 60% OFF</h3>
+                            <P>On Women Tops</P>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+<!-- ==============================Main Carousel========================================== -->
+<!-- ==============================Products Slider Start========================================== -->
+ <div class="row px-3">
+    <div class="col-lg-9">
+        <div class="row mt-4">
+            <div class="col-lg-6"><h2>Deal of the Day</h2></div>
+            <div class="col-lg-6 text-end"><a href="ecommerce-product-listing.html">View All</a></div>
+            <hr style="height: 4px; border: none; background-color: #000;">
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="images/1.jpeg" class="card-img-top px-3 pt-3" style="height:300px" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Co-ord set</h5>
+                      <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>(5)</p>
+                      <div class="row">
+                        <div class="col-md-5"><p><b>RS: 685.00</b></p></div>
+                        <div class="col-md-7 text-end"><p>RS: <del>790</del> 14% OFF</p></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="images/2.jpeg" class="card-img-top px-3 pt-3" style="height:300px" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Co-ord Sets</h5>
+                      <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>(5)</p>
+                      <div class="row">
+                        <div class="col-md-5"><p><b>RS: 1,995.00</b></p></div>
+                        <div class="col-md-7 text-end"><p>RS: <del>2499</del> 15% OFF</p></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="images/3.jpeg" class="card-img-top px-3 pt-3" style="height:300px" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Green Co-ord Set</h5>
+                      <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>(5)</p>
+                      <div class="row">
+                        <div class="col-md-5"><p><b>RS: 799.00</b></p></div>
+                        <div class="col-md-7 text-end"><p>RS: <del>1099</del> 12% OFF</p></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ===========================================SECOND sECTION=========================================== -->
+        <div class="row mt-4">
+            <div class="col-lg-6"><h2>New Arrivals</h2></div>
+            <div class="col-lg-6 text-end"><a href="ecommerce-product-listing.html">View All</a></div>
+            <hr style="height: 4px; border: none; background-color: #000;">
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="images/4.jpeg" class="card-img-top px-3 pt-3" style="height:300px" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Combo Co-ord Set</h5>
+                      <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>(5)</p>
+                      <div class="row">
+                        <div class="col-md-5"><p><b>RS: 859.00</b></p></div>
+                        <div class="col-md-7 text-end"><p>RS: <del>1599</del> 19% OFF</p></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="images/5.jpeg" class="card-img-top px-3 pt-3" style="height:300px" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Formal Wear</h5>
+                      <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>(5)</p>
+                      <div class="row">
+                        <div class="col-md-5"><p><b>RS: 985.00</b></p></div>
+                        <div class="col-md-7 text-end"><p>RS: <del>1499</del> 18% OFF</p></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="images/6.jpeg" class="card-img-top px-3 pt-3" style="height:300px" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Trendy Fusion</h5>
+                      <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>(5)</p>
+                      <div class="row">
+                        <div class="col-md-5"><p><b>RS: 748.00</b></p></div>
+                        <div class="col-md-7 text-end"><p>RS: <del>1049</del> 17% OFF</p></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ===========================================SECOND sECTION=========================================== -->
+         <!-- ===========================================Third sECTION=========================================== -->
+        <div class="row mt-4">
+            <div class="col-lg-6"><h2>Best Sellers</h2></div>
+            <div class="col-lg-6 text-end"><a href="ecommerce-product-listing.html">View All</a></div>
+            <hr style="height: 4px; border: none; background-color: #000;">
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="images/7.jpeg" class="card-img-top px-3 pt-3" style="height:300px" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Maroon Co-ord Set</h5>
+                      <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>(5)</p>
+                      <div class="row">
+                        <div class="col-md-5"><p><b>RS: 585.00</b></p></div>
+                        <div class="col-md-7 text-end"><p>RS: <del>999</del> 15% OFF</p></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="images/8.jpeg" class="card-img-top px-3 pt-3" style="height:300px" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Modern Match</h5>
+                      <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>(5)</p>
+                      <div class="row">
+                        <div class="col-md-5"><p><b>RS: 499.00</b></p></div>
+                        <div class="col-md-7 text-end"><p>RS: <del>1104</del> 29% OFF</p></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="images/9.jpeg" class="card-img-top px-3 pt-3" style="height:300px" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Blue Co-ord Set</h5>
+                      <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>(5)</p>
+                      <div class="row">
+                        <div class="col-md-5"><p><b>RS: 499.00</b></p></div>
+                        <div class="col-md-7 text-end"><p>RS: <del>899</del> 28% OFF</p></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ===========================================Third sECTION=========================================== -->
+
+    </div>
+    <div class="col-lg-3 mt-4" style="border: 1px solid rgb(186, 185, 185);">
+        <h3>Most Reviewed Items</h3>
+        <div class="row mt-4">
+            <div class="col-4">
+                <img src="images/11.jpeg" alt="" style="height: 100px; width: 100px;">
+            </div>
+            <div class="col-8">
+                <h5>Chic Co-ord Set</h5>
+                <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>(5)</p>
+                <p><b>₹ 984.00</b></p>
+            </div>
+            <hr class="px-3 mt-4">
+        </div>
+        <div class="row mt-1">
+            <div class="col-4">
+                <img src="images/12.jpeg" alt="" style="height: 100px; width: 100px;">
+            </div>
+            <div class="col-8">
+                <h5>Stylish Co-ord Outfits</h5>
+                <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>(15)</p>
+                <p><b>₹ 785.00</b></p>
+            </div>
+            <hr class="px-3 mt-4">
+        </div>
+        <div class="row mt-1">
+            <div class="col-4">
+                <img src="images/13.jpeg" alt="" style="height: 100px; width: 100px;">
+            </div>
+            <div class="col-8">
+                <h5>Coords Set in Cotton</h5>
+                <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>(119)</p>
+                <p><b>₹ 1915.00</b></p>
+            </div>
+            <hr class="px-3 mt-4">
+        </div>
+        <div class="row mt-1">
+            <div class="col-4">
+                <img src="images/14.jpeg" alt="" style="height: 100px; width: 100px;">
+            </div>
+            <div class="col-8">
+                <h5>Women Top</h5>
+                <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>(48)</p>
+                <p><b>₹ 475.00</b></p>
+            </div>
+            <hr class="px-3 mt-4">
+        </div>
+        <div class="row mt-1">
+            <div class="col-4">
+                <img src="images/15.jpeg" alt="" style="height: 100px; width: 100px;">
+            </div>
+            <div class="col-8">
+                <h5>Check Shirt</h5>
+                <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>(95)</p>
+                <p><b>₹ 458.00</b></p>
+            </div>
+            <hr class="px-3 mt-4">
+        </div>
+        <div class="row mt-1">
+            <div class="col-4">
+                <img src="images/16.jpeg" alt="" style="height: 100px; width: 100px;">
+            </div>
+            <div class="col-8">
+                <h5>Blue Shirt</h5>
+                <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>(545)</p>
+                <p><b>₹ 984.00</b></p>
+            </div>
+            <hr class="px-3 mt-4">
+        </div>
+       
+        <div class="row mt-1">
+            <div class="col-4">
+                <img src="images/17.jpeg" alt="" style="height: 100px; width: 100px;">
+            </div>
+            <div class="col-8">
+                <h5>Women Kurta</h5>
+                <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>(155)</p>
+                <p><b>₹ 658.00</b></p>
+            </div>
+            <hr class="px-3 mt-4">
+        </div>
+        <div class="row mt-1 px-2">
+            <div class="card">
+                <img src="images/18.jpeg" class="card-img-top px-2 pt-3" alt="..." style="height: 230px;">
+                <div class="card-body">
+                  <h5 class="card-title">White Kurta</h5>
+                  <p class="card-text">A clean, classic silhouette that flatters every body type with its flowing lines and modest cut.</p>
+                  <div class="text-end">
+                    <button class="button-29" role="button">Get it Now</button> 
+                  </div>
+                  
+                </div>
+              </div>
+        </div>
+        
+  
+    </div>
+ </div>
+<!-- ==============================Products Slider End========================================== -->
+ <!-- ====================================Footer section Start============================================== -->
+  <div class="footer px-5 mt-3" style="background-color: rgb(17, 37, 60); color: white;">
+    <div class="row pt-5 px-4">
+        <div class="col-lg-3">
+            <h4>Payment Methods</h4>
+            <img style="height:80px; width:120px" src="data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8yIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxMzIgNDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxzdHlsZT4uc3Qwe2ZpbGw6IzVmMjU5Zn08L3N0eWxlPjxjaXJjbGUgdHJhbnNmb3JtPSJyb3RhdGUoLTc2LjcxNCAxNy44NyAyNC4wMDEpIiBjbGFzcz0ic3QwIiBjeD0iMTcuOSIgY3k9IjI0IiByPSIxNy45Ii8+PHBhdGggY2xhc3M9InN0MCIgZD0iTTkwLjUgMzQuMnYtNi41YzAtMS42LS42LTIuNC0yLjEtMi40LS42IDAtMS4zLjEtMS43LjJWMzVjMCAuMy0uMy42LS42LjZoLTIuM2MtLjMgMC0uNi0uMy0uNi0uNlYyMy45YzAtLjQuMy0uNy42LS44IDEuNS0uNSAzLS44IDQuNi0uOCAzLjYgMCA1LjYgMS45IDUuNiA1LjR2Ny40YzAgLjMtLjMuNi0uNi42SDkyYy0uOSAwLTEuNS0uNy0xLjUtMS41em05LTMuOWwtLjEuOWMwIDEuMi44IDEuOSAyLjEgMS45IDEgMCAxLjktLjMgMi45LS44LjEgMCAuMi0uMS4zLS4xLjIgMCAuMy4xLjQuMi4xLjEuMy40LjMuNC4yLjMuNC43LjQgMSAwIC41LS4zIDEtLjcgMS4yLTEuMS42LTIuNC45LTMuOC45LTEuNiAwLTIuOS0uNC0zLjktMS4yLTEtLjktMS42LTIuMS0xLjYtMy42di0zLjljMC0zLjEgMi01IDUuNC01IDMuMyAwIDUuMiAxLjggNS4yIDV2Mi40YzAgLjMtLjMuNi0uNi42aC02LjN6bS0uMS0yLjJIMTAzLjJ2LTFjMC0xLjItLjctMi0xLjktMnMtMS45LjctMS45IDJ2MXptMjUuNSAyLjJsLS4xLjljMCAxLjIuOCAxLjkgMi4xIDEuOSAxIDAgMS45LS4zIDIuOS0uOC4xIDAgLjItLjEuMy0uMS4yIDAgLjMuMS40LjIuMS4xLjMuNC4zLjQuMi4zLjQuNy40IDEgMCAuNS0uMyAxLS43IDEuMi0xLjEuNi0yLjQuOS0zLjguOS0xLjYgMC0yLjktLjQtMy45LTEuMi0xLS45LTEuNi0yLjEtMS42LTMuNnYtMy45YzAtMy4xIDItNSA1LjQtNSAzLjMgMCA1LjIgMS44IDUuMiA1djIuNGMwIC4zLS4zLjYtLjYuNmgtNi4zem0tLjEtMi4ySDEyOC42di0xYzAtMS4yLS43LTItMS45LTJzLTEuOS43LTEuOSAydjF6TTY2IDM1LjdoMS40Yy4zIDAgLjYtLjMuNi0uNnYtNy40YzAtMy40LTEuOC01LjQtNC44LTUuNC0uOSAwLTEuOS4yLTIuNS40VjE5YzAtLjgtLjctMS41LTEuNS0xLjVoLTEuNGMtLjMgMC0uNi4zLS42LjZ2MTdjMCAuMy4zLjYuNi42aDIuM2MuMyAwIC42LS4zLjYtLjZ2LTkuNGMuNS0uMiAxLjItLjMgMS43LS4zIDEuNSAwIDIuMS43IDIuMSAyLjR2Ni41Yy4xLjcuNyAxLjQgMS41IDEuNHptMTUuMS04LjRWMzFjMCAzLjEtMi4xIDUtNS42IDUtMy40IDAtNS42LTEuOS01LjYtNXYtMy43YzAtMy4xIDIuMS01IDUuNi01IDMuNSAwIDUuNiAxLjkgNS42IDV6bS0zLjUgMGMwLTEuMi0uNy0yLTItMnMtMiAuNy0yIDJWMzFjMCAxLjIuNyAxLjkgMiAxLjlzMi0uNyAyLTEuOXYtMy43em0tMjIuMy0xLjdjMCAzLjItMi40IDUuNC01LjYgNS40LS44IDAtMS41LS4xLTIuMi0uNHY0LjVjMCAuMy0uMy42LS42LjZoLTIuM2MtLjMgMC0uNi0uMy0uNi0uNlYxOS4yYzAtLjQuMy0uNy42LS44IDEuNS0uNSAzLS44IDQuNi0uOCAzLjYgMCA2LjEgMi4yIDYuMSA1LjZ2Mi40ek01MS43IDIzYzAtMS42LTEuMS0yLjQtMi42LTIuNC0uOSAwLTEuNS4zLTEuNS4zdjYuNmMuNi4zLjkuNCAxLjYuNCAxLjUgMCAyLjYtLjkgMi42LTIuNFYyM3ptNjguMiAyLjZjMCAzLjItMi40IDUuNC01LjYgNS40LS44IDAtMS41LS4xLTIuMi0uNHY0LjVjMCAuMy0uMy42LS42LjZoLTIuM2MtLjMgMC0uNi0uMy0uNi0uNlYxOS4yYzAtLjQuMy0uNy42LS44IDEuNS0uNSAzLS44IDQuNi0uOCAzLjYgMCA2LjEgMi4yIDYuMSA1LjZ2Mi40em0tMy42LTIuNmMwLTEuNi0xLjEtMi40LTIuNi0yLjQtLjkgMC0xLjUuMy0xLjUuM3Y2LjZjLjYuMy45LjQgMS42LjQgMS41IDAgMi42LS45IDIuNi0yLjRWMjN6Ii8+PHBhdGggZD0iTTI2IDE5LjNjMC0uNy0uNi0xLjMtMS4zLTEuM2gtMi40bC01LjUtNi4zYy0uNS0uNi0xLjMtLjgtMi4xLS42bC0xLjkuNmMtLjMuMS0uNC41LS4yLjdsNiA1LjdIOS41Yy0uMyAwLS41LjItLjUuNXYxYzAgLjcuNiAxLjMgMS4zIDEuM2gxLjR2NC44YzAgMy42IDEuOSA1LjcgNS4xIDUuNyAxIDAgMS44LS4xIDIuOC0uNXYzLjJjMCAuOS43IDEuNiAxLjYgMS42aDEuNGMuMyAwIC42LS4zLjYtLjZWMjAuOGgyLjNjLjMgMCAuNS0uMi41LS41di0xem0tNi40IDguNmMtLjYuMy0xLjQuNC0yIC40LTEuNiAwLTIuNC0uOC0yLjQtMi42di00LjhoNC40djd6IiBmaWxsPSIjZmZmIi8+PC9zdmc+" alt="">
+            <img style="height: 80px; width: 120px;" src="https://pwebassets.paytm.com/commonwebassets/paytmweb/header/images/logo.svg" alt="">
+            <img style="height: 50px; width: 120px;" src="https://www.rupay.co.in/images/rupay/footer-logo.png" alt="">
+            <img style="height: 80px; width: 120px;" src="https://www.paypalobjects.com/digitalassets/c/website/logo/full-text/pp_fc_hl.svg" alt="">
+        </div>
+        <div class="col-lg-3">
+            <h4>Quick Links</h4>
+            <p>Help</p>
+            <p>Shipping Policy</p>
+            <p>Cancellation & Returns</p>
+            <p>FAQ</p>
+            <p>Privacy Policy</p>
+            <p>Disclaimer</p>
+        </div>
+        <div class="col-lg-3">
+            <h4>Let's Be Social</h4>
+            <h3>
+                <i class="fa-brands fa-facebook me-2"></i>
+                <i class="fa-brands fa-pinterest me-2"></i>
+                <i class="fa-brands fa-instagram me-2"></i>
+                <i class="fa-brands fa-google-plus"></i>
+            </h3>
+        </div>
+        <div class="col-lg-3">
+            <h4>Contact Us</h4>
+            <p><i class="fa-solid fa-location-dot me-2"></i>S.C.F. 5 Shopping Complex, Sec 31 </p>
+            <p class="ms-3">Faridabaad 121003.</p>
+            <p><i class="fa-solid fa-envelope me-2"></i>info@Shimmer.com</p>
+            <p><i class="fa-solid fa-phone me-2"></i>+91 93194 53177</p>
+        </div>
+    </div>
+    <div class="row text-center">
+        <hr>
+        <h6>© Copyright <b> Shimmer. </b> All Rights Reserved</h6>
+    </div>
+  </div>
+ <!-- ====================================Footer section End============================================== -->
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+
+        
+  <script>
+    (function(){
+      document.getElementById("cart").addEventListener("click", function(event) {
+        event.preventDefault(); // Prevent default link behavior
+        document.querySelector(".shopping-cart").classList.toggle("show");
+      });
+    })();
+  </script>
+</body>
+</html>

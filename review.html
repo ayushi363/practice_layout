@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+        
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            color: #545454;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .wrapper {
+            margin: 0 auto;
+            max-width: 960px;
+            width: 100%;
+        }
+
+        .master {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding-top: 40px;
+        }
+
+        h1 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            line-height: 160%;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .rating-component {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .rating-component .status-msg {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .rating-component .status-msg strong {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .rating-component .stars-box {
+            align-self: center;
+            margin-bottom: 15px;
+        }
+
+        .rating-component .stars-box .star {
+            color: #ccc;
+            cursor: pointer;
+        }
+
+        .rating-component .stars-box .star.hover,
+        .rating-component .stars-box .star.selected {
+            color: #ff5a49;
+        }
+
+        .feedback-tags {
+            min-height: 119px;
+        }
+
+        .feedback-tags .tags-container {
+            display: none;
+        }
+
+        .feedback-tags .tags-container .question-tag {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .feedback-tags .tags-box {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .feedback-tags .tags-container .make-compliment {
+            padding-bottom: 20px;
+        }
+
+        .feedback-tags .tags-container .make-compliment .compliment-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #000;
+        }
+
+        .feedback-tags .tags-container .make-compliment .compliment-container .fa-smile-wink {
+            color: #ff5a49;
+            cursor: pointer;
+            font-size: 40px;
+            margin-top: 15px;
+            animation-name: compliment;
+            animation-duration: 2s;
+            animation-iteration-count: 1;
+        }
+
+        .feedback-tags .tags-container .make-compliment .compliment-container .list-of-compliment {
+            display: none;
+            margin-top: 15px;
+        }
+
+        .feedback-tags .tag {
+            border: 1px solid #ff5a49;
+            border-radius: 5px;
+            color: #ff5a49;
+            cursor: pointer;
+            margin-bottom: 10px;
+            margin-left: 10px;
+            padding: 10px;
+        }
+
+        .feedback-tags .tag.choosed {
+            background-color: #ff5a49;
+            color: #fff;
+        }
+
+        .list-of-compliment ul {
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .list-of-compliment ul li {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            margin-bottom: 10px;
+            margin-left: 20px;
+            min-width: 90px;
+        }
+
+        .list-of-compliment ul li:first-child {
+            margin-left: 0;
+        }
+
+        .list-of-compliment ul li .icon-compliment {
+            align-items: center;
+            border: 2px solid #ff5a49;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 70px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            padding: 0 10px;
+            transition: 0.5s;
+            width: 70px;
+        }
+
+        .list-of-compliment ul li .icon-compliment i {
+            color: #ff5a49;
+            font-size: 30px;
+            transition: 0.5s;
+        }
+
+        .list-of-compliment ul li.actived .icon-compliment {
+            background-color: #ff5a49;
+            transition: 0.5s;
+        }
+
+        .list-of-compliment ul li.actived .icon-compliment i {
+            color: #fff;
+            transition: 0.5s;
+        }
+
+        .button-box .done {
+            background-color: #ff5a49;
+            border: 1px solid #ff5a49;
+            border-radius: 3px;
+            color: #fff;
+            cursor: pointer;
+            display: none;
+            min-width: 100px;
+            padding: 10px;
+        }
+
+        .button-box .done:disabled,
+        .button-box .done[disabled] {
+            border: 1px solid #ff9b95;
+            background-color: #ff9b95;
+            color: #fff;
+            cursor: not-allowed;
+        }
+
+        .submited-box {
+            display: none;
+            padding: 20px;
+        }
+
+        .submited-box .loader,
+        .submited-box .success-message {
+            display: none;
+        }
+
+        .submited-box .loader {
+            border: 5px solid transparent;
+            border-top: 5px solid #4dc7b7;
+            border-bottom: 5px solid #ff5a49;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes compliment {
+            1% {
+                transform: rotate(0deg);
+            }
+            25% {
+                transform: rotate(-30deg);
+            }
+            50% {
+                transform: rotate(30deg);
+            }
+            75% {
+                transform: rotate(-30deg);
+            }
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="master">
+            <h1>Review and Rating</h1>
+            <h2>How was your experience with our product?</h2>
+            <div class="rating-component">
+                <div class="status-msg">
+                    <label>
+                        <input class="rating_msg" type="hidden" name="rating_msg" value=""/>
+                    </label>
+                </div>
+                <div class="stars-box">
+                    <i class="star fa fa-star" title="1 star" data-message="Poor" data-value="1"></i>
+                    <i class="star fa fa-star" title="2 stars" data-message="Too bad" data-value="2"></i>
+                    <i class="star fa fa-star" title="3 stars" data-message="Average quality" data-value="3"></i>
+                    <i class="star fa fa-star" title="4 stars" data-message="Nice" data-value="4"></i>
+                    <i class="star fa fa-star" title="5 stars" data-message="Very good quality" data-value="5"></i>
+                </div>
+                <div class="starrate">
+                    <label>
+                        <input class="ratevalue" type="hidden" name="rate_value" value=""/>
+                    </label>
+                </div>
+            </div>
+
+            <div class="feedback-tags">
+                <div class="tags-container" data-tag-set="1">
+                    <div class="question-tag">
+                        Why was your experience so bad?
+                    </div>
+                </div>
+                <div class="tags-container" data-tag-set="2">
+                    <div class="question-tag">
+                        Why was your experience so bad?
+                    </div>
+                </div>
+                <div class="tags-container" data-tag-set="3">
+                    <div class="question-tag">
+                        Why was your experience average?
+                    </div>
+                </div>
+                <div class="tags-container" data-tag-set="4">
+                    <div class="question-tag">
+                        Why was your experience good?
+                    </div>
+                </div>
+                <div class="tags-container" data-tag-set="5">
+                    <div class="question-tag">
+                        Why was your experience so good?
+                    </div>
+                </div>
+
+                <div class="tags-box">
+                    <span class="tag" data-id="1">Reason 1</span>
+                    <span class="tag" data-id="2">Reason 2</span>
+                    <span class="tag" data-id="3">Reason 3</span>
+                    <span class="tag" data-id="4">Reason 4</span>
+                </div>
+            </div>
+
+            <div class="button-box">
+                <button class="done">Done</button>
+            </div>
+
+            <div class="submited-box">
+                <div class="loader"></div>
+                <div class="success-message">
+                    Thank you! Your feedback has been submitted.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const stars = document.querySelectorAll('.star');
+            const statusMsg = document.querySelector('.status-msg');
+            const ratingMsgInput = document.querySelector('.rating_msg');
+            const rateValueInput = document.querySelector('.ratevalue');
+            const doneButton = document.querySelector('.done');
+            const submitedBox = document.querySelector('.submited-box');
+            const loader = submitedBox.querySelector('.loader');
+            const successMessage = submitedBox.querySelector('.success-message');
+
+            let selectedStars = 0;
+
+            stars.forEach((star, index) => {
+                star.addEventListener('mouseover', () => highlightStars(index + 1));
+                star.addEventListener('mouseout', () => highlightStars(selectedStars));
+                star.addEventListener('click', () => {
+                    selectedStars = index + 1;
+                    rateValueInput.value = selectedStars;
+                    ratingMsgInput.value = star.dataset.message;
+                    statusMsg.innerHTML = `<strong>${star.dataset.message}</strong>`;
+                    showTagContainer(selectedStars);
+                    doneButton.style.display = 'block';
+                });
+            });
+
+            doneButton.addEventListener('click', () => {
+                doneButton.disabled = true;
+                submitedBox.style.display = 'block';
+                loader.style.display = 'block';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                    successMessage.style.display = 'block';
+                }, 2000);
+            });
+
+            function highlightStars(num) {
+                stars.forEach((star, index) => {
+                    star.classList.toggle('selected', index < num);
+                    star.classList.toggle('hover', index < num && index >= selectedStars);
+                });
+            }
+
+            function showTagContainer(stars) {
+                document.querySelectorAll('.tags-container').forEach(container => {
+                    container.style.display = container.dataset.tagSet == stars ? 'block' : 'none';
+                });
+            }
+        });
+    </script>
+</body>
+</html>

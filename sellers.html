@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Sellers</title>
+    <style>
+       .section-content {
+    display: none;
+}
+
+.section-content.active {
+    display: block;
+}
+
+.section-heading {
+    cursor: pointer;
+    color: grey;
+}
+
+.section-heading.active {
+    color: black;
+}
+
+    </style>
+</head>
+<body>
+    <section>
+        <div class="container-fluid">
+            <div class="d-flex justify-content-around">
+                <h1 class="section-heading active" data-target="best-sellers">Best Sellers</h1>
+                <h1 class="section-heading" data-target="new-arrivals">New Arrivals</h1>
+                <h1 class="section-heading" data-target="sale">Sale</h1>
+            </div>
+    
+            <!-- Section contents -->
+            <div id="best-sellers" class="section-content active">
+                <!-- Best Sellers content here -->
+                 <h1>best sellers</h1>
+                 <h1>best sellers</h1>
+                 <h1>best sellers</h1>
+                 <h1>best sellers</h1>
+                 <h1>best sellers</h1>
+                 <h1>best sellers</h1>
+                 <h1>best sellers</h1>
+            </div>
+    
+            <div id="new-arrivals" class="section-content">
+                <!-- New Arrivals content here -->
+                 <h1>new Arrivals</h1>
+                 <h1>new Arrivals</h1>
+                 <h1>new Arrivals</h1>
+                 <h1>new Arrivals</h1>
+                 <h1>new Arrivals</h1>
+                 <h1>new Arrivals</h1>
+            </div>
+    
+            <div id="sale" class="section-content">
+                <!-- Sale content here -->
+                 <h1>sale</h1>
+                 <h1>sale</h1>
+                 <h1>sale</h1>
+                 <h1>sale</h1>
+                 <h1>sale</h1>
+                 <h1>sale</h1>
+            </div>
+        </div>
+    </section>
+    
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+   document.querySelectorAll('.section-heading').forEach(function (heading) {
+    heading.addEventListener('click', function () {
+        // Remove 'active' class from all headings
+        document.querySelectorAll('.section-heading').forEach(function (h) {
+            h.classList.remove('active');
+        });
+
+        // Add 'active' class to the clicked heading
+        this.classList.add('active');
+
+        // Hide all section contents
+        document.querySelectorAll('.section-content').forEach(function (section) {
+            section.classList.remove('active');
+        });
+
+        // Show the content corresponding to the clicked heading
+        const target = this.getAttribute('data-target');
+        document.getElementById(target).classList.add('active');
+    });
+});
+
+</script>
+</html>

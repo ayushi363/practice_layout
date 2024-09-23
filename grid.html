@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>grid</title>
+    <style>
+        .grid-container {
+            --page-margin: 10vw;
+            --col-overlap: var(--page-margin);
+            --standard-grid: var(--page-margin) [center-start] 1fr [center-end] var(--page-margin);
+            --header-grid: var(--standard-grid);
+            --section-grid-left: var(--standard-grid);
+            --section-grid-right: var(--standard-grid);
+            
+            color: #333;
+            font-family: sans-serif;
+            line-height: 1.5;
+        }
+
+        @media (min-width: 750px) {
+            .grid-container {
+                --section-grid-left: [bg-start] var(--page-margin) [content-start] 1.3fr [content-end images-start] var(--col-overlap) [bg-end] 1fr var(--page-margin) [images-end];
+                --section-grid-right: [images-start] var(--page-margin) 1fr [bg-start] var(--col-overlap) [images-end content-start] 1.3fr [content-end] var(--page-margin) [bg-start];
+                --header-grid: var(--page-margin) [left-start] 1fr [left-end right-start image-start] 1fr [right-end] var(--page-margin) [image-end];
+            }
+        }
+
+        @media (min-width: 900px) {
+            .grid-container {
+                --col-overlap: 75px;
+                --standard-grid: 1fr [center-start] 750px [center-end] 1fr;
+                --section-grid-left: 1fr [bg-start content-start] 375px [content-end images-start] var(--col-overlap) [bg-end] 300px [images-end] 1fr;
+                --section-grid-right: 1fr [images-start] 300px [bg-start] var(--col-overlap) [images-end content-start] 375px [content-end bg-end] 1fr;
+                --header-grid: 1fr [left-start] 375px [left-end right-start image-start] 375px [right-end image-end] 1fr;
+            }
+        }
+
+        *, ::before, ::after {
+            box-sizing: border-box;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 0;
+            line-height: 1.2;
+        }
+
+        html, body {
+            padding: 0;
+            margin: 0;
+        }
+
+        header, section {
+            display: grid;
+            align-items: start;
+        }
+
+        .container-flex {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .nav-item {
+            margin-left: 1em;
+        }
+
+        header {
+            grid-template-columns: var(--header-grid);
+            margin-bottom: 10em;
+        }
+
+        .background-hero {
+            background-color: #ddd;
+            grid-column: 1 / -1;
+            grid-row: 1 / 3;
+            width: 100%;
+            height: 100%;
+        }
+
+        .text-hero {
+            grid-row: 1;
+            margin: 4em 2em 2em 0;
+        }
+
+        .image-hero {
+            background-image: url(https://images.pexels.com/photos/1038935/pexels-photo-1038935.jpeg);
+            padding-bottom: 75%;
+            background-size: cover;
+            background-position: center;
+            background-color: #eee;
+            grid-row: 2 / span 2;
+        }
+
+        .cta-hero {
+            justify-self: start;
+            margin-top: 2em;
+        }
+
+        @media (min-width: 750px) {
+            .text-hero, .cta-hero {
+                grid-column: left;
+            }
+            
+            .image-hero {
+                grid-row: 1 / span 3;
+                grid-column: image;
+                padding-bottom: 0;
+                height: 100%;
+            }
+        }
+
+        section {
+            margin-bottom: 10em;
+        }
+
+        .left-section {
+            grid-template-columns: var(--section-grid-left);
+        }
+
+        .right-section {
+            grid-template-columns: var(--section-grid-right);
+        }
+
+        .text-section {
+            grid-row: 4;
+            padding: 1.5em 0;
+        }
+
+        .image-section {
+            padding-bottom: 75%;
+            background-size: cover;
+            background-image: url(https://images.pexels.com/photos/1105766/pexels-photo-1105766.jpeg);
+            grid-row: 2 / span 2;
+        }
+
+        .background-section {
+            background-color: #ddd;
+            height: 100%;
+            grid-column: 1 / -1;
+            grid-row: 3 / span 2;
+        }
+
+        @media (min-width: 750px) {
+            .header-section {
+                grid-column: content;
+            }
+        
+            .background-section {
+                grid-column: bg;
+                grid-row: 2 / span 2;
+                height: 100%;
+            }
+            
+            .text-section {
+                grid-column: content;
+                grid-row: 2;
+                padding: 2rem;
+            }
+            
+            .left-section .header-section {
+                margin-right: 2rem;
+            }
+            
+            .left-section .text-section {
+                padding-left: 0;      
+            }
+            
+            .right-section .header-section {
+                margin-left: 2rem;
+            }
+            
+            .right-section .text-section {
+                padding-right: 0;
+            }
+            
+            .image-section {
+                grid-column: images;
+                grid-row: 1 / span 3;
+            }
+        }
+
+        @media (min-width: 900px) {
+            .text-section {
+                padding-left: 2rem;
+            }
+            
+            .left-section .text-section {
+                padding-left: 2rem;      
+            }
+            
+            .right-section .text-section {
+                padding-right: 2rem;      
+            }
+        }
+
+        .button {
+            display: inline-block;
+            padding: 1em 1.5em;
+            background-color: #333;
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="grid-container">
+    <header class="hero-header">
+        <div class="background-hero"></div>
+        <div class="text-hero">
+            <h1>Responsive CSS Grid Page Layout</h1>
+            <h3>Pellentesque habitant morbi tristique</h3>
+        </div>
+        <div class="image-hero"></div>
+        <a href="#" class="button cta-hero">CTA Button</a>
+    </header>
+    
+    <section class="right-section">
+        <h2 class="header-section">
+            Section Header - Right Section
+        </h2>
+        <div class="background-section"></div>
+        <p class="text-section">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <div class="image-section"></div>
+    </section>
+    
+    <section class="left-section">
+        <h2 class="header-section">
+            Section Header - Left Section
+        </h2>
+        <div class="background-section"></div>
+        <p class="text-section">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <div class="image-section"></div>
+    </section>
+</div>
+</body>
+</html>

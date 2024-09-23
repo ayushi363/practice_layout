@@ -1,0 +1,1641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chekout</title>
+    <style>
+        @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+
+@font-face {
+  font-family: "Neue Plak-SemiBold";
+  font-style: normal;
+  font-weight: 600;
+  src: url("https://fonts.animaapp.com/NeuePlak-SemiBold") format("truetype");
+}
+@font-face {
+  font-family: "Neue Plak-Bold";
+  font-style: normal;
+  font-weight: 700;
+  src: url("https://fonts.animaapp.com/NeuePlak-Bold") format("truetype");
+}
+@font-face {
+  font-family: "Neue Plak Text-Bold";
+  font-style: normal;
+  font-weight: 700;
+  src: url("https://fonts.animaapp.com/NeuePlakText-Bold") format("truetype");
+}
+@font-face {
+  font-family: "Neue Plak Text-Regular";
+  font-style: normal;
+  font-weight: 400;
+  src: url("https://fonts.animaapp.com/NeuePlakText-Regular") format("truetype");
+}
+
+.screen a {
+  display: contents;
+  text-decoration: none;
+}
+
+.container-center-horizontal {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  pointer-events: none;
+  width: 100%;
+}
+
+.container-center-horizontal > * {
+  flex-shrink: 0;
+  pointer-events: auto;
+}
+
+.valign-text-middle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.valign-text-bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:root { 
+  --biscay: #11336a;
+  --black: #000000;
+  --blue-bayoux: #4c627a;
+  --botticelli: #cddbee;
+  --caribbean-green3: #0cc5981a;
+  --cello: #1f3a59;
+  --denim: #1a60c1;
+  --gray-nurse: #e9e9e9;
+  --loblolly: #bcc4cd;
+  --manatee: #90989f;
+  --midnight-blue: #1a458b;
+  --midnight-blue-2: #153973;
+  --midnight-blue-3: #163972;
+  --mist-gray: #c4c4c4;
+  --mystic: #e9ebee;
+  --navy-blue: #2274e5;
+  --pale-sky: #62768b;
+  --pine-green: #129576;
+  --pine-green-2: #139676;
+  --smalt-blue: #59778b;
+  --tropical-blue: #cfddf4;
+  --white: #ffffff;
+  --zircon: #f5f9fc;
+  --zircon-2: #f5f9fcc7;
+ 
+  --font-size-l2: 24px;
+  --font-size-m2: 18px;
+  --font-size-s2: 16px;
+  --font-size-xs2: 14px;
+  --font-size-xxs: 10px;
+  --font-size-xxs2: 12px;
+  --font-size-xxxl2: 32px;
+ 
+  --font-family-neue_plak-bold: "Neue Plak-Bold", Helvetica;
+  --font-family-neue_plak-semibold: "Neue Plak-SemiBold", Helvetica;
+  --font-family-neue_plak_text-bold: "Neue Plak Text-Bold", Helvetica;
+  --font-family-neue_plak_text-regular: "Neue Plak Text-Regular", Helvetica;
+}
+.neueplaktext-bold-pine-green-10px {
+  color: var(--pine-green);
+  font-family: var(--font-family-neue_plak_text-bold);
+  font-size: var(--font-size-xxs);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.neueplak-bold-tropical-blue-16px {
+  color: var(--tropical-blue);
+  font-family: var(--font-family-neue_plak-bold);
+  font-size: var(--font-size-s2);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.neueplak-semi-bold-loblolly-12px {
+  color: var(--loblolly);
+  font-family: var(--font-family-neue_plak-semibold);
+  font-size: var(--font-size-xxs2);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.neueplak-bold-midnight-blue-18px {
+  color: var(--midnight-blue);
+  font-family: var(--font-family-neue_plak-bold);
+  font-size: var(--font-size-m2);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.neueplaktext-regular-normal-pale-sky-12px {
+  color: var(--pale-sky);
+  font-family: var(--font-family-neue_plak_text-regular);
+  font-size: var(--font-size-xxs2);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.neueplak-bold-tropical-blue-14px {
+  color: var(--tropical-blue);
+  font-family: var(--font-family-neue_plak-bold);
+  font-size: var(--font-size-xs2);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.neueplak-semi-bold-smalt-blue-12px {
+  color: var(--smalt-blue);
+  font-family: var(--font-family-neue_plak-semibold);
+  font-size: var(--font-size-xxs2);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.neueplak-bold-white-18px {
+  font-family: var(--font-family-neue_plak-bold);
+  font-size: var(--font-size-m2);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.neueplak-bold-pale-sky-18px {
+  color: var(--pale-sky);
+  font-family: var(--font-family-neue_plak-bold);
+  font-size: var(--font-size-m2);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.neueplak-bold-cello-16px {
+  color: var(--cello);
+  font-family: var(--font-family-neue_plak-bold);
+  font-size: var(--font-size-s2);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.neueplak-semi-bold-cello-16px {
+  color: var(--cello);
+  font-family: var(--font-family-neue_plak-semibold);
+  font-size: var(--font-size-s2);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.neueplaktext-regular-normal-blue-bayoux-12px {
+  color: var(--blue-bayoux);
+  font-family: var(--font-family-neue_plak_text-regular);
+  font-size: var(--font-size-xxs2);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.neueplak-bold-navy-blue-12px {
+  color: var(--navy-blue);
+  font-family: var(--font-family-neue_plak-bold);
+  font-size: var(--font-size-xxs2);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.neueplak-semi-bold-tropical-blue-12px {
+  color: var(--tropical-blue);
+  font-family: var(--font-family-neue_plak-semibold);
+  font-size: var(--font-size-xxs2);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.neueplak-semi-bold-navy-blue-12px {
+  color: var(--navy-blue);
+  font-family: var(--font-family-neue_plak-semibold);
+  font-size: var(--font-size-xxs2);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.neueplak-semi-bold-midnight-blue-14px {
+  color: var(--midnight-blue-3);
+  font-family: var(--font-family-neue_plak-semibold);
+  font-size: var(--font-size-xs2);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.neueplak-bold-cello-24px {
+  color: var(--cello);
+  font-family: var(--font-family-neue_plak-bold);
+  font-size: var(--font-size-l2);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.neueplak-semi-bold-manatee-10px {
+  color: var(--manatee);
+  font-family: var(--font-family-neue_plak-semibold);
+  font-size: var(--font-size-xxs);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.neueplak-bold-denim-14px {
+  color: var(--denim);
+  font-family: var(--font-family-neue_plak-bold);
+  font-size: var(--font-size-xs2);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.neueplak-bold-loblolly-14px {
+  color: var(--loblolly);
+  font-family: var(--font-family-neue_plak-bold);
+  font-size: var(--font-size-xs2);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.neueplak-semi-bold-pine-green-14px {
+  color: var(--pine-green-2);
+  font-family: var(--font-family-neue_plak-semibold);
+  font-size: var(--font-size-xs2);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.neueplaktext-bold-navy-blue-14px {
+  color: var(--navy-blue);
+  font-family: var(--font-family-neue_plak_text-bold);
+  font-size: var(--font-size-xs2);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.neueplak-semi-bold-cello-32px {
+  color: var(--cello);
+  font-family: var(--font-family-neue_plak-semibold);
+  font-size: var(--font-size-xxxl2);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.neueplak-bold-pale-sky-12px {
+  color: var(--pale-sky);
+  font-family: var(--font-family-neue_plak-bold);
+  font-size: var(--font-size-xxs2);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.neueplak-bold-cello-20px {
+  color: var(--cello);
+  font-family: var(--font-family-neue_plak-bold);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.neueplak-bold-white-16px {
+  color: var(--white);
+  font-family: var(--font-family-neue_plak-bold);
+  font-size: var(--font-size-s2);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.border-1px-mystic {
+  border: 1px solid var(--mystic);
+}
+
+.border-1px-botticelli {
+  border: 1px solid var(--botticelli);
+}
+
+.border-1px-tropical-blue {
+  border: 1px solid var(--tropical-blue);
+}
+
+.border-2px-navy-blue {
+  border: 2px solid var(--navy-blue);
+}
+
+.border-1px-gray-nurse {
+  border: 1px solid var(--gray-nurse);
+}
+
+.screen-pay-device-with-ob-4 {
+  align-items: flex-start;
+  background-color: var(--white);
+  display: flex;
+  height: 911px;
+  justify-content: center;
+  overflow: hidden;
+  width: 1600px;
+}
+
+.screen-pay-device-with-ob-4 .overlap-group1 {
+  height: 912px;
+  position: relative;
+  width: 1602px;
+}
+
+.screen-pay-device-with-ob-4 .container {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  left: 1px;
+  min-height: 878px;
+  position: absolute;
+  top: 0;
+  width: 1600px;
+}
+
+.screen-pay-device-with-ob-4 .sectiontop-navigation {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  min-height: 108px;
+  width: 1600px;
+}
+
+.screen-pay-device-with-ob-4 .grouptop-navigationback {
+  align-items: flex-start;
+  background-color: var(--biscay);
+  display: flex;
+  height: 36px;
+  min-width: 1600px;
+  padding: 9px 38px;
+}
+
+.screen-pay-device-with-ob-4 .arrow-left-full {
+  align-self: center;
+  height: 12px;
+  width: 11px;
+}
+
+.screen-pay-device-with-ob-4 .text-1 {
+  letter-spacing: 0;
+  line-height: 14.4px;
+  margin-left: 8px;
+  min-height: 14px;
+  opacity: 0.6;
+  white-space: nowrap;
+}
+
+.screen-pay-device-with-ob-4 .widgettop-navigationdesktop {
+  align-items: flex-start;
+  background-color: var(--midnight-blue-2);
+  display: flex;
+  min-width: 1600px;
+  padding: 0 40px;
+}
+
+.screen-pay-device-with-ob-4 .logoglobe {
+  align-items: center;
+  align-self: center;
+  display: flex;
+  justify-content: flex-end;
+  min-width: 103px;
+}
+
+.screen-pay-device-with-ob-4 .exclude {
+  height: 38px;
+  width: 39px;
+}
+
+.screen-pay-device-with-ob-4 .fill-66 {
+  height: 16px;
+  margin-left: 6px;
+  margin-top: 0;
+  width: 14px;
+}
+
+.screen-pay-device-with-ob-4 .fill-63 {
+  height: 16px;
+  margin-bottom: 0.2px;
+  margin-left: 2px;
+  width: 3px;
+}
+
+.screen-pay-device-with-ob-4 .fill-62 {
+  height: 12px;
+  margin-left: 1px;
+  margin-top: 3.99px;
+  width: 12px;
+}
+
+.screen-pay-device-with-ob-4 .fill-64 {
+  height: 16px;
+  margin-bottom: 0.02px;
+  margin-left: 1px;
+  width: 13px;
+}
+
+.screen-pay-device-with-ob-4 .fill-65 {
+  height: 12px;
+  margin-top: 3.99px;
+  width: 12px;
+}
+
+.screen-pay-device-with-ob-4 .overlap-group {
+  height: 72px;
+  margin-left: 833px;
+  margin-top: 0;
+  position: relative;
+  width: 365px;
+}
+
+.screen-pay-device-with-ob-4 .grouptop-navigationmenu-items {
+  align-items: flex-start;
+  display: flex;
+  height: 72px;
+  left: 0;
+  min-width: 364px;
+  position: absolute;
+  top: 0;
+}
+
+.screen-pay-device-with-ob-4 .grouptop-naviga-itemsstructure {
+  align-items: flex-start;
+  display: flex;
+  min-width: 364px;
+}
+
+.screen-pay-device-with-ob-4 .top-navigationmenu-item {
+  align-items: flex-start;
+  display: flex;
+  min-width: 91px;
+}
+
+.screen-pay-device-with-ob-4 .top-navigationm-u-itemstructure {
+  align-items: flex-start;
+  display: flex;
+  height: 72px;
+  opacity: 0.6;
+  padding: 26px 24px;
+  width: 91px;
+}
+
+.screen-pay-device-with-ob-4 .label {
+  letter-spacing: 0;
+  line-height: 16px;
+  min-height: 16px;
+  white-space: nowrap;
+}
+
+.screen-pay-device-with-ob-4 .top-navigationmenu-item-1 {
+  align-items: flex-start;
+  display: flex;
+  min-width: 98px;
+}
+
+.screen-pay-device-with-ob-4 .top-navigationm-u-itemstructure-1 {
+  align-items: flex-start;
+  display: flex;
+  height: 72px;
+  opacity: 0.6;
+  padding: 26px 24px;
+  width: 98px;
+}
+
+.screen-pay-device-with-ob-4 .label-1 {
+  letter-spacing: 0;
+  line-height: 16px;
+  min-height: 16px;
+  white-space: nowrap;
+}
+
+.screen-pay-device-with-ob-4 .top-navigationmenu-item-2 {
+  align-items: flex-start;
+  display: flex;
+  min-width: 99px;
+}
+
+.screen-pay-device-with-ob-4 .top-navigationm-u-itemstructure-2 {
+  align-items: flex-start;
+  display: flex;
+  height: 72px;
+  opacity: 0.6;
+  padding: 26px 24px;
+  width: 99px;
+}
+
+.screen-pay-device-with-ob-4 .label-2 {
+  letter-spacing: 0;
+  line-height: 16px;
+  min-height: 16px;
+  white-space: nowrap;
+}
+
+.screen-pay-device-with-ob-4 .top-navigationmenu-item-3 {
+  align-items: flex-start;
+  display: flex;
+  min-width: 76px;
+}
+
+.screen-pay-device-with-ob-4 .top-navigationm-u-itemstructure-3 {
+  align-items: flex-start;
+  display: flex;
+  height: 72px;
+  opacity: 0.6;
+  padding: 26px 24px;
+  width: 76px;
+}
+
+.screen-pay-device-with-ob-4 .label-3 {
+  letter-spacing: 0;
+  line-height: 16px;
+  min-height: 16px;
+  white-space: nowrap;
+}
+
+.screen-pay-device-with-ob-4 .separator {
+  height: 72px;
+  left: 364px;
+  position: absolute;
+  top: 0;
+  width: 1px;
+}
+
+.screen-pay-device-with-ob-4 .grouptop-navigationutilities {
+  align-items: center;
+  display: flex;
+  height: 72px;
+  width: 219px;
+}
+
+.screen-pay-device-with-ob-4 .cart {
+  height: 24px;
+  margin-left: 24px;
+  width: 24px;
+}
+
+.screen-pay-device-with-ob-4 .track-my-order {
+  letter-spacing: 0;
+  line-height: 14px;
+  margin-bottom: 4.0px;
+  margin-left: 24px;
+  min-height: 14px;
+  min-width: 93px;
+  white-space: nowrap;
+}
+
+.screen-pay-device-with-ob-4 .help {
+  letter-spacing: 0;
+  line-height: 14px;
+  margin-bottom: 4.0px;
+  margin-left: 24px;
+  min-height: 14px;
+  min-width: 30px;
+  white-space: nowrap;
+}
+
+.screen-pay-device-with-ob-4 .masterbuy-loadsteps {
+  align-items: flex-start;
+  display: flex;
+  min-width: 1600px;
+}
+
+.screen-pay-device-with-ob-4 .breadcrumbs {
+  align-items: flex-start;
+  display: flex;
+  min-width: 1600px;
+}
+
+.screen-pay-device-with-ob-4 .masterbreadcrumbs {
+  align-items: flex-start;
+  display: flex;
+  min-width: 1600px;
+}
+
+.screen-pay-device-with-ob-4 .content {
+  align-items: flex-end;
+  background-color: var(--white);
+  display: flex;
+  height: 43px;
+  min-width: 1600px;
+  padding: 4px 313px;
+}
+
+.screen-pay-device-with-ob-4 .breadcrumbs-steps {
+  align-items: flex-start;
+  display: flex;
+  min-width: 974px;
+}
+
+.screen-pay-device-with-ob-4 .masterbreadcrumbs-elements {
+  align-items: center;
+  display: flex;
+  height: 33px;
+  min-width: 87px;
+}
+
+.screen-pay-device-with-ob-4 .build-plan {
+  letter-spacing: 0;
+  line-height: 14.4px;
+  margin-bottom: 5.0px;
+  min-height: 14px;
+  min-width: 51px;
+  white-space: nowrap;
+}
+
+.screen-pay-device-with-ob-4 .arrow-right {
+  height: 25px;
+  margin-left: 4px;
+  width: 24px;
+}
+
+.screen-pay-device-with-ob-4 .masterbreadcrumbs-elements-1 {
+  align-items: center;
+  display: flex;
+  height: 33px;
+  min-width: 70px;
+}
+
+.screen-pay-device-with-ob-4 .build-plan-1 {
+  letter-spacing: 0;
+  line-height: 14.4px;
+  margin-bottom: 5.0px;
+  min-height: 14px;
+  min-width: 34px;
+  white-space: nowrap;
+}
+
+.screen-pay-device-with-ob-4 .masterbreadcrumbs-elements-2 {
+  align-items: center;
+  display: flex;
+  height: 33px;
+  min-width: 75px;
+}
+
+.screen-pay-device-with-ob-4 .build-plan-2 {
+  letter-spacing: 0;
+  line-height: 14.4px;
+  margin-bottom: 5.0px;
+  min-height: 14px;
+  min-width: 39px;
+  white-space: nowrap;
+}
+
+.screen-pay-device-with-ob-4 .masterbreadcrumbs-elements-3 {
+  align-items: center;
+  display: flex;
+  height: 33px;
+  min-width: 56px;
+}
+
+.screen-pay-device-with-ob-4 .build-plan-3 {
+  letter-spacing: 0;
+  line-height: 14.4px;
+  margin-bottom: 5.0px;
+  min-height: 14px;
+  min-width: 20px;
+  white-space: nowrap;
+}
+
+.screen-pay-device-with-ob-4 .masterbreadcrumbs-elements-4 {
+  align-items: flex-start;
+  display: flex;
+  height: 33px;
+  min-width: 78px;
+  padding: 7px 0;
+}
+
+.screen-pay-device-with-ob-4 .build-plan-4 {
+  letter-spacing: 0;
+  line-height: 14.4px;
+  min-height: 14px;
+  white-space: nowrap;
+}
+
+.screen-pay-device-with-ob-4 .line-420-stroke {
+  height: 1px;
+  width: 1600px;
+}
+
+.screen-pay-device-with-ob-4 .pay-default {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 726px;
+  padding: 16px 0;
+  width: 1600px;
+}
+
+.screen-pay-device-with-ob-4 .snackbarmodified {
+  align-items: flex-start;
+  display: flex;
+  min-width: 974px;
+}
+
+.screen-pay-device-with-ob-4 .snackbar-desktopstructure {
+  align-items: center;
+  background-color: var(--zircon);
+  border-radius: 6px;
+  display: flex;
+  height: 56px;
+  min-width: 974px;
+  padding: 14.0px 0.0px;
+}
+
+.screen-pay-device-with-ob-4 .icon-container {
+  align-self: flex-end;
+  height: 28px;
+  width: 56px;
+}
+
+.screen-pay-device-with-ob-4 .text-2 {
+  height: 20px;
+  letter-spacing: 0;
+  line-height: 19.6px;
+  margin-bottom: 2.0px;
+  opacity: 0.8;
+  white-space: nowrap;
+  width: 894px;
+}
+
+.screen-pay-device-with-ob-4 .globe-online-pa-r-content-block {
+  align-items: flex-start;
+  display: flex;
+  height: 63px;
+  margin-top: 10px;
+  min-width: 974px;
+  padding: 7px 0;
+}
+
+.screen-pay-device-with-ob-4 .title {
+  height: 32px;
+  letter-spacing: 0;
+  line-height: 32.2px;
+  white-space: nowrap;
+}
+
+.screen-pay-device-with-ob-4 .wrapper {
+  align-items: flex-start;
+  display: flex;
+  margin-top: 10px;
+  min-width: 974px;
+}
+
+.screen-pay-device-with-ob-4 .globe-online-pa-payment-method {
+  align-items: flex-start;
+  display: flex;
+  height: 417px;
+  min-width: 630px;
+}
+
+.screen-pay-device-with-ob-4 .globe-online-pa-ethod-structure {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  min-height: 417px;
+  width: 630px;
+}
+
+.screen-pay-device-with-ob-4 .payment-form-co-lapse-structure {
+  align-items: flex-start;
+  background-color: var(--zircon);
+  border-radius: 4px;
+  display: flex;
+  min-width: 630px;
+}
+
+.screen-pay-device-with-ob-4 .icon {
+  height: 104px;
+  margin-top: 0;
+  width: 64px;
+}
+
+.screen-pay-device-with-ob-4 .frame-1 {
+  align-items: flex-start;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  height: 70px;
+  margin-bottom: 2.0px;
+  width: 542px;
+}
+
+.screen-pay-device-with-ob-4 .payment-detail {
+  align-items: flex-end;
+  display: flex;
+  min-width: 542px;
+}
+
+.screen-pay-device-with-ob-4 .frame {
+  align-items: flex-start;
+  display: flex;
+  height: 25px;
+  width: 462px;
+}
+
+.screen-pay-device-with-ob-4 .heading-title {
+  letter-spacing: 0;
+  line-height: 25.2px;
+  min-height: 25px;
+  white-space: nowrap;
+}
+
+.screen-pay-device-with-ob-4 .discount-chip {
+  align-items: flex-start;
+  background-color: var(--caribbean-green3);
+  border-radius: 19px;
+  display: flex;
+  height: 19px;
+  min-width: 80px;
+  padding: 2px 9px;
+}
+
+.screen-pay-device-with-ob-4 .x50-discount {
+  letter-spacing: 0;
+  line-height: 13.0px;
+  min-height: 13px;
+  white-space: nowrap;
+}
+
+.screen-pay-device-with-ob-4 .heading-title-3 {
+  letter-spacing: 0;
+  line-height: 15.6px;
+  margin-top: 8px;
+  min-height: 16px;
+  opacity: 0.7;
+  white-space: nowrap;
+}
+
+.screen-pay-device-with-ob-4 .delivery-chip {
+  align-items: flex-start;
+  display: flex;
+  height: 17px;
+  margin-top: 4px;
+  min-width: 542px;
+}
+
+.screen-pay-device-with-ob-4 .shape {
+  align-self: center;
+  height: 11px;
+  margin-top: 2.0px;
+  width: 12px;
+}
+
+.screen-pay-device-with-ob-4 .heading-title-1 {
+  letter-spacing: 0;
+  line-height: 15.6px;
+  margin-left: 8px;
+  min-height: 16px;
+  white-space: nowrap;
+}
+
+.screen-pay-device-with-ob-4 .payment-form-co-lapse-structure-1 {
+  align-items: flex-start;
+  background-color: var(--white);
+  border-radius: 4px;
+  display: flex;
+  height: 99px;
+  margin-top: 8px;
+  min-width: 630px;
+}
+
+.screen-pay-device-with-ob-4 .icon-1 {
+  height: 100px;
+  margin-top: -0.5px;
+  width: 64px;
+}
+
+.screen-pay-device-with-ob-4 .text-3 {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  min-height: 99px;
+  padding: 16px 0;
+  width: 566px;
+}
+
+.screen-pay-device-with-ob-4 .x50-discount-1 {
+  letter-spacing: 0;
+  line-height: 13.0px;
+  min-height: 13px;
+  white-space: nowrap;
+}
+
+.screen-pay-device-with-ob-4 .heading-title-2 {
+  letter-spacing: 0;
+  line-height: 15.6px;
+  margin-top: 8px;
+  min-height: 32px;
+  opacity: 0.7;
+  width: 280px;
+}
+
+.screen-pay-device-with-ob-4 .payment-form-co-lapse-structure-2 {
+  align-items: flex-start;
+  background-color: var(--white);
+  border-radius: 4px;
+  display: flex;
+  height: 110px;
+  margin-top: 8px;
+  min-width: 630px;
+}
+
+.screen-pay-device-with-ob-4 .icon-2 {
+  height: 111px;
+  margin-top: -0.5px;
+  width: 64px;
+}
+
+.screen-pay-device-with-ob-4 .text-4 {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  min-height: 110px;
+  padding: 16px 0;
+  width: 566px;
+}
+
+.screen-pay-device-with-ob-4 .heading-title-4 {
+  letter-spacing: 0;
+  line-height: 13.0px;
+  min-height: 13px;
+  white-space: nowrap;
+}
+
+.screen-pay-device-with-ob-4 .x50-discount-2 {
+  letter-spacing: 0;
+  line-height: 13.0px;
+  min-height: 13px;
+  white-space: nowrap;
+}
+
+.screen-pay-device-with-ob-4 .payment-form-co-lapse-structure-3 {
+  align-items: flex-start;
+  background-color: var(--white);
+  border-radius: 4px;
+  display: flex;
+  height: 80px;
+  margin-top: 8px;
+  min-width: 630px;
+  padding: 16px 13px;
+}
+
+.screen-pay-device-with-ob-4 .cash-on-delivery {
+  align-self: center;
+  height: 39px;
+  margin-bottom: 1.99px;
+  width: 38px;
+}
+
+.screen-pay-device-with-ob-4 .frame-2 {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  height: 46px;
+  margin-left: 13px;
+  width: 542px;
+}
+
+.screen-pay-device-with-ob-4 .payment-detail-1 {
+  align-items: flex-start;
+  display: flex;
+  min-width: 462px;
+}
+
+.screen-pay-device-with-ob-4 .shape-1 {
+  align-self: center;
+  height: 12px;
+  margin-top: 2.0px;
+  width: 12px;
+}
+
+.screen-pay-device-with-ob-4 .frame-3 {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 491px;
+  margin-left: 24px;
+  width: 320px;
+}
+
+.screen-pay-device-with-ob-4 .tabs {
+  align-items: flex-start;
+  display: flex;
+  height: 32px;
+  min-width: 320px;
+}
+
+.screen-pay-device-with-ob-4 .tab-item {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  min-height: 32px;
+  width: 160px;
+}
+
+.screen-pay-device-with-ob-4 .x-payment {
+  letter-spacing: 0;
+  line-height: 14px;
+  margin-left: 8px;
+  min-height: 14px;
+  white-space: nowrap;
+}
+
+.screen-pay-device-with-ob-4 .rectangle-4241 {
+  background-color: var(--navy-blue);
+  height: 2px;
+  margin-top: 16px;
+  width: 160px;
+}
+
+.screen-pay-device-with-ob-4 .rectangle-4241-1 {
+  background-color: var(--mist-gray);
+  height: 2px;
+  margin-top: 16px;
+  opacity: 0.2;
+  width: 160px;
+}
+
+.screen-pay-device-with-ob-4 .frame-9878 {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  margin-top: 12px;
+  min-height: 185px;
+  width: 320px;
+}
+
+.screen-pay-device-with-ob-4 .breakdown-container {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  height: 80px;
+  width: 320px;
+}
+
+.screen-pay-device-with-ob-4 .overdue-balance-n-fee-structure {
+  align-items: flex-start;
+  display: flex;
+  width: 312px;
+}
+
+.screen-pay-device-with-ob-4 .overdue-balance-breakdown-head {
+  align-items: flex-end;
+  display: flex;
+  height: 22px;
+  overflow: hidden;
+  width: 312px;
+}
+
+.screen-pay-device-with-ob-4 .overdue-balance {
+  letter-spacing: 0;
+  line-height: 22.4px;
+  min-height: 22px;
+  min-width: 124px;
+  white-space: nowrap;
+}
+
+.screen-pay-device-with-ob-4 .price {
+  letter-spacing: 0;
+  line-height: 21.4px;
+  margin-bottom: -2px;
+  margin-left: 82px;
+  min-height: 21px;
+  min-width: 94px;
+  white-space: nowrap;
+}
+
+.screen-pay-device-with-ob-4 .text {
+  letter-spacing: 0;
+  line-height: 15.6px;
+  margin-top: 4px;
+  min-height: 16px;
+  opacity: 0.78;
+  white-space: nowrap;
+  width: 312px;
+}
+
+.screen-pay-device-with-ob-4 .button-base {
+  align-items: center;
+  align-self: flex-start;
+  display: flex;
+  height: 38px;
+  margin-left: 8px;
+  min-width: 115px;
+}
+
+.screen-pay-device-with-ob-4 .buttontext {
+  letter-spacing: 0;
+  line-height: 14.4px;
+  min-height: 14px;
+  min-width: 91px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.screen-pay-device-with-ob-4 .total-line {
+  height: 1px;
+  margin-top: 12px;
+  width: 320px;
+}
+
+.screen-pay-device-with-ob-4 .breakdown-container-1 {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  height: 80px;
+  margin-top: 12px;
+  width: 320px;
+}
+
+.screen-pay-device-with-ob-4 .plan-application {
+  letter-spacing: 0;
+  line-height: 22.4px;
+  min-height: 22px;
+  min-width: 117px;
+  white-space: nowrap;
+}
+
+.screen-pay-device-with-ob-4 .price-1 {
+  letter-spacing: 0;
+  line-height: 21.4px;
+  margin-bottom: -2px;
+  margin-left: 92px;
+  min-height: 21px;
+  min-width: 91px;
+  white-space: nowrap;
+}
+
+.screen-pay-device-with-ob-4 .discount-applied {
+  align-items: flex-start;
+  background-color: var(--caribbean-green3);
+  border-radius: 6px;
+  display: flex;
+  height: 45px;
+  margin-top: 8px;
+  min-width: 320px;
+  padding: 10px 12px;
+}
+
+.screen-pay-device-with-ob-4 .text-4-1 {
+  color: var(--pine-green-2);
+  font-family: var(--font-family-neue_plak_text-bold);
+  font-size: var(--font-size-xs2);
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 19.6px;
+  margin-top: 0.5px;
+  min-height: 20px;
+  min-width: 136px;
+  white-space: nowrap;
+}
+
+.screen-pay-device-with-ob-4 .text-5 {
+  letter-spacing: 0;
+  line-height: 21px;
+  margin-left: 71px;
+  min-height: 21px;
+  min-width: 89px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.screen-pay-device-with-ob-4 .promo-code-stub {
+  align-items: center;
+  background-color: var(--zircon-2);
+  border-radius: 4px;
+  display: flex;
+  height: 52px;
+  margin-top: 4px;
+  min-width: 320px;
+  padding: 0 8px;
+}
+
+.screen-pay-device-with-ob-4 .same-day-deliver-icon {
+  align-items: center;
+  background-color: var(--zircon);
+  border-radius: 18px;
+  display: flex;
+  height: 36px;
+  min-width: 36px;
+  padding: 0 6px;
+}
+
+.screen-pay-device-with-ob-4 .icondiscount {
+  height: 24px;
+  width: 24px;
+}
+
+.screen-pay-device-with-ob-4 .enter-promo-code {
+  height: 20px;
+  letter-spacing: 0;
+  line-height: 19.6px;
+  margin-bottom: 4.0px;
+  margin-left: 12px;
+  white-space: nowrap;
+  width: 256px;
+}
+
+.screen-pay-device-with-ob-4 .text-6 {
+  letter-spacing: 0;
+  line-height: 42.9px;
+  margin-top: 10px;
+  min-height: 43px;
+  text-align: right;
+  white-space: nowrap;
+  width: 296px;
+}
+
+.screen-pay-device-with-ob-4 .total-line-1 {
+  height: 1px;
+  margin-top: 24px;
+  width: 320px;
+}
+
+.screen-pay-device-with-ob-4 .same-delivery-notification {
+  align-items: center;
+  border-radius: 4px;
+  display: flex;
+  height: 75px;
+  overflow: hidden;
+  padding: 12px 8px;
+  width: 320px;
+}
+
+.screen-pay-device-with-ob-4 .same-day-deliver-icon-1 {
+  align-items: center;
+  background-color: var(--zircon);
+  border-radius: 18px;
+  display: flex;
+  height: 36px;
+  margin-bottom: 7.0px;
+  min-width: 36px;
+  padding: 0 6px;
+}
+
+.screen-pay-device-with-ob-4 .icondelivery-address {
+  align-items: flex-start;
+  display: flex;
+  height: 24px;
+  min-width: 24px;
+  padding: 2.0px 1.0px;
+}
+
+.screen-pay-device-with-ob-4 .shape-2 {
+  height: 20px;
+  width: 22px;
+}
+
+.screen-pay-device-with-ob-4 .detail {
+  align-self: flex-end;
+  height: 47px;
+  margin-left: 12px;
+  width: 252px;
+}
+
+.screen-pay-device-with-ob-4 .payment-bar {
+  align-items: center;
+  background-color: var(--white);
+  box-shadow: 0px 0px 24px #0000000d;
+  display: flex;
+  height: 94px;
+  left: 0;
+  min-width: 1602px;
+  padding: 0 314px;
+  position: absolute;
+  top: 818px;
+}
+
+.screen-pay-device-with-ob-4 .payment-info {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  height: 66px;
+  width: 280px;
+}
+
+.screen-pay-device-with-ob-4 .total-amount-to-pay {
+  letter-spacing: 0;
+  line-height: 16.8px;
+  min-height: 17px;
+  opacity: 0.8;
+  white-space: nowrap;
+}
+
+.screen-pay-device-with-ob-4 .payment-deets {
+  align-items: flex-start;
+  display: flex;
+  height: 27px;
+  margin-top: 2px;
+  min-width: 280px;
+}
+
+.screen-pay-device-with-ob-4 .price-2 {
+  letter-spacing: 0;
+  line-height: 26.8px;
+  min-height: 27px;
+  min-width: 96px;
+  white-space: nowrap;
+}
+
+.screen-pay-device-with-ob-4 .offset {
+  align-items: flex-end;
+  display: flex;
+  height: 25px;
+  margin-left: 16px;
+  min-width: 162px;
+}
+
+.screen-pay-device-with-ob-4 .x50-discount-3 {
+  letter-spacing: 0;
+  line-height: 13.0px;
+  min-height: 13px;
+  white-space: nowrap;
+}
+
+.screen-pay-device-with-ob-4 .discount-chip-1 {
+  align-items: flex-start;
+  background-color: var(--caribbean-green3);
+  border-radius: 19px;
+  display: flex;
+  height: 19px;
+  margin-left: 8px;
+  min-width: 74px;
+  padding: 2px 9px;
+}
+
+.screen-pay-device-with-ob-4 .promo-code {
+  letter-spacing: 0;
+  line-height: 13.0px;
+  min-height: 13px;
+  white-space: nowrap;
+}
+
+.screen-pay-device-with-ob-4 .heading-title-5 {
+  letter-spacing: 0;
+  line-height: 15.6px;
+  margin-top: 4px;
+  min-height: 16px;
+  opacity: 0.7;
+  white-space: nowrap;
+}
+
+.screen-pay-device-with-ob-4 .button-base-1 {
+  align-items: flex-start;
+  background-color: var(--navy-blue);
+  border-radius: 6px;
+  display: flex;
+  height: 60px;
+  margin-left: 374px;
+  min-width: 320px;
+  padding: 20px 113px;
+}
+
+.screen-pay-device-with-ob-4 .buttontext-1 {
+  letter-spacing: 0;
+  line-height: 16px;
+  min-height: 16px;
+  white-space: nowrap;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container-center-horizontal">
+        <div class="screen-pay-device-with-ob-4 screen">
+          <div class="overlap-group1">
+            <div class="container">
+            
+              <div class="masterbuy-loadsteps">
+                <div class="breadcrumbs">
+                  <div class="masterbreadcrumbs">
+                    <div class="content">
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <img
+                class="line-420-stroke"
+                src="https://anima-uploads.s3.amazonaws.com/projects/617a90bf167a84090cdc8f33/releases/617b92adf55934fe66e733a4/img/line-420--stroke-@1x.svg"
+              />
+              <div class="pay-default">
+                <div class="snackbarmodified">
+                  <div class="snackbar-desktopstructure border-1px-botticelli">
+                    <img
+                      class="icon-container"
+                      src="https://anima-uploads.s3.amazonaws.com/projects/617a90bf167a84090cdc8f33/releases/617b92adf55934fe66e733a4/img/icon-container@2x.svg"
+                    />
+                    <p class="text-2 valign-text-bottom neueplak-semi-bold-midnight-blue-14px">
+                      We’ll only collect payment when your application is approved. And we will know if we will get that when
+                      the rider gets to your place.
+                    </p>
+                  </div>
+                </div>
+                <div class="globe-online-pa-r-content-block">
+                  <div class="title valign-text-middle neueplak-bold-cello-24px">How do you want to pay?</div>
+                </div>
+                <div class="wrapper">
+                  <div class="globe-online-pa-payment-method">
+                    <div class="globe-online-pa-ethod-structure">
+                      <div class="payment-form-co-lapse-structure border-1px-tropical-blue">
+                        <img
+                          class="icon"
+                          src="https://anima-uploads.s3.amazonaws.com/projects/617a90bf167a84090cdc8f33/releases/61812e193d4ce57531e76d7f/img/icon-9@2x.svg"
+                        />
+                        <div class="frame-1">
+                          <div class="payment-detail">
+                            <div class="frame"><div class="heading-title neueplak-bold-midnight-blue-18px">GCash</div></div>
+                            <div class="discount-chip">
+                              <div class="x50-discount neueplaktext-bold-pine-green-10px">10% discount</div>
+                            </div>
+                          </div>
+                          <p class="heading-title-3 neueplaktext-regular-normal-pale-sky-12px">
+                            Discount applies if you pay GCas during checkout
+                          </p>
+                          <div class="delivery-chip">
+                            <img
+                              class="shape"
+                              src="https://anima-uploads.s3.amazonaws.com/projects/617a90bf167a84090cdc8f33/releases/617b9e340e83495e51b63cc0/img/shape-3@2x.svg"
+                            />
+                            <p class="heading-title-1 neueplak-semi-bold-smalt-blue-12px">Delivers in 3 - 5 days</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="payment-form-co-lapse-structure-1 border-2px-navy-blue">
+                        <img
+                          class="icon-1"
+                          src="https://anima-uploads.s3.amazonaws.com/projects/617a90bf167a84090cdc8f33/releases/618128994ae506ca2b1a3026/img/icon-1@2x.svg"
+                        />
+                        <div class="text-3">
+                          <div class="payment-detail">
+                            <div class="frame">
+                              <div class="heading-title neueplak-bold-white-18px">
+                                <span class="neueplak-bold-midnight-blue-18px">Credit card: </span
+                                ><span class="neueplak-bold-pale-sky-18px">Straight payment</span>
+                              </div>
+                            </div>
+                            <div class="discount-chip">
+                              <div class="x50-discount-1 neueplaktext-bold-pine-green-10px">50% discount</div>
+                            </div>
+                          </div>
+                          <p class="heading-title-2 neueplaktext-regular-normal-pale-sky-12px">
+                            Checkout using credit card now, and get 50% discount from your device.
+                          </p>
+                        </div>
+                      </div>
+                      <div class="payment-form-co-lapse-structure-2 border-1px-mystic">
+                        <img
+                          class="icon-2"
+                          src="https://anima-uploads.s3.amazonaws.com/projects/617a90bf167a84090cdc8f33/releases/618128994ae506ca2b1a3026/img/icon-2@2x.svg"
+                        />
+                        <div class="text-4">
+                          <div class="heading-title-4 neueplak-semi-bold-manatee-10px">HSBC Card Holder</div>
+                          <div class="payment-detail">
+                            <div class="frame">
+                              <div class="heading-title neueplak-bold-white-18px">
+                                <span class="neueplak-bold-midnight-blue-18px">Credit card: </span
+                                ><span class="neueplak-bold-pale-sky-18px">Straight payment</span>
+                              </div>
+                            </div>
+                            <div class="discount-chip">
+                              <div class="x50-discount-2 neueplaktext-bold-pine-green-10px">50% discount</div>
+                            </div>
+                          </div>
+                          <p class="heading-title-2 neueplaktext-regular-normal-pale-sky-12px">
+                            Checkout using credit card now, and get 50% discount from your device.
+                          </p>
+                        </div>
+                      </div>
+                      <div class="payment-form-co-lapse-structure-3 border-1px-mystic">
+                        <img
+                          class="cash-on-delivery"
+                          src="https://anima-uploads.s3.amazonaws.com/projects/617a90bf167a84090cdc8f33/releases/618128994ae506ca2b1a3026/img/cash-on-delivery@2x.svg"
+                        />
+                        <div class="frame-2">
+                          <div class="payment-detail-1">
+                            <div class="frame">
+                              <div class="heading-title neueplak-bold-midnight-blue-18px">Cash on Delivery</div>
+                            </div>
+                          </div>
+                          <div class="delivery-chip">
+                            <img
+                              class="shape-1"
+                              src="https://anima-uploads.s3.amazonaws.com/projects/617a90bf167a84090cdc8f33/releases/617b9e340e83495e51b63cc0/img/shape-4@2x.svg"
+                            />
+                            <p class="heading-title-1 neueplak-semi-bold-smalt-blue-12px">Delivers in 3 - 5 days</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="frame-3">
+                    <div class="tabs">
+                      <div class="tab-item">
+                        <div class="x-payment neueplak-bold-denim-14px">One-time payment</div>
+                        <div class="rectangle-4241"></div>
+                      </div>
+                      <div class="tab-item">
+                        <div class="x-payment neueplak-bold-loblolly-14px">Monthly payment</div>
+                        <div class="rectangle-4241-1"></div>
+                      </div>
+                    </div>
+                    <div class="frame-9878">
+                      <div class="breakdown-container">
+                        <div class="overdue-balance-n-fee-structure">
+                          <div class="overdue-balance-breakdown-head">
+                            <div class="overdue-balance neueplak-bold-cello-16px">Overdue Balance</div>
+                            <div class="price neueplak-semi-bold-cello-16px">₱ 38,000.00</div>
+                          </div>
+                        </div>
+                        <p class="text neueplaktext-regular-normal-blue-bayoux-12px">
+                          This is the amount from all your unpaid billing statements.
+                        </p>
+                        <div class="button-base">
+                          <div class="buttontext neueplak-bold-navy-blue-12px">View breakdown</div>
+                        </div>
+                      </div>
+                      <img
+                        class="total-line"
+                        src="https://anima-uploads.s3.amazonaws.com/projects/617a90bf167a84090cdc8f33/releases/618128994ae506ca2b1a3026/img/total-line@2x.svg"
+                      />
+                      <div class="breakdown-container-1">
+                        <div class="overdue-balance-n-fee-structure">
+                          <div class="overdue-balance-breakdown-head">
+                            <div class="plan-application neueplak-bold-cello-16px">Plan Application</div>
+                            <div class="price-1 neueplak-semi-bold-cello-16px">₱ 25,599.00</div>
+                          </div>
+                        </div>
+                        <p class="text neueplaktext-regular-normal-blue-bayoux-12px">GPlan 1299 with Device iPhone 13</p>
+                        <div class="button-base">
+                          <div class="buttontext neueplak-bold-navy-blue-12px">View breakdown</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="discount-applied">
+                      <div class="text-4-1">Credit Card Discount</div>
+                      <div class="text-5 neueplak-semi-bold-pine-green-14px">-&nbsp;&nbsp;₱ 10,000.00</div>
+                    </div>
+                    <div class="promo-code-stub">
+                      <div class="same-day-deliver-icon">
+                        <img
+                          class="icondiscount"
+                          src="https://anima-uploads.s3.amazonaws.com/projects/617a90bf167a84090cdc8f33/releases/618128994ae506ca2b1a3026/img/--icon-discount@2x.svg"
+                        />
+                      </div>
+                      <div class="enter-promo-code valign-text-middle neueplaktext-bold-navy-blue-14px">Enter promo code</div>
+                    </div>
+                    <h1 class="text-6 neueplak-semi-bold-cello-32px">₱1,500.00</h1>
+                    <img
+                      class="total-line-1"
+                      src="https://anima-uploads.s3.amazonaws.com/projects/617a90bf167a84090cdc8f33/releases/618128994ae506ca2b1a3026/img/total-line@2x.svg"
+                    />
+                    <div class="same-delivery-notification">
+                      <div class="same-day-deliver-icon-1">
+                        <div class="icondelivery-address">
+                          <img
+                            class="shape-2"
+                            src="https://anima-uploads.s3.amazonaws.com/projects/617a90bf167a84090cdc8f33/releases/618128994ae506ca2b1a3026/img/shape-2@2x.svg"
+                          />
+                        </div>
+                      </div>
+                      <img
+                        class="detail"
+                        src="https://anima-uploads.s3.amazonaws.com/projects/617a90bf167a84090cdc8f33/releases/618128994ae506ca2b1a3026/img/detail@2x.svg"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="payment-bar border-1px-gray-nurse">
+              <div class="payment-info">
+                <div class="total-amount-to-pay neueplak-bold-pale-sky-12px">Total amount to pay</div>
+                <div class="payment-deets">
+                  <div class="price-2 neueplak-bold-cello-20px">₱1,500.00</div>
+                  <div class="offset">
+                    <div class="discount-chip">
+                      <div class="x50-discount-3 neueplaktext-bold-pine-green-10px">50% discount</div>
+                    </div>
+                    <div class="discount-chip-1">
+                      <div class="promo-code neueplaktext-bold-pine-green-10px">Promo code</div>
+                    </div>
+                  </div>
+                </div>
+                <p class="heading-title-5 neueplaktext-regular-normal-pale-sky-12px">
+                  Paying via Credit card: Straight payment
+                </p>
+              </div>
+              <div class="button-base-1"><div class="buttontext-1 neueplak-bold-white-16px">Submit order</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+</body>
+</html>

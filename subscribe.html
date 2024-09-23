@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Box</title>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Pangolin&family=Lato:wght@700&display=swap" rel="stylesheet">
+    <style>
+        .input-group {
+            position: relative;
+            width: 100%;
+        }
+    
+        .form-control {
+            border-radius: 0;
+            padding-right: 100px; /* Adjust this value to fit the button */
+        }
+    
+        .subscribe-btn {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            border-radius: 0;
+            border-left: none;
+            width: 100px; /* Adjust this value to fit the text */
+        }
+    </style>
+</head>
+<body>
+
+    <form class="d-flex mt-3">
+        <div class="input-group">
+            <input class="form-control py-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-light subscribe-btn" type="submit">SUBSCRIBE</button>
+        </div>
+    </form>
+    
+</body>
+</html>

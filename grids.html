@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>grids</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <style>
+        
+    .album .responsive-container-block {
+        min-height: 75px;
+        height: fit-content;
+        width: 100%;
+        padding: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 auto;
+        justify-content: flex-start;
+    }
+
+    .album .responsive-container-block.bg {
+        max-width: 1320px;
+        margin: 0 auto;
+        justify-content: space-between;
+    }
+
+    .album .img {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .album .responsive-container-block.img-cont {
+        flex-direction: column;
+        max-width: 33.3%;
+        min-height: auto;
+        margin: 0;
+        height: 100%;
+    }
+
+    .album .img.img-big {
+        height: 50%;
+        margin-bottom: 16px;
+    }
+
+    @media (max-width: 1024px) {
+        .album .img {
+            margin-bottom: 18px;
+        }
+    }
+
+    @media (max-width: 368px) {
+        .album .img {
+            max-width: 32.5%;
+            margin: 0;
+        }
+
+        .album .responsive-container-block.bg {
+            flex-direction: column;
+        }
+
+        .album .responsive-container-block.img-cont {
+            max-width: 100%;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .album .img.img-big {
+            max-width: 49%;
+            margin: 0;
+        }
+    }
+
+
+    .request-loader {
+      position: relative;
+      height: 60px;
+      width: 60px;
+      border-radius: 50% !important;
+      background-color: #00346d;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+  }
+
+    
+
+.request-loader::after, .request-loader::before {
+  opacity: 0.2;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  content: '';
+  height: 100%;
+  width: 100%;
+  color: rgb(238, 238, 238);
+  border: 4px solid currentColor;
+  border-radius: 50%;
+  animation-name: ripple;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(.65, 0, .34, 1);
+  z-index: 0;
+}
+
+
+    .hover-img {
+     
+
+        color: #fff;
+        display: inline-block;
+        margin: 8px;
+        overflow: hidden;
+        position: relative;
+        text-align: center;
+        width: 100%;
+        height: auto;
+        }
+
+        .hover-img * {
+            box-sizing: border-box;
+            transition: all 0.45s ease;
+        }
+
+        .hover-img::before,
+        .hover-img::after {
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1));
+            /* background-color: rgba(0, 0, 0, 0.5); */
+            /* border-top: 32px solid rgba(0, 0, 0, 0.5);
+            border-bottom: 32px solid rgba(0, 0, 0, 0.5); */
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            content: '';
+            transition: all 0.3s ease;
+            z-index: 1;
+            opacity: 0;
+            transform: scale(1.1);
+        }
+
+        .hover-img img {
+            vertical-align: top;
+            max-width: 100%;
+            backface-visibility: hidden;
+        }
+
+        .hover-img figcaption {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            align-items: left;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            line-height: 1.1em;
+            opacity: 0;
+            z-index: 2;
+            transition-delay: 0.1s;
+            font-size: 16px;
+            font-family: sans-serif;
+            font-weight: 400;
+            letter-spacing: 1px;
+            /* text-transform: uppercase; */
+        }
+
+        .hover-img:hover::before,
+        .hover-img:hover::after {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .hover-img:hover > img {
+            opacity: 0.7;
+            transform: scale(1.1);
+        }
+
+        .hover-img:hover figcaption {
+            opacity: 1;
+        }
+
+        .hover-content2 {
+            position: absolute;
+            bottom: 10%;
+            left: 10%;
+            z-index: 9;
+            transition: all 0.4s;
+            background: rgba(0, 0, 0, 0.5);
+            /* background-color: #000;
+            opacity: 1; */
+        }
+
+        .hover-content {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            z-index: 9;
+            transition: all 0.4s;
+            background: rgba(0, 0, 0, 0.5);
+            /* background-color: #000;
+            opacity: 1; */
+        }
+
+
+        @media (max-width: 568px) {
+          .hover-content {
+              bottom: 5px;
+          }
+
+          .hover-title {
+              font-size: 12px;
+              font-weight: 300 !important;
+          }
+        }
+
+        .hover-1 .hover-overlay {
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1));
+        }
+
+        .hover-title span {
+            font-family: "Dancing Script", cursive;
+            font-optical-sizing: auto;
+            font-style: normal;
+            font-size: 30px;
+            color: #fdc800;
+        }
+        .first-col{
+            height: 300px !important;
+        }
+        .sec-col{
+            height: 475px !important;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container-xxl py-3">
+        <div class="album">
+            <div class="responsive-container-block bg">
+                <div class="responsive-container-block img-cont">
+                    
+                    <a href="<?php echo base_url('legacy'); ?>">
+                    <figure class="hover-img first-col">
+                        <img src="images/1.jpeg" />
+                        <div class="hover-content px-2 py-2">
+                            <h4 class="hover-title mb-0">
+                                <!-- <span class="font-weight-light">Image </span>
+                                <br> -->
+                                Legacy
+                            </h4>
+                        </div>
+                        <figcaption>
+                            <!-- <h3>Lorem <br/>Ipsum</h3> -->
+                            <p>
+                            The school offers a wide range of facilities, ensuring students have access to everything they need for academic success and personal growth.
+                            </p>
+                        </figcaption>
+                    </figure>
+                    </a>
+
+                    <a href="<?php echo base_url('admission-guidelines'); ?>">
+                    <figure class="hover-img first-col">
+                        <img src="images/11.jpeg"/>
+                        <div class="hover-content px-2 py-2">
+                            <h4 class="hover-title mb-0">
+                                <!-- <span class="font-weight-light">Image </span>
+                                <br> -->
+                                Admission Process
+                            </h4>
+                        </div>
+                        <figcaption>
+                            <!-- <h3>Lorem <br/>Ipsum</h3> -->
+                            <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p> -->
+                        </figcaption>
+                    </figure>
+                    </a>
+
+                    <a href="<?php echo base_url('results'); ?>">
+                    <figure class="hover-img first-col">
+                        <img src="images/11.jpeg"/>
+                        <div class="hover-content px-2 py-2">
+                            <h4 class="hover-title mb-0">
+                                <!-- <span class="font-weight-light">Image </span>
+                                <br> -->
+                                Results
+                            </h4>
+                        </div>
+                        <figcaption>
+                            <!-- <h3>Lorem <br/>Ipsum</h3> -->
+                            <p>Academic results can shape the student's personality and support system.</p>
+                        </figcaption>
+                    </figure>
+                    </a>
+
+                </div>
+
+                <div class="responsive-container-block img-cont">
+                    
+                    <a href="<?php echo base_url('experiential-learning'); ?>">
+                    <figure class="hover-img sec-col">
+                        <img src="images/11.jpeg"/>
+                        <div class="hover-content px-2 py-2">
+                            <h4 class="hover-title mb-0">
+                                <!-- <span class="font-weight-light">Image </span>
+                                <br> -->
+                                Experiential Learning
+                            </h4>
+                        </div>
+                        <figcaption>
+                            <!-- <h3>Lorem <br/>Ipsum</h3> -->
+                            <p>
+                            It is an educational approach where students learn while experimenting with the stuff to better understand things.
+                            </p>
+                        </figcaption>
+                    </figure>
+                    </a>
+                    
+                    <a href="<?php echo base_url('campus-life'); ?>">
+                    <figure class="hover-img sec-col">
+                        <img src="images/11.jpeg"/>
+                        <div class="hover-content px-2 py-2">
+                            <h4 class="hover-title mb-0">
+                                <!-- <span class="font-weight-light">Image </span>
+                                <br> -->
+                                Campus Life
+                            </h4>
+                        </div>
+                        <figcaption>
+                            <!-- <h3>Lorem <br/>Ipsum</h3> -->
+                            <p>
+                            Taksh-Shila is a cutting-edge educational institution designed to foster both academic excellence and personal development. 
+                            </p>
+                        </figcaption>
+                    </figure>
+                    </a>
+
+                    
+                    
+                </div>
+
+
+                <div class="responsive-container-block img-cont">
+                    <a href="<?php echo base_url('student-support'); ?>">
+                    <figure class="hover-img first-col">
+                        <img src="images/11.jpeg"/>
+                        <div class="hover-content px-2 py-2">
+                            <h4 class="hover-title mb-0">
+                                <!-- <span class="font-weight-light">Image </span>
+                                <br> -->
+                                Student Support
+                            </h4>
+                        </div>
+                        <figcaption>
+                            <!-- <h3>Lorem <br/>Ipsum</h3> -->
+                            <p>
+                            We provide the best comprehensive approach for creating a supportive environment that promotes student well-being and academic success.
+                            </p>
+                        </figcaption>
+                    </figure>
+                    </a>
+
+                    <a href="<?php echo base_url('clubs'); ?>">
+                    <figure class="hover-img first-col">
+                        <img src="images/11.jpeg"/>
+                        <div class="hover-content px-2 py-2">
+                            <h4 class="hover-title mb-0">
+                                <!-- <span class="font-weight-light">Image </span>
+                                <br> -->
+                                Clubs 
+                            </h4>
+                        </div>
+                        <figcaption>
+                            <!-- <h3>Lorem <br/>Ipsum</h3> -->
+                            <p>
+                            Clubs allow students to explore hobbies and passions alongside academics.                            </p>
+                        </figcaption>
+                    </figure>
+                    </a>
+
+                    <a href="<?php echo base_url('skills'); ?>">
+                    <figure class="hover-img first-col">
+                        <img src="images/11.jpeg"/>
+                        <div class="hover-content px-2 py-2">
+                            <h4 class="hover-title mb-0">
+                                <!-- <span class="font-weight-light">Image </span>
+                                <br> -->
+                                Skills
+                            </h4>
+                        </div>
+                        <figcaption>
+                            <!-- <h3>Lorem <br/>Ipsum</h3> -->
+                            <p>Skills prepare students to thrive in changing environments and situations.</p>
+                        </figcaption>
+                    </figure>
+                    </a>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

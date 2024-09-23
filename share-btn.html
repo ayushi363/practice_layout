@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Share</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"> <!-- Font Awesome -->
+    <style>
+        #share-btn {
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+        }
+
+        #social-icons i {
+            font-size: 20px;
+            color: #fff;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        #cross-btn {
+            font-size: 20px;
+            color: #fff;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            position: absolute;
+            /* top: -10px; */
+            right: -30px;
+            background-color: #ff0000;
+            border-radius: 50%;
+            padding: 5px;
+        }
+
+        #share-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="share-container">
+        <button id="share-btn">
+            Share
+            <i class="fas fa-share-alt"></i> <!-- Initial share icon -->
+        </button>
+    </div>
+    
+</body>
+<script>
+    document.getElementById('share-btn').addEventListener('click', function() {
+        var shareBtn = document.getElementById('share-btn');
+
+        // Change button content to social icons with a cross icon
+        shareBtn.innerHTML = `
+            <i class="fab fa-facebook-f" onclick="window.open('https://facebook.com', '_blank')"></i>
+            <i class="fab fa-instagram" onclick="window.open('https://instagram.com', '_blank')"></i>
+            <i class="fab fa-twitter" onclick="window.open('https://twitter.com', '_blank')"></i>
+            <button id="cross-btn">
+                <i class="fas fa-times"></i> <!-- Cross icon -->
+            </button>
+        `;
+
+        // Add event listener to the cross icon to revert back to "Share"
+        document.getElementById('cross-btn').addEventListener('click', function(event) {
+            event.stopPropagation(); // Prevent the parent button click from firing
+            revertToShare();
+        });
+    });
+
+    function revertToShare() {
+        var shareBtn = document.getElementById('share-btn');
+
+        // Revert back to the original "Share" button with the share icon
+        shareBtn.innerHTML = `
+            Share
+            <i class="fas fa-share-alt"></i>
+        `;
+    }
+</script>
+</html>
